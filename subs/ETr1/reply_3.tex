@@ -1,0 +1,127 @@
+\documentclass[12pt]{article}
+\usepackage[charter]{mathdesign}
+\usepackage[margin=1.25in]{geometry}
+
+\begin{document}
+\hfill 2014-10-06
+
+\noindent \textbf{Reply to referee 3}
+
+\noindent \textbf{General summary of changes}
+
+\begin{itemize}
+\item Several terms were defined in the beginning of the proofs of
+  Theorems~1 and~2, but were used repeatedly in the supporting
+  lemmas. The paper now defines those terms in a separate subsection
+  that proceeds the proofs.
+
+\item I have made some of the arguments in the proof of Theorem~1 more
+  explicit, and have tried to explain in detail how conditioning
+  affects the intermediate steps of the proof.
+
+\item One referee noticed that the proof of stochastic equicontinuity
+  was in error; it has been fixed. Fixing this proof revealed an error
+  in our treatment of the expectation terms, $\mu_{nt}$, and we have
+  strengthened our assumptions on their dispersion around the grand
+  mean, $\bar \mu_n$. We now require
+  $\sum_{t=1}^n (\mu_{nt} - \bar \mu_n) \to 0$
+  as $n \to \infty$.
+
+  However, our key assumptions on the size and moment conditions that
+  the stochastic array $X_{nt}$ satisfies remain unchanged, and the
+  paper's main contributions are unchanged.
+
+\item Fixing the stochastic equicontinuity proof also led me to revise
+  several of the supporting Lemmas.
+  \begin{itemize}
+  \item Lemmas 2 and 3 of the last draft have been replaced by Lemmas
+    5 and 7. These results are new maximal inequalities.
+  \item Lemma 5 of the last draft has been split up; parts of it are
+    in Lemma 3 and the remainder is in Lemma 4. Moreover, Lemma 4 of
+    the last draft has been incorporated into Lemma 3 of the latest draft.
+  \item Lemma 6 of the last draft has been rewritten to use
+    unconditional expectations instead of conditional expectations.
+  \end{itemize}
+
+\item There is some concern that the inequalities referenced in the
+  paper may fail with as complicated of an indexing scheme as used in
+  the paper. To address this, I have added a supplemental appendix
+  that provides more detail and shows how the original results apply
+  to our setting. These results are presented in the main paper as
+  Lemmas 6 and 7 of the paper and the supplemental appendix contains
+  their proofs. The proof are essentially identical to existing
+  results in the literature, and I am not claiming any authorship of
+  those particular results. But some readers will probably be
+  interested in this explicit demonstration.
+
+\item Other minor changes have been made to address points raised by
+  the referees.
+\end{itemize}
+
+\newpage
+
+\noindent \textbf{Reply to specific points}
+
+\begin{description}
+\item[Main comment] \emph{My main comment on the paper relates to the
+    array notation used throughout. Specifically, what is it for?}
+
+  I agree with several of the points raised here. The original array,
+  $\{X_{nt}\}$, is not normalized and so the notation might benefit
+  from using $X_t$ instead of $X_{nt}$. But the theoretical results
+  deal with arrays like $\{Z_{nj}\}$. These arrays are normalized and
+  also depend on the bootstrap lengths $M_{nj}$, which also depend on
+  $n$. Ultimately, I feel that it would be more confusing to the
+  reader if the paper were to use array notation for the various
+  $Z_{nj}$ terms --- where it does seem helpful --- but avoid it for
+  the $X_t$ terms.
+
+  I also think that it is useful to make the normalization explicit in
+  calculating the variance, etc., because it is natural to define the
+  bootstrap in terms of the original $X_{nt}$s and not a normalized or
+  demeaned array.
+
+  I realize that both of these choices make the main text somewhat
+  more cumbersome than it would be otherwise, but I hope that they
+  make the mathematics less ambiguous.
+
+\end{description}
+\begin{enumerate}
+\item[1.] \emph{In the statement of Lemma 2 (p. 13) $\mathcal{G}_n$ is a
+    sigma-field of events, so in what sense are $c_{nt}$ (scalar
+    constant?)  and $\Delta_n$ (real random variable?) elements of
+    $\mathcal{G}_n$ ? I think something else is intended here?}
+
+  I have rewritten the inequalities that depended on this lemma so
+  that they do not require it, so this lemma has been removed from the
+  paper. Originally, the notation was meant to convey that both
+  $c_{nt}$ and $\Delta_n$ are $\mathcal{G}_n$-measurable random
+  variables.
+
+\item[2.] \emph{It's customary in the this type of work to define the
+    probability space in which the action takes place, say $(\Sigma,
+    \mathcal{F}, P)$, so that subsequently defined sigma fields can be
+    identified as subsets of $\mathcal{F}$. I think that being
+    explicit about this is a convention worth adhering to.}
+
+  I agree that there are several areas of potential confusion in this
+  paper. With respect to the sigma fields involved, many of our
+  results rely crucially on adding different information sets at
+  different steps of the analysis, often after invoking the L.I.E.;
+  for example, conditioning on the original data set and the random
+  block lengths, but not on the starting position of the blocks; or
+  conditioning on the block lengths, but not on the original data set
+  or the block starting positions; etc. I don't see a way to make
+  those arguments more transparent by explicitly introducing the
+  product of the bootstrap mechanism and the DGP that generated the
+  original dataset as a probability space.
+
+  However, I am very concerned about these issues and I have written a
+  separate section that proceeds the proofs and defines many of the
+  derived random variables and sub sigma-fields that are used in our
+  proofs. Hopefully that helps clear up some of the readers' potential
+  confusion.
+
+\end{enumerate}
+
+\end{document}

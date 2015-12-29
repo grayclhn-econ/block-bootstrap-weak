@@ -1,0 +1,216 @@
+\documentclass[12pt]{article}
+\usepackage[charter]{mathdesign}
+\usepackage[margin=1.25in]{geometry}
+\frenchspacing
+\usepackage{amsmath}
+
+\begin{document}
+\hfill 2014-10-06
+
+\noindent \textbf{Reply to referee 2}
+
+\noindent \textbf{General summary of changes}
+
+\begin{itemize}
+\item Several terms were defined in the beginning of the proofs of
+  Theorems~1 and~2, but were used repeatedly in the supporting
+  lemmas. The paper now defines those terms in a separate subsection
+  that proceeds the proofs.
+
+\item I have made some of the arguments in the proof of Theorem~1 more
+  explicit, and have tried to explain in detail how conditioning
+  affects the intermediate steps of the proof.
+
+\item As you noticed, the proof of stochastic equicontinuity
+  was in error; it has been fixed. Fixing this proof revealed an error
+  in our treatment of the expectation terms, $\mu_{nt}$, and we have
+  strengthened our assumptions on their dispersion around the grand
+  mean, $\bar \mu_n$. We now require
+  $\sum_{t=1}^n (\mu_{nt} - \bar \mu_n) \to 0$
+  as $n \to \infty$.
+
+  However, our key assumptions on the size and moment conditions that
+  the stochastic array $X_{nt}$ satisfies remain unchanged, and the
+  paper's main contributions are unchanged.
+
+\item Fixing the stochastic equicontinuity proof also led me to revise
+  several of the supporting Lemmas.
+  \begin{itemize}
+  \item Lemmas 2 and 3 of the last draft have been replaced by Lemmas
+    5 and 7. These results are new maximal inequalities.
+  \item Lemma 5 of the last draft has been split up; parts of it are
+    in Lemma 3 and the remainder is in Lemma 4. Moreover, Lemma 4 of
+    the last draft has been incorporated into Lemma 3 of the latest draft.
+  \item Lemma 6 of the last draft has been rewritten to use
+    unconditional expectations instead of conditional expectations.
+  \end{itemize}
+
+\item There is some concern that the inequalities referenced in the
+  paper may fail with as complicated of an indexing scheme as used in
+  the paper. To address this, I have added a supplemental appendix
+  that provides more detail and shows how the original results apply
+  to our setting. These results are presented in the main paper as
+  Lemmas 6 and 7 of the paper and the supplemental appendix contains
+  their proofs. The proof are essentially identical to existing
+  results in the literature, and I am not claiming any authorship of
+  those particular results. But some readers will probably be
+  interested in this explicit demonstration.
+
+\item Other minor changes have been made to address points raised by
+  the referees.
+\end{itemize}
+
+\newpage
+
+\noindent \textbf{Reply to specific points}
+
+\begin{enumerate}
+
+\item \emph{Setup of Theorem 1: it is not clear to me from the text
+    how exactly the last block that ranges up to $n$ is dealt with. Is
+    $K_{n,J_n} = n$?}
+
+  Yes, thank you for pointing this out. I've clarified that $K_{n,J_n}
+  = n$.
+
+\item \emph{Page 7, Equations (16), (17) and (18): I do not understand
+    why (16) is implied by Hall and Heyde's CLT by (17) and (18). This
+    may be due to my lack of exposure to the bootstrap literature. It
+    seems that the author applies a conditional version of a CLT that
+    is unconditional; however, the exact argument escapes me. I seem
+    to be able to derive the author's result by working directly with
+    Hall and Heyde's proof, but I failed to see how the shortcut that
+    the author uses works. Some clarification or a good reference may
+    be needed here.}
+
+  (These equations are now numbered (21) -- (23))
+
+  I have added some clarification and a reference to the paper; the
+  key idea is that the only stochastic components of this conditional
+  probability measure are the periods where each block starts; they
+  have a discrete uniform distribution over $1,\dots,n$ and are
+  independent of the other random variables. This ensures that the
+  conditional probability measures are regular and arguments like Hall
+  and Heyde's, which implicitly allow the probability space to change
+  with $n$, hold without modification. (If it were an irregular
+  conditional probability, this would be problematic.)
+
+  Note that Hall and Heyde use the same approach themselves in Remark
+  (vi) on p. 63 (for example) in the context of random norming ---
+  applying the CLT while conditioning on an auxiliary r.v.
+
+\item \emph{Equation below equation (19): I cannot quite see
+    this. There is the issue of the last block, but that must be
+    fixable because it is asymptotically negligible; but I also do not
+    understand how this formula works overall. Obviously by (12),
+    \begin{equation*}
+      E^*(g(Z_{nj}^* \mid \mathcal{M}_n) =
+      E^*\Big(g\Big(\tfrac{1}{\sqrt{n}} \sum_{t = K_{n,j-1}+1}^{K_{nj}} (X_{nt}^* - \bar X_n)\Big)
+      \ \big|\ \mathcal{M}_n\Big)
+    \end{equation*}
+    and by (14) and (15),
+    \begin{align*}
+      \tfrac{1}{n} \sum_{\tau = 0}^{n-1} g(Z_n(\tau, M_{nj}))
+      &= \tfrac1n \sum_{\tau = 0}^{n-1} g\Big(\tfrac1{\sqrt{n}} \sum_{t \in I_n(\tau, M_{nj})} (X_{nt} - \mu)\Big) \\
+      &\approx \tfrac1n \sum_{\tau = 0}^{n-1} g\Big(\tfrac1{\sqrt{n}} \sum_{t = \tau+1}^{\tau + M_{nj}} (X_{nt} - \mu)\Big)
+    \end{align*}
+    where the $\approx$ indicates that I have ignored the last
+    block. However, I could not see why both expressions are
+    identical. One odd aspect of the last formula is that it will
+    refer to values of $X_{nt}$ for $t > n$ for values of $j$ for
+    which $M_{nj} \geq 1$ (this can be seen by choosing $\tau=n-1$).}
+
+  (This equation is now numbered (18))
+
+  $Z_n(\tau, M_{nj})$ should be defined as $\tfrac{1}{\sqrt{n}}
+  \sum_{t\in I_n(\tau, m)} (X_{nt} - \bar X_n)$ --- I have corrected
+  the definition in the paper. Other uses of $Z_n(\tau, M_{nj})$ in
+  the paper had implicitly used the correct definition, fortunately.
+
+  These expressions are now identical because
+  \begin{equation*}
+    (X_{n, K_{n,j-1}+1}^*,\dots, X_{n, K_{n,j}}^*) =
+    \begin{cases}
+      (X_{n,1},\dots,X_{n,M_{nj}}) & \text{with probability }1/n \\
+      (X_{n,2},\dots,X_{n,M_{nj}+1}) & \text{with probability }1/n \\
+      \vdots \\
+      (X_{n,n}, X_{n,1}\dots,X_{n,M_{nj}-1}) & \text{with probability }1/n
+    \end{cases}
+  \end{equation*}
+
+  The ``odd aspect of the last formula'' comes from your ``$\approx$''
+  substitution; $I_n(\tau,m)$ is defined in the paper to wrap around
+  after the $n$th observation. I.e., when $\tau = n-1$ the index
+  defined by $I_n(\tau, m)$ is $(n, 1, 2,\dots, m - 1)$. Since this is
+  not obvious, I've now emphasized this aspect of $I$: see Equation~(10).
+
+  Since this argument is so important to my results, I've moved it out
+  of the proof of Theorem 1 and discuss it before either proof. I have
+  also stated it in a somewhat more general form (i.e. it allows for
+  several blocks instead of just one) so that its use in Theorem 2 and
+  the supporting lemmas are more clear.
+
+\item \emph{p. 8, middle: ``by definition:'' perhaps explain why the
+    expression is $O_{a.s.}(1)$ here.}
+
+  Thank you for alerting me to this source of confusion. I have
+  simplified some of the notation in this argument added intermediate
+  steps. The relevant line is now between Equations (24) and (25).
+
+\item \emph{p. 8: reference to Van der Vaart's Lemma 2.11: this lemma
+    involves convergence of a distribution to a continuous
+    distribution, while your setting involves convergence in
+    probability. Therefore, perhaps you should indicate how exactly
+    the extension can be made to your setting.}
+
+  I have added more details to show how the argument applies in this
+  setting.
+
+\item \emph{Lemma 3: usually, uniform integrability of Y n is defined as
+    \begin{equation*}
+      \limsup_{K \to \infty} \limsup_{n \to \infty} E|X_n(\tau,m)| I(|Y_n| > K) = 0.
+    \end{equation*}
+    Are you claiming here that for the $X_n(τ, m)$ of Lemma 3, we have
+    \begin{equation*}
+      \limsup_{K \to \infty} \limsup_{\tau\to\infty} \limsup_{m \to \infty} \limsup_{n \to \infty}
+      E|X_n(\tau, m)|I(|X_n(\tau, m)| > K) = 0?
+    \end{equation*}
+    If so, it is not clear to me that the single-index results from
+    Davidson and de Jong have been translated into the triple index
+    result needed here; that is, I have trouble with the last sentence
+    of the proof of Lemma 3.}
+
+  I have written a supplemental appendix that reproduces some
+  inequalities and uniform integrability results. They are referenced
+  as Lemmas 6 and 7 in the main text. As you can see, the triple index
+  that my paper needs makes the notation more cumbersome, but does not
+  change the proof in a meaningful way.
+
+  Lemma 3 has been removed and has been replaced by an analogous but
+  somewhat stronger result in Lemma 5.
+
+\item \emph{Start of Theorem 2: I do not see why Lemma 5 has the
+    stated implication.}
+
+  I have rephrased this introduction.
+
+\item \emph{p. 9, bottom: this result is an error. Davidson's theorem
+    15.14 is a standard maximal inequality in the spirit of
+    Kolmogorov's inequality. Therefore, it cannot deliver the stated
+    result, because a maximal inequality such as 15.14 only maximizes
+    over one index only.}
+
+  Thank you for pointing out this embarrassing error; I have corrected
+  the proof.
+
+\item \emph{Lemma 6: this result is obtained from direct reference to
+    existing proofs. Therefore as far as I can see, the proof as
+    stated leaves open the possibility that $C$, $N$ and $\epsilon$
+    depend on $\mathcal{M}_n$.}
+
+  I have changed the statement of these results to rule out that
+  possibility, thank you for calling my attention to it.
+
+\end{enumerate}
+
+\end{document}
