@@ -1,0 +1,12 @@
+AllRefs.bib
+
+*~
+*.dvi
+*.aux
+*.bbl
+*.blg
+*.log
+*.pdf
+auto/
+
+.Rhistory
