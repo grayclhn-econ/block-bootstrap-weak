@@ -1,0 +1,416 @@
+\documentclass[11pt]{article}
+\input{preamble}
+\begin{document}
+
+\author{Gray Calhoun\thanks{Economics Department, Iowa State
+    University, Ames, IA 50011. Telephone: (515) 294-6271.  Email:
+    \protect\url{gcalhoun@iastate.edu}. Web:
+    http://www.econ.iastate.edu/$\sim$gcalhoun.}}
+
+\title{Supplemental Appendix for ``Block bootstrap consistency under
+  weak assumptions''}
+
+\maketitle
+
+\begin{abstract}
+  \noindent This appendix contains detailed proofs of several of the
+  supporting results in the paper, ``Block bootstrap consistency under
+  weak assumptions.'' As we have stated elsewhere these proofs are
+  fundamentally identical to existing proofs in this literature, but
+  our indexing changes the presentation slightly. We are not in any
+  way trying to take credit for the insight that led to these results;
+  they are presented only for readers' reference and convenience.
+\end{abstract}
+
+{%
+\newcommand{\isum}{\sum_{i=0}^{\lfloor n/m \rfloor - 1}}
+\begin{customlem}{6}
+  Suppose the conditions of Theorem~1 hold.
+  For any positive $\delta$, there exist positive and finite constants
+  $C$, $n_0$, and $\epsilon$ such that,
+  for all $n > n_0$, $m = 1,\dots,n$, $\tau = 0,\dots,m$, and $\ell =
+  1,\dots,m-1$,
+  \begin{multline}\label{eq:1}\tag{37}
+    \E \Big\lvert \isum \big[Z_n'(\tau + i m, m - \ell)^2
+    - \E \big(Z_n'(\tau + i m, m - \ell)^2\big) \big]\Big\rvert \\
+    \leq 2 \delta + C \cdot \big(\tfrac{m}{n}\big)^{1/2}
+    \big(\tfrac{m}{\ell^{1+\epsilon}}\big)^{1/2}.
+  \end{multline}
+  Also, there exists a constant $C$ and bounded function $D(x)$ with
+  $D(x) \to 0$ as $x \to \infty$ such that, for large enough $n$,
+  \begin{equation}
+    \label{eq:2}\tag{38}
+    \E \Big\lvert \isum \E(Z_n'(\tau + i m, m - \ell)^2
+    - \sigma^2 \Big\rvert \leq C\, D(\ell).
+  \end{equation}
+\end{customlem}
+\setcounter{equation}{39}
+Results~\eqref{eq:1} and~\eqref{eq:2} are direct extensions of
+\citepos{Jon:97} Lemmas 5 and 4, respectively, replacing de Jong's
+implicit use of inequalities with explicit inequalities. We can assume
+that $\mu_{nt} = 0$ without loss of generality in these proofs.
+
+\begin{proof}[Proof of~\eqref{eq:1}]
+  Define $h(x, B) = x \ind\{|x| \leq B\} + \sgn(x) B \ind\{|x| > B\}$.
+  Since Lemma~7 ensures uniform integrability, we can choose $B$ large
+  enough that
+  \begin{equation*}
+    \E \Big| \sum_{i=0}^{\lfloor n/m \rfloor - 1} \big(
+    Z'_n(\tau + im, m-\ell)^2 n / m -
+    h(Z'_n(\tau + im, m-\ell), B \sqrt{m/n})^2\big)\Big| < \delta,
+  \end{equation*}
+  so it suffices to bound
+  \begin{equation*}
+    \E \Big| \sum_{i=0}^{\lfloor n/m \rfloor - 1}
+    \big(h(Z'_n(\tau + im, m-\ell), B \sqrt{m/n})^2 -
+    \E h(Z'_n(\tau + im, m-\ell), B \sqrt{m/n})^2\big)\Big|.
+  \end{equation*}
+
+  As in de Jong's proof,
+  $h(Z'_n(\tau + im, m-\ell), B \sqrt{m / n})^2$
+  is $L_2$ \ned\ with respect to
+  \begin{equation*}
+    \mathcal{V}_{n,i-j}^{i+j} =
+    \sigma(V_{n,\tau + (i-j-1)m + \ell + 1},\dots,
+             V_{n,\tau + (i+j)m}).
+  \end{equation*}
+  This can be seen through the sequence of inequalities (for $j > 0$):
+  \begin{align*}
+    \lVert h(Z'_n(\tau + im, m-\ell)&, B \sqrt{m / n})^2
+    - \E(h(Z'_n(\tau + im, m-\ell), B \sqrt{m / n})^2 \mid
+         \mathcal{V}_{n,i-j}^{i+j}) \rVert_2 \\
+    & \leq 2 B \sqrt{\tfrac{m}{n}}
+    \lVert h(Z'_n(\tau + im, m-\ell), B \sqrt{m / n}) \\
+    &\quad- \E(h(Z'_n(\tau + im, m-\ell), B \sqrt{m / n}) \mid
+         \mathcal{V}_{n,i-j}^{i+j}) \rVert_2 \\
+    &\leq 2 B \tfrac{\sqrt{m}}{n}
+    \sum_{t \in I_n(\tau + im, m - \ell)}
+    \lVert X_{nt} - \E(X_{nt} \mid \mathcal{V}_{n,i-j}^{i+j}) \rVert_2 \\
+    & \leq 2 B \tfrac{\sqrt{m}}{n}
+    \sum_{t \in I_n(\tau + im, m - \ell)} d_{nt} v_{j\ell} \\
+    &= 2 B D \tfrac{m^{3/2}}{n} \, (\ell j)^{-1/2 - \epsilon}
+  \end{align*}
+  for some $\epsilon > 0$ and $D \geq \max_t d_{nt}$. For $j = 0$,
+  we have
+  \begin{align*}
+    \lVert h(Z'_n(\tau + im, m-\ell), B \sqrt{m / n})^2
+    - \E(h(Z'_n(\tau + im&, m-\ell), B \sqrt{m / n})^2 \mid
+         \mathcal{V}_{n,i}^{i}) \rVert_2 \\
+    & \leq 2 B \sqrt{\tfrac{m}{n}} \lVert Z'_n(\tau + im, m - \ell) \rVert_2 \\
+    & \leq 2 B D \tfrac{m}{n}
+  \end{align*}
+  with the last inequality holding by Lemma~7.
+
+  These \ned\ inequalities further imply that $h(Z'_n(\tau + im, m -
+  \ell))^2$ is an $L_2$-mixingale of size $-1/2$. Define
+  \begin{equation*}
+     \mathcal{H}_{nk} = \sigma(V_{n,\tau + km}, V_{n,\tau + (k-1)m},\dots)
+  \end{equation*}
+  For $j > 0$,
+  \begin{align*}
+    \lVert h(Z'_n(\tau &+ im, m - \ell, B \sqrt{m/n}))^2 -
+    \E(h(Z'_n(\tau + im, m - \ell), B \sqrt{m/n})^2 \mid
+    \mathcal{H}_{n,i - 2j}) \rVert_2 \\
+    &\leq 
+    \lVert h(Z'_n(\tau + im, m - \ell), B \sqrt{m/n})^2 \\
+    &\quad -
+    \E(h(Z'_n(\tau + im, m - \ell), B \sqrt{m/n})^2 \mid V_n(i + j, i-j)) \rVert_2 \\
+    & \quad
+    + \lVert \E(h(Z'_n(\tau + im, m - \ell), B \sqrt{m/n})^2 \mid V_n(i+ j, i-j))\\
+    & \quad-
+    \E(h(Z'_n(\tau + im, m - \ell), B \sqrt{m/n})^2 \mid \mathcal{H}_{n,i - 2j}) \lVert_2 \\
+    &\leq 2 B D \tfrac{m^{3/2}}{n} \, (\ell j)^{-1/2 - \epsilon}
+    + 2 B D \tfrac{m}{n} \psi(j \ell)
+  \end{align*}
+  where $\psi(x) = x^{1/2 - 1/r}$ if $V_{nt}$ is strong mixing and
+  $\psi(x) = x^{1 - 1/r}$ if $V_{nt}$ is uniform mixing. By
+  assumption, $\psi(x) = O(x^{-1/2 - \epsilon'})$ for some $\epsilon'
+  > 0$. Assume without loss of generality that the
+  $\epsilon$ we defined earlier satisfies this requirement as well,
+  so $\psi(j \ell) \leq D' (j \ell)^{-1/2 - \epsilon}$ for some constant
+  $D' > 1$.
+
+  For the rest of the mixingale inequalities, let $j \geq 0$ and then
+  \begin{align*}
+    \lVert h(Z'_n(\tau &+ im, m - \ell, B \sqrt{m/n}))^2 -
+    \E(h(Z'_n(\tau + im, m - \ell), B \sqrt{m/n})^2 \mid
+    \mathcal{H}_{n,i + 2j}) \rVert_2 \\
+    & \leq \lVert h(Z'_n(\tau + im, m - \ell), B \sqrt{m/n})^2 \\
+    & \quad - \E(h(Z'_n(\tau + im, m - \ell), B \sqrt{m/n})^2 \mid
+    V_n(i + j, i-j)) \rVert_2 \\
+    & \leq 2 B D \tfrac{m^{3/2}}{n} (\ell j)^{-1/2 - \epsilon},
+  \end{align*}
+  completing the argument that $h(Z'_n(\tau + im, m - \ell, B
+  \sqrt{m/n}))^2$ is an $L_2$-mixingale of size $-1/2$.
+
+  Now let $C = 4 B D D'$.
+  We can now apply de Jong's Lemma 2 (originally presented in
+  \citealp{Mcl:75}) to this mixingale, giving
+  \begin{align*}
+    \Big \lVert \sum_{i=0}^{\lfloor n/m \rfloor - 1}
+    \big(h(Z'_n(\tau + im, m - \ell, B \sqrt{m/n}))^2 -
+    \E h(Z'_n&(\tau + im, m - \ell), B \sqrt{m/n})^2\big) \Big\rVert_2 \\
+    &\leq \Bigg(\sum_{i=0}^{\lfloor n/m \rfloor - 1}
+    \big(C \tfrac{m}{n} \tfrac{m^{1/2}}{\ell^{1/2 + \epsilon}}\big)^2 \Bigg)^{1/2} \\
+    &\leq C \big(\tfrac{m}{n}\big)^{1/2} \tfrac{m^{1/2}}{\ell^{1/2 + \epsilon}}
+  \end{align*}
+  which gives the final result.
+\end{proof}
+
+\begin{proof}[Proof of~\eqref{eq:2}]
+  Observe that
+  \begin{align}
+    \Big\lvert \notag
+    \sum_{j=0}^{\lfloor n/m \rfloor - 1} & \sum_{i=j+1}^{\lfloor n/m \rfloor - 1}
+    \E Z_{n}'(\tau + im, m - \ell) Z_{n}'(\tau + jm, m - \ell) \Big\rvert \\
+    &\leq \tfrac{1}{n} \notag
+    \sum_{j=0}^{\lfloor n/m \rfloor - 1} \sum_{i=j+1}^{\lfloor n/m \rfloor - 1}
+    \sum_{t = j m + \ell + 1}^{(j+1) m} \sum_{k= i m + \ell + 1 - t}^{(i+1)m - t}
+    1\{k \geq \ell\} \E\lvert X_{nt} X_{n,t+k}  \rvert\\ \label{eq:3}
+    &\leq \tfrac{1}{n} \sum_{t = 1}^n \sum_{k = 0}^{n-t} 1\{k \geq \ell\}
+    \sum_{v=0}^\infty  \big( \E \Delta_{1n}(t,v) \E \Delta_{2n}(t,k,v) \big)^{1/2}\\
+    &\quad + \tfrac{1}{n} \sum_{t = 1}^n \sum_{k = 0}^{n-t} 1\{k \geq \ell\} \label{eq:4}
+    \sum_{v=1}^\infty \big( \E \Delta_{3n}(t,v) \E \Delta_{4n}(t,k,v) \big)^{1/2}
+  \end{align}
+  by de Jong's Lemma 3, with
+  \begin{align*}
+    \Delta_{1n}(t,v) &= (\E_{t-v} X_{nt})^2 - (\E_{t-v-1} X_{nt})^2 \\
+    \Delta_{2n}(t,k,v)&= (\E_{t-v}X_{n,t+k})^2 - (\E_{t-v-1} X_{n,t+k})^2 \\
+    \Delta_{3n}(t,v) &=  (X_{nt} - \E_{t+v-1} X_{nt})^2 -  (X_{nt} - \E_{t+v} X_{nt})^2 \\
+    \Delta_{4n}(t,k,v) &= (X_{n,t+k} - \E_{t+v-1} X_{n,t+k})^2 - (X_{n,t+k} - \E_{t+v} X_{n,t+k})^2
+  \end{align*}
+
+  Both~\eqref{eq:3} and~\eqref{eq:4} can be bounded by very similar
+  arguments, so we just present the first. Now
+  \begin{multline*}
+    \tfrac{1}{n} \sum_{t=1}^n \sum_{k=0}^{n-t}  1\{k \geq \ell\}
+    \sum_{v=0}^\infty \big(\E \Delta_{1n}(t,v) \E \Delta_{2n}(t,k,v)\big)^{1/2} \leq \\
+    \sum_{v=0}^\infty \Big\{
+    \Big(\tfrac{1}{n} \sum_{t=1}^n \E \Delta_{1n}(t, v) \Big)^{1/2}
+    \Big(\tfrac{1}{n} \sum_{t=1}^n \Big(\sum_{k=0}^{n-t}
+    1\{k \geq \ell\} (\E \Delta_{2n}(t,k,v))^{1/2} \Big)^2 \Big)^{1/2}
+    \Big\}
+  \end{multline*}
+  by the Cauchy-Schwarz inequality.  By the same inequality, we have
+  \begin{align*}
+    \tfrac{1}{n} \sum_{t=1}^n \Big(\sum_{k=0}^{n-t}
+    1\{k \geq \ell\} (\E & \Delta_{2n}(t,k,v))^{1/2} \Big)^2 \\
+     & \leq (C/n) \sum_{t=1}^n
+     \sum_{k=\ell}^{n-t} k \log(k)^2 \E \Delta_{2n}(t,k,v) \\
+     & \leq (C/n) \sum_{t=1}^n c_{nt}^2 \Big(\ell \log(\ell)^2 \psi(\ell)^2
+     + \sum_{k=\ell}^{\infty} \log(k)^2 \psi(k)^2 \Big)
+  \end{align*}
+  where $C$ is any constant that bounds $\sum_{k=1}^{\infty} k^{-1}
+  \log(k)^{-2}$ and $\psi$ is defined as $\psi(k) \equiv v_k + 6 \alpha_{k/2}^{1/p -1/r}$ (if
+  the underlying mixing process is strong mixing with coefficients
+  $\alpha_k$) or $\psi(k) \equiv v_k + 6 \phi_{k/2}^{1 - 1/r}$ (if the
+  underlying process is uniform mixing with coefficients $\phi_k$).%
+\footnote{Note that these values of $\psi(k)$ are the mixingale
+  indices corresponding to our \ned\ array. See \citet[Theorem 17.15]{Dav:94}
+  for details.} %
+  Notice that this last expression does not depend on $v$.
+
+  Similarly,
+  \begin{align*}
+    \sum_{v=0}^{\infty}\Big(\tfrac{1}{n} \sum_{t=1}^n \E \Delta_{1n}(t,v) \Big)^{1/2}
+    & \leq
+     \Big((C/n) \sum_{t=1}^{n}\Big( \E \Delta_{1n}(t,0) + \sum_{v=1}^{\infty} \log(v)^2
+     \E \Delta_{1n}(t,v)\Big) \Big)^{1/2} \\
+     & \leq \Big((C/n) \sum_{t=1}^n c_{nt}^2
+     \Big( \psi(0)^2 + \sum_{v=1}^{\infty} \log(v)^2 \psi(v)^2 \Big)\Big)^{1/2}.
+  \end{align*}
+  So we can bound~\eqref{eq:3} with
+  \begin{multline*}
+    \text{const} \times D(\ell) = \Big((C/n) \sum_{t=1}^{n} c_{nt}^2\Big) \\
+    \times \Big(\ell \log(\ell)^2 \psi(\ell)^2
+     + \sum_{k=\ell}^{\infty} \log(k)^2 \psi(k)^2 \Big)^{1/2}
+     \Big( \psi(0)^2 + \sum_{v=1}^{\infty} \log(v)^2 \psi(v)^2 \Big)^{1/2}
+  \end{multline*}
+  and $D(\ell) \to 0$ as $\ell \to \infty$.
+  A similar proof holds for~\eqref{eq:4}, so~\eqref{eq:2} holds with
+  \begin{equation*}
+    D(\ell) =
+    \Big(\ell \log(\ell)^2 \psi(\ell)^2
+    + \sum_{k=\ell}^{\infty} \log(k)^2 \psi(k)^2 \Big)^{1/2}. \qedhere
+  \end{equation*}
+\end{proof}
+}
+
+{%
+\newcommand{\uiterm}{\max_{m \in 1,\dots,m'} \Big(
+  \sum_{t \in I_n(\tau, m)} (X_{nt} - \mu_{nt})\Big)^2 \Big/
+  \sum_{t\in I_n(\tau, m')} c_{nt}^2}
+\newcommand{\uitermb}{\sum_{\tau=0}^{n-1} \tfrac{1}{n m'} \max_{m \in 1,\dots,m'} \Big(
+  \sum_{t \in I_n(\tau, m)} (X_{nt} - \bar X_n)\Big)^2}
+\begin{customlem}{7}
+  Under the conditions of Theorem~1,
+  \begin{multline}\label{eq:5}\tag{39}
+    \lim_{C \to 0} \limsup_{n \to \infty} \sup_{\substack{\tau = 0,\dots,n-1 \\  m' = 1,\dots,n}}
+    \E\big(\big(\max_{m=1,\dots,m'} Z'_n(\tau, m)^2 n / m'\big) \\
+    \times\ind\{\max_{m=1,\dots,m'} Z'_n(\tau, m)^2 n / m' > C\}\big) = 0.
+  \end{multline}
+\end{customlem}
+
+\begin{proof}[Proof of Lemma 7]
+  \newcommand{\w}{w_{n}(\tau, m')}
+  \newcommand{\sums}[1]{\Big(\sum_{t \in I_{n}(\tau, m)} #1_{nt} \Big)^2}
+  \renewcommand{\uiterm}{\max_{m \in 1,\dots,m'} \Big(
+    \sum_{t \in I_n(\tau, m)} X_{nt}\Big)^2 \Big/
+    \Big(\sum_{t\in I_n(\tau, m')} c_{nt} \Big)^2}
+
+  The argument follows \citet[Lemma 6.5]{Mcl:75b} and
+  \citet[Lemma 3.5]{Mcl:77} almost exactly and is also presented as
+  Theorem~16.13 in \citet{Dav:94}. We present the proof here to show
+  that it continues to hold under our indexing strategy.
+
+  Let $\epsilon$ be an arbitrary positive number.
+  Without loss of generality, assume that $X_{nt}$ has mean zero for
+  all $n$ and $t$. Define $\w^2 = \sum_{t\in I_n(\tau, m')} c_{nt}^2$
+  and separate $X_{nt}$ into three components,
+  \begin{align*}
+    X_{nt}&= U_{nt} + V_{nt} + Y_{nt}
+    \intertext{with}
+    U_{nt} &= X_{nt} - \E_{t+k} X_{nt} + \E_{t-k} X_{nt} \\
+    V_{nt} &= \E_{t+k} X_{nt} \ind\{|X_{nt}| > C' c_{nt}\}
+             - \E_{t-k} X_{nt} \ind\{|X_{nt}| > C' c_{nt}\} \\
+    Y_{nt} &= \E_{t+k} X_{nt} \ind\{|X_{nt}| \leq C' c_{nt}\}
+             - \E_{t-k} X_{nt} \ind\{|X_{nt}| \leq C' c_{nt}\}
+  \end{align*}
+  where $k$ and $C'$ are arbitrary constants that will be constrained
+  later in the proof --- this representation holds for any value of
+  these constants. For convenience, define
+  \begin{align*}
+    x_{n}(\tau,m') &= \max_{m \in 1,\dots,m'}
+                     \Big(\sum_{t \in I_n(\tau, m)} X_{nt}\Big)^2 \big/ \w^2 \\
+    u_{n}(\tau,m') &= \max_{m \in 1,\dots,m'}
+                     \Big(\sum_{t \in I_n(\tau, m)} U_{nt}\Big)^2 \big/ \w^2 \\
+    y_{n}(\tau,m') &= \max_{m \in 1,\dots,m'}
+                     \Big(\sum_{t \in I_n(\tau, m)} Y_{nt}\Big)^2 \big/ \w^2 \\
+    \intertext{and}
+    z_{n}(\tau,m') &= \max_{m \in 1,\dots,m'}
+                     \Big(\sum_{t \in I_n(\tau, m)} V_{nt}\Big)^2 \big/ \w^2.
+  \end{align*}
+  Using the Cauchy-Schwarz inequality and basic algebra, we have for
+  any $\tau$ and $m'$ the inequality
+  \begin{equation*}
+    x_n(\tau, m') \leq 3\big(u_n(\tau, m')
+                       + y_n(\tau, m') + z_n(\tau, m') \big)
+  \end{equation*}
+  which, along with a well known inequality
+  (Theorem 9.29 in \citealp{Dav:94}) gives the bounds {%
+    \newcommand{\tails}[2]{\E( #1 \ind\{#1 > #2\})}
+    \begin{align*}
+      \E(x_n(\tau, m')&\ind\{x_n(\tau, m')> C\}) \\
+      &\leq 6\big(\tails{u_n(\tau, m')}{C/6}
+            + \tails{y_n(\tau, m')}{C/6}\big)\\
+      &\quad + \tails{z_n(\tau, m')}{C/6} \\
+      &\leq 6\big(\E u_n(\tau, m') + \tails{y_n(\tau, m')}{C/6}
+      + \E z_n(\tau, m')\big)
+    \end{align*}
+  }
+  for any positive $C$.
+
+  Now observe that $\| \E_{t-l} U_{nt} \|_2 \leq d_{nt} v_{\max(k,l)}$
+  and $\| U_{nt} - \E_{t+l} U_{nt} \|_2 \leq d_{nt} v_{\max(k,l)+1}$
+  for positive $l$, making $U_{nt}$ an $L_2$-mixingale of size $-1/2$.
+  Consequently, for any fixed $\tau$ and $m'$ satisfying $\tau + m'
+  \leq n$, we can apply Theorem 1.6 of \cite{Mcl:75} to get the bound
+  \begin{equation}\label{eq:7}
+    \E u_n(\tau, m') \leq
+    8 \Big((k + 1) k^{-1-\delta} + \sum_{s=k+1}^\infty s^{-1-\delta}\Big)
+    \Big(v_k^2 \, k^{1+\delta} + 2 \sum_{s=k+1}^\infty v_s^2 \, s^\delta\Big),
+  \end{equation}
+  where $\delta > 0$ satisfies $v_k = O(k^{-1/2 - \delta})$. (This
+  $\delta$ must exist because of our assumptions on the size of the
+  \ned\ array.) This bound is $O(k^{-\delta})$ as $k \to \infty$
+  uniformly in $n$, $m'$, and $\tau$.
+  When $\tau + m' > n$, we have (from the Cauchy-Schwarz inequality)
+  \begin{equation*}
+    \E u_n(\tau, m') \leq
+    4 \max\big( \E u_n(\tau, n - \tau),
+                \E u_n(0, m' + \tau - n) \big),
+  \end{equation*}
+  and both terms individually satisfy~\eqref{eq:7}. As a result, we
+  can choose $k$ large enough that
+  \begin{equation*}
+    \E u_n(\tau, m') \leq \epsilon/2
+  \end{equation*}
+  for all $n$, $m'$, and $\tau$.
+
+  We can apply essentially the same argument to $z_n(\tau, m')$. For
+  positive $l$, we have
+  \begin{align*}
+    \| \E_{t-l} V_{nt} \|_2 &=
+    \big(\E[(\E_{t-\min(l, k)} V_{nt})^2 - (\E_{t-k} V_{nt})^2]\big)^{1/2} \\
+    &\leq \big(\E( X_{nt}^2/c_{nt}^2
+    \ind\{|X_{nt}/c_{nt}| > C'\}) \big)^{1/2}\ind\{l < k\}
+  \end{align*}
+  and
+  \begin{align*}
+    \| V_{nt} - \E_{t+l} V_{nt} \|_2
+    &= \big(\E[ (\E_{t+k} V_{nt} )^2 - (\E_{t+\min(l,k)} V_{nt})^2] \big)^{1/2}\\
+    &\leq \big(\E( X_{nt}^2/c_{nt}^2
+    \ind\{|X_{nt}/c_{nt}| > C'\})\big)^{1/2} \ind\{l < k\}
+  \end{align*}
+  so $V_{nt}$ is an $L_2$-mixingale as well. Applying the same steps
+  for $z_{n}(\tau, m')$ as for $u_n(\tau, m')$ gives the upper bound
+  \begin{align*}
+    \E z_n(\tau, m')
+    &\leq 16 (k+1) \max_{t \in I_n(\tau, m')} \E\big( X_{nt}^2/c_{nt}^2
+    \ind\{|X_{nt}/c_{nt}| > C'\}\big) \\
+    &\leq 16 (k+1) \max_{t = 1,\dots,n} \E\big( X_{nt}^2/c_{nt}^2
+    \ind\{|X_{nt}/c_{nt}| > C'\}\big)
+  \end{align*}
+  for any $\tau$, $m'$, and $n$ satisfying $\tau + m' \leq n$, and
+  \begin{equation*}
+    \E z_n(\tau, m')
+    \leq 4 \max\big(\E z_n(\tau, n - \tau),
+                    \E z_n(0, m' + \tau - n) \big)
+  \end{equation*}
+  when $\tau + m' > n$.
+  Since $X_{nt}^2/c_{nt}^2$ is uniformly integrable, set $C'$ large
+  enough that this upper bound is less than $\epsilon/2$ for all $n$,
+  $m'$, and $\tau$ as well.
+
+  Finally, to bound $\E(y_n(\tau,m') \ind\{y_n(\tau, m') > C/6\})$,
+  use the inequality
+  \begin{equation*}
+    \E(y_n(\tau,m') \ind\{y_n(\tau, m') > C/6\})
+    \leq 6 \E y_n(\tau, m')^2 / C.
+  \end{equation*}
+  We can write $Y_{nt} = \sum_{l=1-k}^k \xi_n(t,l)$, where
+  \begin{equation*}
+    \xi_n(t,l) = \E_{t+l} X_{nt} \ind\{|X_{nt}| \leq C' c_{nt}\}
+                 - \E_{t+l-1} X_{nt} \ind\{|X_{nt}| \leq C' c_{nt}\},
+  \end{equation*}
+  and $\{\xi_n(t,l), \Fs_{n,t+l}\}$ forms a martingale difference
+  array for each $l$. Then, when $\tau + m' \leq n$, we have
+  \begin{align*}
+    \E y_n(\tau, m')^2
+    &= \E \max_{m = 1,\dots, m'}
+    \Big| \sum_{t \in I_n(\tau, m)} \sum_{l=1-k}^k \xi_n(t,l) \Big|^4 \Big/ \w^4 \\
+    &\leq \sum_{l=1-k}^k \E \max_{m = 1,\dots, m'}
+    \Big| \sum_{t \in I_n(\tau, m)} \xi_n(t,l) \Big|^4 \Big/ \w^4 \\
+    &\leq \frac{4^4 (2k + 1)^3}{3^4\w^4}
+    \sum_{l=1-k}^k \E \Big| \sum_{t \in I_n(\tau, m')} \xi_n(t,l) \Big|^4
+  \end{align*}
+  where the second inequality follows from a maximal inequality for
+  \mds es \citep[Theorem 16.8]{Dav:94}. Since the $\xi_n(\tau,l)$ are
+  all bounded by $2 c_{nt} C'$, we can expand the expectation
+  recursively to derive the bound
+  \begin{equation*}
+    \E \Big| \sum_{t \in I_n(\tau, m')} \xi_n(t,l) \Big|^4 \leq
+    11 (2 C')^4 \w^4,
+  \end{equation*}
+  \citep[For details, see][Equations 16.69--16.72]{Dav:94}
+  giving
+  \begin{equation*}
+    \E y_n(\tau, m')^2 \leq \frac{11 \times 4^6\, (2k + 1)^4 C^{\prime4}}{3^4}.
+  \end{equation*}
+  When $\tau + m' > n$, the same bound holds, but with $4^7$ replacing
+  $4^6$.  Then, as $C \to \infty$, this quantity converges to zero,
+  completing the proof of (\ref{eq:5}).
+\end{proof}
+}
+\bibliography{texextra/references}
+\end{document}

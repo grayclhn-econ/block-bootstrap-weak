@@ -1,0 +1,82 @@
+\usepackage{%
+  amsfonts,
+  amsmath,
+  amssymb,
+  amsthm,
+  booktabs,
+  geometry,
+  graphicx,
+  setspace,
+  slantsc,
+  tabularx,
+  url,
+}
+
+\usepackage[small]{caption}
+\usepackage[mmddyyyy,hhmmss]{datetime}
+\usepackage[T1]{fontenc}
+\usepackage[multiple]{footmisc}
+\usepackage[sort,round]{natbib}
+
+\urlstyle{same}
+
+\date{6 October, 2014}
+
+\bibliographystyle{abbrvnat}
+\newcommand\citepos[2][]{\citeauthor{#2}'s \citeyearpar[#1]{#2}}
+
+\newtheorem{innercustomlem}{Lemma}
+\newenvironment{customlem}[1]
+  {\renewcommand\theinnercustomlem{#1}\innercustomlem}
+  {\endinnercustomlem}
+
+\newtheorem{thm}{Theorem}
+\newtheorem{lem}{Lemma}
+\newtheorem{claim}{Claim}
+\newtheorem{cor}{Corollary}
+\newtheorem{res}{Result}
+
+\theoremstyle{definition}
+
+\newtheorem{example}{Example}
+\newtheorem{defn}{Definition}
+\newtheorem{rem}{Remark}
+
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\plim}{plim}
+
+\DeclareMathOperator{\dist}{d}
+\DeclareMathOperator{\const}{const}
+\DeclareMathOperator{\cov}{cov}
+\DeclareMathOperator{\E}{E}
+\DeclareMathOperator{\eqd}{\overset{d}{=}}
+\DeclareMathOperator{\ind}{1}
+\DeclareMathOperator{\pr}{Pr}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\var}{var}
+\DeclareMathOperator{\vech}{vech}
+
+\renewcommand{\mod}{\operatorname{mod}}
+
+\newcommand{\clt}{\textsc{clt}}
+\newcommand{\fclt}{\textsc{fclt}}
+\newcommand{\hac}{\textsc{hac}}
+\newcommand{\lln}{\textsc{lln}}
+\newcommand{\mds}{\textsc{mds}}
+\newcommand{\ned}{\textsc{ned}}
+
+\newcommand{\textif}{\text{if}}
+\newcommand{\textand}{\text{and}}
+
+\newcommand{\sigmafield}{$\sigma$-field}
+
+\newcommand{\Fs}{\mathcal{F}}
+\newcommand{\Gs}{\mathcal{G}}
+\newcommand{\Ms}{\mathcal{M}_n}
+\newcommand{\Pm}{\pr_{\mathcal{M}}}
+\newcommand{\Em}{\E_{\mathcal{M}}}
+\newcommand{\BigC}{~\Big|~}
+\newcommand{\Zs}{\mathcal{Z}}
+\DeclareMathOperator{\discreteuniform}{discrete\ uniform}
+
+\frenchspacing
