@@ -1,21 +1,28 @@
-\documentclass[12pt]{article}
+\documentclass[11pt]{article}
 \usepackage{amsfonts}
-\usepackage{amsmath,amsthm,amssymb,graphicx,setspace,url,booktabs,tabularx}
+\usepackage{amsmath,amsthm,amssymb,graphicx,setspace,url,booktabs,tabularx,slantsc}
+\usepackage[T1]{fontenc}
+
+% \usepackage[yyyymmdd,hhmmss]{datetime}
+% \usepackage{fancyhdr}
+% \pagestyle{fancy}
+% \lfoot{Page \thepage. Typeset on \today\ at \currenttime}
+% \cfoot{}
+% \rfoot{}
+
 \usepackage[sort,round]{natbib}
-\usepackage[margin=1.25in]{geometry}
+\usepackage[multiple]{footmisc}
+\usepackage{geometry}
 \usepackage[small]{caption}
 
 \bibliographystyle{abbrvnat}
 \newcommand\citepos[2][]{\citeauthor{#2}'s \citeyearpar[#1]{#2}}
 
 \newtheorem{thm}{Theorem}
-\newtheorem{lem}[thm]{Lemma}
-\newtheorem{claim}[thm]{Claim}
-\newtheorem{cor}[thm]{Corollary}
-\newtheorem{res}[thm]{Result}
-\newtheorem{lema}{Lemma}[section]
-\newtheorem{alg}{Algorithm}
-\newtheorem{asmp}{Assumption}[section]
+\newtheorem{lem}{Lemma}
+\newtheorem{claim}{Claim}
+\newtheorem{cor}{Corollary}
+\newtheorem{res}{Result}
 
 \theoremstyle{definition}
 
@@ -26,6 +33,7 @@
 \DeclareMathOperator*{\argmin}{arg\,min}
 \DeclareMathOperator*{\plim}{plim}
 
+\DeclareMathOperator{\dist}{d}
 \DeclareMathOperator{\const}{const}
 \DeclareMathOperator{\cov}{cov}
 \DeclareMathOperator{\E}{E}
@@ -42,27 +50,32 @@
 \newcommand{\fclt}{\textsc{fclt}}
 \newcommand{\hac}{\textsc{hac}}
 \newcommand{\lln}{\textsc{lln}}
+\newcommand{\mds}{\textsc{mds}}
 \newcommand{\ned}{\textsc{ned}}
 
 \frenchspacing
-\onehalfspacing
 
 \begin{document}
 
 \author{Gray Calhoun\thanks{Economics Department, Iowa State
     University, Ames, IA 50011. Telephone: (515) 294-6271.  Email:
-    \texttt{gcalhoun@iastate.edu}. Web: \texttt{http://www.econ.iastate.edu/$\sim$gcalhoun}.}}
+    \texttt{gcalhoun@iastate.edu}. Web: \texttt{http://gray.clhn.co}.
+    I would like to thank Helle Bunzel, Dimitris Politis, Robert
+    Taylor, and three anonymous referees for their comments and
+    feedback on earlier versions of this paper.}}
+
 \title{Block bootstrap consistency\\under weak assumptions}
-\date{\today}
+
+\date{March 25, 2013}
 \maketitle
 
 \begin{abstract}\noindent
   This paper weakens the size and moment conditions needed for typical
-  block bootstrap methods (i.e. the moving blocks, circular blocks,
-  and stationary bootstraps) to be valid for the sample mean of
-  Near-Epoch-Dependent functions of mixing processes; they are
+  block bootstrap methods (i.e. the Moving Blocks, Circular Blocks,
+  and Stationary Bootstraps) to be valid for the sample mean of
+  Near-Epoch-Dependent (\ned) functions of mixing processes; they are
   consistent under the weakest conditions that ensure the original
-  process obeys a Central Limit Theorem \citep[those
+  \ned\ process obeys a Central Limit Theorem \citep[those
     of][\textit{Econometric Theory}]{Jon:97}.  In doing so, this paper
   extends de Jong's method of proof, a blocking argument, to hold with
   random and unequal block lengths.  This paper also proves that
@@ -75,9 +88,10 @@
   Functional Central Limit Theorem
 \end{abstract}
 
-\newpage\noindent Block bootstraps, e.g. the moving blocks
-\citep{Kun:89,LiS:92}, circular block \citep{PoR:92}, and stationary
-bootstraps \citep{PoR:94}, have become popular in Economics, partly
+\newpage
+\noindent Block bootstraps, e.g. the Moving Blocks
+\citep{Kun:89,LiS:92}, Circular Block \citep{PoR:92}, and Stationary
+Bootstraps \citep{PoR:94}, have become popular in Economics, partly
 because they do not require the researcher to make parametric
 assumptions about the data generating process.  They are valid under
 general weak dependence and moment conditions.  Some recent papers
@@ -93,8 +107,9 @@ Econometrics based on Near-Epoch-Dependence
   $r+\delta$ moments for the original series, and size
   $-(2+\delta)(r+\delta)/(r-2)$ for the underlying mixing series.
   Both papers require that the expected block length grow with $n$ and
-  be $o(n^{1/2})$.}\footnote{An array $\{X_{nt}\}$ is an
-  $L_{\rho}$-\ned\ process on a mixing array $\{V_{nt}\}$ if
+  be $o(n^{1/2})$.  \cite{GoP:11} discuss these issues
+  further.}\footnote{An array $\{X_{nt}\}$ is an $L_{\rho}$-\ned\
+  process on a mixing array $\{V_{nt}\}$ if
   \begin{equation}
     \| X_{nt} - \E(X_{nt}
     \mid V_{n,t-m},\dots,V_{n,t+m}) \|_{\rho} \leq d_{nt} v_m
@@ -102,775 +117,948 @@ Econometrics based on Near-Epoch-Dependence
   with $v_m \to 0$ as $m \to \infty$ and $\{d_{nt}\}$ an array of
   positive constants.  It is of size $-\gamma$ if $v_m = O(m^{-\gamma
     - \delta})$ for all $\delta>0$.  Dropping the index ``$n$'' gives
-  the series definition.} But these conditions are still stronger than
+  the series definition.  Note that strong and uniform mixing arrays are
+  not required to be stationary.} But these conditions are still stronger than
 required for a \clt\ to hold; \citet{Jon:97} has established the \clt\
 under $L_2$-\ned\ with smaller size and moment
 restrictions.\footnote{\citet{Jon:97} proves that the \clt\ holds for
   averages of $L_2$-\ned\ processes of size $-1/2$ on a strong mixing
   series of size $-r/(r-2)$, $r > 2$ and the original series having
-  bounded $r$-moments.}  In this paper, I'll show that these block
-bootstrap methods consistently estimate the distribution of the sample
-mean under \citepos{Jon:97} assumptions, and show that an \fclt\ holds
-as well.  I also relax \citepos{GoW:02} and \citepos{GoJ:03}
-requirement that the expected block length be $o(n^{1/2})$ to the
-original papers' requirement that it be $o(n)$.
+  bounded $r$-moments.}  This paper shows that these block bootstrap
+methods consistently estimate the distribution of the sample mean
+under \citepos{Jon:97} assumptions, and show that an \fclt\ holds as
+well.\footnote{\citet{Rad:96} proves consistency for the Moving Blocks
+  Bootstrap for any stationary strong mixing sequence that satisfies
+  the \clt. This paper uses a similar method of proof to his, but also
+  accommodates nonstationary sequences and the Stationary Bootstrap.}
+It also relaxes \citepos{GoW:02} and \citepos{GoJ:03} requirement that
+the expected block length be $o(n^{1/2})$ to the original papers'
+requirement that it be $o(n)$.
 
-The proof will exploit the conditional independence of the blocks in
-each bootstrap.  Each bootstrap proceeds by drawing blocks of $M$
+The proof exploits the conditional independence of the blocks in each
+bootstrap.  Each bootstrap proceeds by drawing blocks of $M$
 consecutive observations from the original time series, and then
 pasting these blocks together to create the new bootstrap time series.
-The moving blocks bootstrap does exactly that; the circular block
+The Moving Blocks bootstrap does exactly that; the Circular Block
 bootstrap ``wraps'' the observations, so that $(X_{n-1}, X_n, X_1,
 X_2)$, for example, is a possible block of length four (letting $X_t$
-denote the original time series).  The stationary bootstrap wraps the
+denote the original time series).  The Stationary Bootstrap wraps the
 observations and also draws $M$ at random for each block;
 \citet{PoR:94} suggest drawing $M$ from the geometric distribution.
-As the name suggests, the series produced by the stationary bootstrap
+As the name suggests, the series produced by the Stationary Bootstrap
 are strictly stationary, while those produced by the other methods are
-not.
+not.  Although the Stationary Bootstrap was believed to be much less
+efficient than other block bootstrap methods due to results of
+\citet{Lah:99}, \citet{Nor:09} has shown that it is only slightly less
+efficient than the other block-bootstrap methods discussed in this
+paper, and has efficiency identical to that of the non-overlapping
+block bootstrap.  Consequently, there has been renewed interest in the
+Stationary Bootstrap since stationarity of the bootstrap samples can
+be a useful property in theoretical research.  \cite{KrP:11} provides
+a recent review of the bootstrap for time-series
+processes,\footnote{Also see the discussion papers:
+  \citet{Dah:11,GoP:11,Hor:11,JeM:11,KrP:11b}.} and \citet{GoP:11}
+further discuss recent developments in block-bootstraps.
 
-Theorem~\ref{res:C} presents our main result, asymptotic normality of
-the distribution of bootstrapped partial sums.  This paper adopt the
+Theorem~\ref{thm:1} presents the main result, asymptotic normality of
+the distribution of bootstrapped partial sums.  This paper adopts the
 standard notation that $\E^{*}$, $\var^{*}$, etc. are the usual
 operators with respect to the probability measure induced by the
-bootstrap and will use explicit stochastic array notation in this
-paper for precision.  Also note that all results are presented for the
-scalar case but generalize immediately to vector-valued random
-variables.  All of the proofs are presented in the appendix; I only
-present proofs for the stationary bootstrap, since proofs for the
-other methods are similar and easier.  All limits are taken as $n \to
-\infty$ unless otherwise noted.
+bootstrap and will use explicit stochastic array notation 
+for precision.  Also note that all results are presented for the
+scalar case but generalize immediately to random vectors.  All of the
+proofs are presented in the appendix; only proofs for the Stationary
+Bootstrap are presented, since proofs for the other methods are
+similar and easier to follow.  All limits are taken as $n \to \infty$
+unless otherwise noted and $\lVert \cdot \rVert_r$ denotes the
+$L_r$-norm.
 
-\begin{thm}\label{res:C}
+\begin{thm}\label{thm:1}
   Suppose the following conditions hold.
   \begin{enumerate}
-  \item $X_{nt}$ is $L_2$-\ned\ of size $-1/2$ on an array $V_{nt}$
-    that is either strong mixing of size $-r/(r-2)$ or uniform mixing
-    of size $-r/2(r-1)$, with $r > 2$.  The \ned\ magnitude indices
-    are denoted $\{d_{nt}\}$.
-  \item $\E X_{nt} = \mu_{nt}$, $\mu_{nt} - \bar \mu_n$ is uniformly
-    bounded, and $\sqrt{n} \| \bar{X}_{n} - \bar\mu_n \|_2 \to 1$.
+  \item $X_{nt}$ is $L_2$-\ned\ of size $-1/2$ on an array
+    $V_{nt}$ that is either strong mixing of size $-r/(r-2)$ or
+    uniform mixing of size $-r/2(r-1)$, with $r > 2$.  The
+    \ned\ magnitude indices are denoted $\{d_{nt}\}$.
+  \item The array $\mu_{nt} - \bar \mu_n$ is uniformly bounded where
+    $\E X_{nt} = \mu_{nt}$ and $\bar{\mu}_n = n^{-1} \sum_{t=1}^n
+    \mu_{nt}$.  Moreover, $\sqrt{n} \| \bar{X}_{n} - \bar\mu_n \|_2
+    \to \sigma > 0$.
   \item There exists an array of positive real numbers $\{c_{nt}\}$
-    such that $\max_t c_{nt}$ is uniformly finite, $(X_{nt} -
-    \mu_{nt})/c_{nt}$ is uniformly $L_r$-bounded, and $d_{nt}/c_{nt}$
-    is uniformly bounded.
-  \item $X_{nt}^{*}$ is generated by the stationary bootstrap with
+    such that $(X_{nt} - \mu_{nt})/c_{nt}$ is uniformly $L_r$-bounded
+    and $c_{nt}$ and $d_{nt}/c_{nt}$ are uniformly bounded in $n$
+    and~$t$.
+  \item $X_{nt}^{*}$ is generated by the Stationary Bootstrap with
     geometric block lengths with success probability $p_n$, $p_n = c
-    n^{-a}$ and $a,c \in (0,1)$, or by the moving or circular block
-    bootstrap with block length $M_n$ such that $M_n \to \infty$ and
-    $M_n/n \to 0$.
+    n^{-a}$ and $a,c \in (0,1)$, or by the Moving or Circular Block
+    bootstrap with block length $M_n$ such that $M_n \sim n^a$ for 
+    $a \in (0,1)$.  Let $M_{ni}$ be the block length of the $i$th
+    block, $i=1,\dots,J_n$, and define $K_{n0} = 0$ and $K_{nj} =
+    \sum_{i=1}^j M_{ni}$.
   \end{enumerate}
-  Define $\mathcal{B}$ as Brownian Motion and
-  $\mathbb{B}_n^{*}(\gamma) = n^{-1/2} \sum_{t=1}^{\lfloor n \gamma
-    \rfloor} (X_{nt}^{*} - \mu_{n}^{*})$.  Then
-  $\sqrt{n}(\bar{X}_n^{*} - \mu_n^{*}) \to^d N(0,1)$ and
-  $\mathbb{B}_n^{*} \to^d \mathcal{B}$.
+  Then
+  \begin{equation}\label{eq:30}
+    \sup_x \big\lvert \pr^{*}\big[\sqrt{n}(\bar X_{n}^{*} - \mu_{n}^{*}) \big/
+    \sigma_n^{*} \leq x \big] - \Phi(x) \big\rvert \to^p 0,
+  \end{equation}
+  and
+  \begin{equation}
+    \label{eq:9}
+    \sup_x \big\lvert \pr^{*}\big[
+    \sqrt{n}(\bar X_{n}^{*} - \mu_{n}^{*}) \big/ \hat\sigma_n^{*}
+    \leq x \big] - \Phi(x) \big\rvert \to^p 0,
+  \end{equation}
+  where $\Phi$ is the \textsc{cdf} of the Standard Normal
+  distribution, $\sigma_n^{*2} = \var^{*}(\sqrt{n} \bar X_n^{*})$, and
+    \begin{equation}
+      \label{eq:12}
+      \hat{\sigma}_n^{*2} = \tfrac{1}{n} \sum_{j=1}^{J_n}
+      \Big\{\sum_{t=K_{n,j-1}+1}^{K_{nj}} (X_{nt}^{*} - \bar X_{n}^{*})\Big\}^2.
+    \end{equation}
 \end{thm}
-
-Theorem~\ref{res:C} assumes that the series have been normalized by
-dividing by the square root of the (population) second moment of
-$\sqrt{n} (\bar{X}_n - \bar{\mu}_n)$.  Sometimes, though, it's useful
-to treat the variance of $X_{nt}$ as a random variable (call it
-$\eta^2_n$).  In such cases the dependence and moment conditions
-listed in Theorem~\ref{res:C} apply to the original array and not the
-normalized array $\eta^{-1}_n X_{nt}$ as is clear from inspecting the
-proofs in this paper and \citet{Jon:97}.\footnote{See also
-  \citepos{HaH:80} Theorem 3.2, Corollary 3.1, and following remarks.}
-Deriving bounds for $\eta_n^{-1} X_{nt}$ from primitive conditions on
-$X_{nt}$ would be difficult.
 
 Note that \citet{Jon:97} allows a little bit more flexibility in his
 conditions on the array $\{c_{nt}\}$ \citep[see also][]{Dav:93};
-essentially, he allows there to be a single set of blocks with the
+essentially, he allows for a single set of blocks with the
 maximal $\{c_{nt}\}$ over each block well-behaved, while this
-paper requires that his condition hold for every possible partition of
+paper requires this condition to hold for every possible partition of
 blocks.  This additional restriction is required because the
-stationary bootstrap will select the blocks randomly.
+Stationary Bootstrap will select the blocks randomly and is similar to
+\citepos{JoD:00b} for the \fclt.
 
-Consistency for the sample mean follows as an immediate corollary of
-Theorem~\ref{res:C} and \citet[Theorem~2]{Jon:97}.
+Consistency for the distribution of the sample mean follows as an
+immediate corollary of Theorem~\ref{thm:1} and \citet[Theorem~2]{Jon:97}.
 
-\begin{cor}\label{res:E} 
-  Define $\bar{\mu}_n = n^{-1} \sum_{t=1}^n \mu_{nt}$.  If the
-  conditions of Theorem~\ref{res:C} hold then $\sqrt{n}(\bar{X}_n^{*}
-  - \mu_n^{*})$ and $\sqrt{n}(\bar{X}_n - \bar{\mu}_n)$ converge in
-  distribution to the same limit.
+\begin{cor}\label{cor:1} 
+  If the conditions of Theorem~\ref{thm:1} hold and $\hat{\sigma}^2_n$
+  is a consistent estimator of $\sigma^2$ then
+  \begin{equation}
+    \label{eq:31}
+    \sup_{x} \big\lvert \pr^{*}\big[
+    \sqrt{n}(\bar X_{n}^{*} - \mu_{n}^{*}) / \sigma_{n}^{*}
+    \leq x \big]
+    - \pr\big[\sqrt{n}(\bar X_n - \bar{\mu}_n)/\hat{\sigma}_n \leq x \big] \big\rvert \to^p 0.
+  \end{equation}
+  and
+  \begin{equation}
+    \label{eq:11}
+    \sup_{x} \big\lvert \pr^{*}\big[
+    \sqrt{n} (\bar X_{n}^{*} - \mu_{n}^{*}) \big/ \hat\sigma^{*}_{n}
+    \leq x \big]
+    - \pr\big[\sqrt{n}(\bar X_n - \bar{\mu}_n)/\hat{\sigma}_n \leq x \big] \big\rvert \to^p 0.
+  \end{equation}
 \end{cor}
 
-Corollary~\ref{res:E} justifies using the stationary bootstrap to
-conduct inference about $\bar \mu_n$ even though there is considerable
-heterogeneity.  This conclusion is also present in \citepos{GoW:02}
-and \citepos{GoJ:03} papers, but those authors introduce and emphasize
+Corollary~\ref{cor:1} justifies using the Stationary Bootstrap to
+conduct inference about $\bar \mu_n$ even though there may be
+considerable heterogeneity.  Unlike \citet{GoW:02} and \citet{GoJ:03},
+we are able to achieve consistency without
 additional assumptions that ensure the heterogeneity is asymptotically
 irrelevant, either because the deviations of $\mu_{nt}$ from $\bar
 \mu_n$ are small or because there are a finite number of breaks that
-occur in a neighborhood of the first observation.  Such assumptions
-are unnecessary.
+occur in a neighborhood of the first observation.
+The additional cost is the assumption that there must be an estimator
+$\hat\sigma^2$ of $\sigma^2$ that is known to be consistent, and such an
+estimator will typically require the heterogeneity in the mean to be
+approximately known.
 
-But heterogeneity rules out a version of Corollary~\ref{res:E} for the
-partial sum.  It is not hard to see that under the
-assumptions of Theorem~\ref{res:C},
-\begin{equation}
-  n^{-1/2} \sum_{t=1}^{\lfloor \gamma n \rfloor} \Big(X_{nt}
-  - (\gamma n)^{-1} \sum_{s=1}^{\lfloor \gamma n \rfloor}
-  \mu_{nt}\Big) \to^d \mathcal{B}_{\xi},
-\end{equation}
-where $\mathcal{B}_{\xi}$ is a Gaussian process and $\xi$ captures the
-asymptotic variance of the partial sums.  It would be uncommon for a
-researcher to be interested in these particular random variables; one
-would typically be more interested in $\bar \mu_n$ than $(\gamma
-n)^{-1} \sum_{s=1}^{\lfloor \gamma n \rfloor} \mu_{nt}$, but these
-bootstrap methods do not allow us to approximate the distribution of
-$(\gamma n)^{-1/2} \sum_{t=1}^{\lfloor \gamma n \rfloor} (X_{nt} -
-\bar \mu_n)$.  The same discussion applies if $\mu_{nt} = \bar{\mu}_n$
-for all $t$ but $\mathcal{B}_{\xi} \neq \mathcal{B}$.  Other methods,
-such as the local block bootstrap \citep{PaP:02,DPP:03}, may be able to
-capture this heterogeneity, but we do not pursue that possibility
-further.
-
-For completeness, I'll present a consistency result under the
-additional condition that the heterogeneity vanishes asymptotically
-\citep[similar to Assumption 2.2 of][]{GoW:02}.  This result is a
-corollary of Theorem~\ref{res:C} and \citet[Theorem 3.1]{JoD:00b}.
-
-\begin{cor}\label{res:F} Let $\mathbb{B}_n(\gamma) = n^{-1/2} \sum_{t=1}^{\lfloor n \gamma \rfloor} (X_{nt} -
-  \bar{\mu}_{n})$ and suppose the conditions of Theorem~\ref{res:C}
-  hold, $\sup_t |\mu_{nt} - \bar{\mu}_n| \to 0$, and
+If the mean \textit{is} approximately constant, we can get a result
+directly comparable to \citepos{GoW:02} and \citet{GoJ:03}, but with
+the weaker size and moment conditions of Theorem~\ref{thm:1}.
+Corollary~\ref{cor:2} formalizes this result and follows from
+Corollary~\ref{cor:1} and Lemma~\ref{res:B}.
+\begin{cor}\label{cor:2}
+  Suppose that the conditions of Theorem~\ref{thm:1} hold and that
+  $\sum_{t=1}^n (\mu_{nt} - \bar{\mu}_n)^2$ is $o(n^{1/2})$.  
+  Then $\sigma_n^{*2} \to^p
+  \sigma^2$, $\hat{\sigma}_n^{*2} \to^p \sigma^2$, and
+\end{cor}
   \begin{equation}
-    n^{-1} \sum_{s,t=1}^{\lfloor \gamma n \rfloor} \E (X_{ns} -
-    \mu_{ns}) (X_{nt} - \mu_{nt}) \to \gamma
+    \sup_{x} \big\lvert \pr^{*}\big[
+    \sqrt{n}(\bar X_{n}^{*} - \mu_{n}^{*})
+    \leq x \big]
+    - \pr\big[\sqrt{n}(\bar X_n - \bar{\mu}_n) \leq x \big] \big\rvert \to^p 0.
   \end{equation}
-  for all $\gamma \in [0,1]$.  Then $\mathbb{B}_n$ and
-  $\mathbb{B}_n^{*}$ converge in distribution to the same limit.
+
+For some uses, a \clt\ is not enough and an \fclt\ is desired.
+Theorem~\ref{thm:1} can be extended to give an \fclt\ (using
+arguments from \citealp{JoD:00b}), but we will see that extending 
+Corollaries~\ref{cor:1} and~\ref{cor:2} is more problematic.
+Theorem~\ref{thm:2} proves a version of Theorem~\ref{thm:1} for the
+partial sum; under the same assumptions as Theorem~\ref{thm:1}, the
+partial sum of the bootstrapped process obeys an \fclt\ and can be
+used to derive critical values for other test statistics.
+
+\begin{thm}\label{thm:2}
+  Suppose that the conditions of Theorem~\ref{thm:1} hold, let $W$ be
+  standard Brownian Motion, and define
+  \begin{equation}
+    \label{eq:7}
+    W_n^{*}(\gamma) = \tfrac{1}{\sqrt{n}}
+    \sum_{t=1}^{\lfloor \gamma n \rfloor} (X^*_{nt} - \mu_n^{*}) / \sigma_{n}^{*}
+  \end{equation}
+  and 
+  \begin{equation}
+    \label{eq:7}
+    \hat{W}_n^{*}(\gamma) = \tfrac{1}{\sqrt{n}}
+    \sum_{t=1}^{\lfloor \gamma n \rfloor} (X^*_{nt} - \mu_n^{*}) / \hat\sigma_n^{*}.
+  \end{equation}
+  Then $\pr^{*}[\dist(W_n^{*}, W) > \delta] \to 0$ i.p. and
+  $\pr^{*}[\dist(\hat{W}_n^{*}, W) > \delta] \to 0$ i.p. for any
+  positive $\delta$ and distance $\dist$ that metricizes weak
+  convergence.
+\end{thm}
+
+Just as with Theorem~\ref{thm:1}, we have natural corollaries using
+Theorem~\ref{thm:2} to approximate the behavior of partial sums of the
+original series.  But applying this corollary requires much stronger
+assumptions.  In Corollary~\ref{cor:1}, the
+heterogeneity in $X_{nt}$ affects inference through the estimator of
+the asymptotic variance, $\hat{\sigma}_n^2$; but if the researcher
+has a consistent estimator of the variance, inference on the grand
+mean, $\bar{\mu}_{n}$, can proceed as normal.
+Assuming negligible heterogeneity in the means was unnecessary unless
+we want to avoid estimating $\sigma^2$ directly.
+
+But for the partial sum, a consistent estimator of the variance is not
+enough.  If the mean is not approximately constant then only the full
+summation is centered at the grand mean---the partial sums are
+centered at partial averages of the $\mu_{nt}$ terms.  If the research
+question concerns the individual $\mu_{nt}$'s then the bootstrap
+approximation can be used, but otherwise it can not.
+
+A second difference is that, if the $\mu_{nt}$ terms are approximately
+constant as in Corollary~\ref{cor:2}, the covariance process must
+still be consistently estimated.  The bootstrapped processes are
+(essentially) homoskedastic, so they are unable to match patterns of
+heteroskedasticity in the original series.  Those patterns must be
+removed by studentizing both the original and bootstrap partial sums.
+Other methods, such
+as the Local Block Bootstrap \citep{PaP:02,DPP:03}, may be able to
+capture this additional heterogeneity, but we do not pursue that
+possibility further.
+
+\begin{cor}
+  Suppose the conditions of Theorem~\ref{thm:1} hold, define
+  \begin{equation}
+    \label{eq:14}
+    \sigma_n^2(\gamma) = \tfrac{1}{n}
+    \sum_{s,t=1}^{\lfloor \gamma n \rfloor} \cov(X_{ns}, X_{nt}),
+  \end{equation}
+  let $\hat\sigma_n^2(\cdot)$ be an estimator of $\sigma_n^2(\cdot)$
+  such that $\sup_{\gamma} |\sigma_n^2(\gamma) /
+  \hat{\sigma}_n^2(\gamma) - 1| \to^p 0$, and let
+  \begin{equation}
+    \label{eq:8}
+    \hat{W}_n(\gamma) = \tfrac{1}{\sqrt{n}} \sum_{t=1}^{\lfloor \gamma
+      n \rfloor} (X_{nt} - \mu_{nt}) / \hat{\sigma}_{n}(\gamma).
+  \end{equation}
+  Then $\pr^{*}[\dist(W_n^{*}, \hat{W}_n) > \delta] \to^p 0$ and
+  $\pr^{*}[\dist(\hat{W}_n^{*}, \hat{W}_n) > \delta] \to^p 0$ for any
+  positive $\delta$ and any distance $\dist$ that metricizes weak
+  convergence.  
+
+  Moreover, define 
+  \begin{align*}
+    \tilde W_n(\gamma) &= \tfrac{1}{\sqrt{n}} \sum_{t=1}^{\lfloor \gamma
+      n \rfloor} (X_{nt} - \bar \mu_{n}) / \hat{\sigma}_{n}(\gamma),
+&    \bar W_n(\gamma) &= \tfrac{1}{\sqrt{n}} \sum_{t=1}^{\lfloor \gamma
+      n \rfloor} (X_{nt} - \bar \mu_{n}) / \hat\sigma_n.
+  \end{align*}
+  If $\sup_t \mu_{nt}$ is $o(n^{-1/2})$ then
+  $\pr^{*}[\dist(\hat{W}_n^{*}, \tilde{W}_n) > \delta] \to^p 0$ and, if 
+  $\sup_\gamma | \sigma_n(\gamma) / \gamma \sigma - 1 | \to 0$, then
+  $\pr^{*}[\dist(\hat{W}_n^{*}, \bar{W}_n) > \delta] \to^p 0$.
 \end{cor}
 
-We can develop some more intuition by looking at the argument behind
-Theorem~\ref{res:C}.  For concreteness, let $X_{n1},\dots,X_{nn}$
-denote the original array and let $X_{n1}^{*},\dots,X_{nn}^{*}$ a
-hypothetical series generated by the stationary bootstrap.
-Conditional on the number of blocks, $N_n$, and the block lengths,
-$M_{n1},\dots,M_{nN_n}$, we can see that
-\begin{equation}
-  \sqrt{n} \bar{X}^{*}_n = \frac{1}{\sqrt{N_n}} \sum_{i=1}^{N_n}
-  \Bigg\{\sqrt{\frac{N_n}{n}} \sum_{t=K_{n,i-1}+1}^{K_{n,i}} X_{nt}^{*} \Bigg\},\qquad\text{with}\quad K_{n0} = 0,
-  \quad K_{ni} = \sum_{j=1}^i M_{nj},
-\end{equation} 
-is the sum of $N_n$ independent random variables.  So $\sqrt{n}
-(\bar{X}^{*}_n - \bar{X}_n)$ should obey a \clt\ under very weak moment
-conditions and satisfy a relationship like
-\begin{equation}
-  \label{eq:10}
-  \frac{\bar{X}_n^{*} - \mu_n^{*}}{\var^{*}(\bar{X}_n^{*} \mid
-    M_{n1},\dots,M_{n,N_n})} \to^{d^{*}} N(0,1).
-\end{equation}
-
-This argument applies directly to the moving blocks and circular
-bootstraps, since $N_n$ and $M_{ni}$ are deterministic.  But they are
-stochastic for the stationary bootstrap and the randomness of $N_n$,
-in particular, complicates a direct argument; conditioning on $N_n$
-would require us to work with the distributions of $M_{nj}$ given
-$M_{n1} + \cdots + M_{n,N_n} = n$.  This information should not matter
-in the limit, though, and so, as a first step, I'll show that we can
-replace $N_n$ with its expected value without affecting the asymptotic
-distribution induced by the bootstrap.
-
-\begin{lem}\label{res:A}
-  Consider the following procedure:
-  \begin{enumerate}
-  \item Draw $M_{n1},\dots,M_{n,\lfloor n p_n \rfloor}$ independently from
-    the geometric distribution with success probability $p_n$, let
-    $m_n = \sum_{i=1}^{\lfloor n p_n \rfloor} M_{ni}$, and let
-    $\mathcal{M}_n = (M_{n1},\dots,M_{n,\lfloor n p_n \rfloor})$.
-  \item Draw $\lfloor n p_n \rfloor$ blocks from $X_{n1},\dots,X_{nn}$
-    (with the observations ``wrapped'' as in the stationary
-    bootstrap), with $M_{ni}$ the length of the $i$th block.
-  \end{enumerate}
-  Let $\{X_{nt}^{**}\}$ be a hypothetical array generated by this
-  procedure, let $\{X_{nt}^{*}\}$ be an array generated by the
-  stationary bootstrap, define $\mu^{*}_n = \mu_n^{**} = \bar X_n$,
-  and define $\mathbb{B}_n^{**}(\gamma) = m_n^{-1/2}
-  \sum_{t=1}^{\lfloor \gamma m_n \rfloor} (X_{nt}^{**} - \mu_n^{**})$.
-  Under the conditions of Theorem~\ref{res:C}, $\mathbb{B}_n^{*}$ and
-  $\mathbb{B}_n^{**}$ converge to the same limit.
-\end{lem}
-
-It is easy to see that if $X_{n1}^*,\dots,X_{nn}^*$ is a hypothetical
-sequence generated by the moving or circular blocks bootstrap with
-block length $M_n$ and $X_{n1}^{**},\dots,X_{n,m_n}^{**}$ is a
-bootstrap generated as in Lemma~\ref{res:A} but with $\lfloor n/M_n
-\rfloor$ blocks of length $M_n$, then the conclusion of
-Lemma~\ref{res:A} still holds.
-
-Given Lemma~\ref{res:A} and the preceding discussion, consistency for
-the distribution of the sample mean can be expected to hold if
-\begin{equation}\label{eq:5}
-  \frac{\bar{X}^{**}_n - \mu_n^{**}}{\var^{**}(\bar{X}_n^{**} \mid
-    \mathcal{M}_n)} \to^{d^{**}} N(0,1)
-\end{equation}
-and $\var^{**}(m_{n}^{1/2} \bar X_n^{**} \mid \mathcal
-\mathcal{M}_n) \to^p 1$.  Lemma~\ref{res:B} establishes a stronger
-result necessary for partial sums.
-
-\begin{lem}\label{res:B}  
-  If the conditions of Theorem~\ref{res:C} hold then
-  $\var^{**}(m_n^{-1/2} \sum_{t=1}^{\lfloor \gamma m_n \rfloor}
-  X_{nt}^{**} \mid \mathcal{M}_n) \to^p \gamma$ for all
-  $\gamma \in [0,1]$.
-\end{lem}
-
-The crux of Lemma~\ref{res:B} is the recognition that
-$\var^{**}(m_n^{1/2} \bar{X}_n^{**} \mid \mathcal{M}_n)$ can be written as an
-average over squared blocks of consecutive observations of the
-original series;\footnote{Obviously, this argument needs to hold for
-  the partial sums as well, but I'll just discuss the overall average
-  for a clearer presentation.} i.e.
-\begin{equation}
-  \var^{**}(m_n^{1/2} \bar{X}^{**}_n \mid \mathcal{M}_n) = n^{-1}
-  \sum_{\tau=1}^n \sum_{j=1}^{\lfloor n p_n \rfloor} Y_{n, \tau, j}^2
-\end{equation}
-where $Y_{n, \tau, j} = n^{-1/2}\sum_{t=I_{n,\tau,j-1}+1}^{I_{n,\tau,j}}
-(X_{nt} - \bar{X}_n)$ and $0 = I_{n,\tau,0} < I_{n,\tau,1} < \cdots <
-I_{n,\tau,\lfloor n p_n \rfloor} = m_n$ (the specifics are given in the
-proof and use different notation).  Standard arguments from
-\citet{Jon:97} establish that $\sum_j Y_{n,\tau,j}^2 \to^p 1$ for each
-$\tau$.
-
-As a final point, the consistency of the bootstrap variance 
-follows as a corollary to Lemmas~\ref{res:A} and~\ref{res:B}.
-
-\begin{cor}\label{res:D}
-  If the conditions of Theorem~\ref{res:C} hold then
-  $\var^{*}(n^{1/2} \bar{X}_n^{*}) = \var(n^{1/2} \bar{X}_n) + o_p$.
-\end{cor}
-
-The key insight of this paper is for the stationary bootstrap (other
+The rest of the paper presents the mathematical proof in detail.
+The key insight in these proofs is for the Stationary Bootstrap (other
 block bootstraps arise as a special case).  After conditioning on the
 block lengths, proving that the partial sums obey an \fclt\ reduces to
 proving consistency of the bootstrap variance (conditional on the
 block lengths), and the conditional bootstrap variance can be
 expressed in terms of blocks of consecutive observations of the
-original series.  Since convergence of these blocks is essential to
+original series.\footnote{Although this paper focuses on the Moving Blocks,
+Circular, and Stationary Bootstraps, I expect that the results can be
+extended to other recent block bootstrap methods such as the Tapered Block
+Bootstrap \citep{PaP:01,PaP:02b} and the Extended Tapered Block Bootstrap
+\citep{Sha:10}.  Those extensions are left for future research.}
+Since convergence of these blocks is essential to
 the \clt\ in general,\footnote{See, for example, \citet{Mcl:74},
   \citet[Chapter 3]{HaH:80}, and \citet[Chapter 24]{Dav:94}.} I
 conjecture that the same approach will hold under most forms of
-dependence that allow for a \clt\ or \fclt.  Finally, this result
-allows for considerable heterogeneity in the original process when
-approximating the distribution of a sample mean but not a partial sum.
+dependence that allow for a \clt\ or \fclt.
 
 \appendix
 
-\section*{Appendix: Proofs and Supporting Results}
-\setcounter{section}{1}
-
-\begin{lema}\label{res:a4}
-  Let $\alpha_n(x)= 1 + ((x-1) \mod n)$, let $\mathcal{N}_n =
-  (M_{n1},\dots,M_{n,N_n})$, and suppose that the conditions of
-  Theorem~\ref{res:C} hold.  For any $t_0$ and $k$ such that the index
-  of the following summations are well defined,
-  \begin{equation}\label{eq:15}
-    \E^*\Bigg(\sum_{t=t_0+1}^{t_0+k} X_{nt}^* \;\Bigg|\;
-    \mathcal{N}_n\Bigg) = \E^{**}\Bigg(\sum_{t=t_0+1}^{t_0+k}
-    X_{nt}^{**} \;\Bigg|\; \mathcal{M}_n\Bigg) = k \bar{X}_n,
+\subsection*{Proof of Theorem~\ref{thm:1}}
+I will only present the proof for the Stationary Bootstrap, since it
+is the more difficult of the three.
+We can rewrite the sum of $X_{nt}^{*} - \mu_n^{*}$ as a sum of blocks:
+\begin{equation}\label{eq:1}
+  \tfrac{1}{\sqrt{n}} \sum_{t=1}^n (X_{nt}^{*} - \mu_n^{*}) = \sum_{j=1}^{J_n} \Big\{\tfrac{1}{\sqrt{n}} \sum_{t = K_{n,j-1} +
+    1}^{K_{nj}} (X_{nt}^{*} - \bar X_n)\Big\} \equiv 
+  \sum_{j=1}^{J_n} Z_{nj}^{*}.
+\end{equation}
+Now define $\mathcal{M}_{n}=\sigma(J_{n}, M_{n1},\dots,M_{nJ_n})$,
+$\mathcal{G}_{nj} = \sigma(Z_{n1}^{*},\dots, Z_{nj}^{*},
+X_{n1},\dots,X_{nn}, \mathcal{M}_n)$,
+  \begin{equation}\label{eq:18}
+    Z_n(\tau, m) = \tfrac{1}{\sqrt{n}} \sum_{t\in I_n(\tau, m)} (X_{nt} - \bar \mu_n),
   \end{equation}
-  and
-  \begin{align}
-    \var^*\Bigg(\sum_{t=t_0+1}^{t_0+k} X_{nt}^* \;\Bigg|\;
-    \mathcal{N}_n\Bigg) &= 
-    \var^{**}\Bigg(\sum_{t=t_0+1}^{t_0+k} X_{nt}^{**} \;\Bigg|\;
-    \mathcal{M}_n\Bigg) \nonumber
-    \\& = 
-    n^{-1} \sum_{\tau=1}^n \Bigg[ \Bigg\{\sum_{t=t_0 + 1}^{K_{n,\kappa_{n0}}}
-       (X_{n,\alpha_n(\tau+t)} - \bar{X}_n)\Bigg\}^2 \nonumber
-    \\ &\quad +  
-      \sum_{j=\kappa_{n0}+1}^{\kappa_{n1}-1}
-       \Bigg\{\sum_{t=K_{n,j -1}+1}^{K_{nj}}
-       (X_{n,\alpha_n(\tau+t)} - \bar{X}_n)\Bigg\}^2 \nonumber
-    \\ &\quad +
-       \Bigg\{\sum_{t=K_{n,\kappa_{n1} - 1} + 1}^{t_0 + k}
-       (X_{n,\alpha_n(\tau + t)} - \bar{X}_n) \Bigg\}^2 \Bigg] \label{eq:16} 
+$\nu_{nj}^2(\tau) = \E(Z_n(\tau, M_{nj})^2 \mid \mathcal M_n)$, and
+  \begin{equation}\label{eq:26}
+    \eta_n^{2} = \tfrac{1}{n} \sum_{\tau=0}^{n-1} \sum_{j=1}^{J_n} \nu_{nj}^2(\tau),
+  \end{equation}
+with
+\begin{equation}
+  \label{eq:3}
+  I_n(\tau, m) = \begin{cases}
+    \{\tau + 1,\dots, \tau + m\} & 0 \leq \tau \leq n - m \\
+    \{1,\dots, m - n + \tau\} \cup \{\tau + 1,\dots, n\} & n - m < \tau \leq n.
+  \end{cases}
+\end{equation}
+  Consequently $\{Z_{nj}^{*} / \eta_n, \mathcal{G}_{nj}\}$ is a martingale
+  difference array and
+\begin{equation}
+  \label{eq:6}
+  \pr^{*} \Big[ \sum_{j=1}^{J_n}
+  Z_{nj}^{*} / \eta_n \leq x \ \Big|\ \mathcal{M}_{n}\Big] - \Phi(x) \to^p 0
+\end{equation}
+for all $x$ if the following two conditions hold:
+\begin{equation}
+  \label{eq:13}
+  \sum_{j=1}^{J_n} \E^{*}\big( (Z_{nj}^{*2}/\eta_n^{2}) 1\{Z_{nj}^{*2}/\eta_n^{2}  >
+  \epsilon\} \ \big|\ \mathcal{M}_n\big) \to^p 0 \qquad \forall \epsilon > 0
+\end{equation}
+and 
+\begin{equation}
+  \label{eq:4}
+  \pr^{*}\Big[\ \Big|\sum_{j=1}^{J_n} Z_{nj}^{*2}/ \eta_n^{2} - 1
+  \Big|\ > \epsilon \ \Big|\ \mathcal{M}_n \Big] \to^p 0 \qquad \forall \epsilon > 0,
+\end{equation}
+since~\eqref{eq:13} and~\eqref{eq:4} ensure that $Z_{nj}^{*}/\eta_n$ obeys a
+martingale difference \clt\ \citep[e.g.][Theorem
+3.3]{HaH:80}.  
+
+First we will prove
+\begin{equation}\label{eq:41}
+  \E\Big[ \sum_{j=1}^{J_n} \E^{*}\big((Z_{nj}^{*2} / \eta_n^2) 1\{
+  Z_{nj}^{*2} / \eta_n^2 > \epsilon\} \mid \mathcal{M}_n\big) \ \Big|\
+  \mathcal{M}_n\Big] \to^p 0,
+\end{equation}
+which implies~\eqref{eq:13}.  Note that
+\begin{equation*}
+  \E^{*}(g(Z_{nj}^{*}) \mid \mathcal{M}_n) = \tfrac{1}{n}
+  \sum_{\tau=0}^{n-1} g(Z_n(\tau, M_{nj}))
+\end{equation*}
+almost surely for any function $g$.  As a consequence, we can write
+\begin{multline}\label{eq:32}
+  \E\Big( \sum_{j=1}^{J_n} \E^{*}\big( (Z_{nj}^{*2}/\eta_n^{2})
+  1\{Z_{nj}^{*2}/\eta_n^{2} > \epsilon\} \ \big|\ \mathcal{M}_n\big)
+  \ \Big|\ \mathcal{M}_{n} \Big)
+  \\\begin{split}= \tfrac{1}{n} \sum_{\tau=0}^{n-1} \sum_{j=1}^{J_n} &
+     \frac{\nu_{nj}^2(\tau) + \sigma^2 M_{nj} / n}{\eta_n^2}
+  \E\Bigg( \frac{Z_n(\tau, M_{nj})^2}{\nu_{nj}^2(\tau) + \sigma^2 M_{nj} / n} 
+  \\ & \times 1\Bigg\{\frac{Z_n(\tau, M_{nj})^2}{\nu_{nj}^2(\tau) + \sigma^2 M_{nj} / n} 
+  > \frac{\eta_n^2 \epsilon}{\nu_{nj}^2(\tau) + \sigma^2 M_{nj} / n}\Bigg\} 
+  \ \Bigg|\ \mathcal{M}_n \Bigg)
+\end{split}
+\end{multline}
+almost surely.  Lemma~\ref{res:L} implies that there exists a finite,
+monotone function $B(\cdot)$ such that $B(x) \to 0$ as $x \to \infty$
+and
+\begin{multline*}
+\E\Bigg( \frac{Z_n(\tau, M_{nj})^2}{\nu_{nj}^2(\tau) + \sigma^2 M_{nj} / n}
+  \times 1\Bigg\{\frac{Z_n(\tau, M_{nj})^2}{\nu_{nj}^2(\tau) + \sigma^2 M_{nj} / n} > \frac{\eta_n^2 \epsilon}{\nu_{nj}^2(\tau) + \sigma^2 M_{nj} / n}\Bigg\} 
+  \ \Bigg|\ \mathcal{M}_n \Bigg) \\
+  \leq B\Bigg(\frac{\eta_n^2\epsilon}{\nu_{nj}^2(\tau) + \sigma^2 M_{nj} / n}\Bigg)
+\end{multline*}
+almost surely for all $n$, $j$, and $\tau$.  Consequently, the right
+side of~\eqref{eq:32} is bounded by
+\begin{equation*}
+\tfrac{1}{n} \sum_{\tau=0}^{n-1} \sum_{j=1}^{J_n} 
+\frac{\nu_{nj}^2(\tau) + \sigma^2 M_{nj}/n}{\eta_n^2} B\Bigg(\frac{\eta_n^2
+  \epsilon}{\nu_{nj}^2(\tau) + \sigma^2 M_{nj} / n}\Bigg)
+\end{equation*}
+a.s., and this quantity is a.s. less than
+\begin{equation*}
+  O_{a.s.}(1) \max_{\tau = 0,\dots,n-1} \max_{j=1,\dots,J_n} B\Bigg(\frac{\eta_n^2\epsilon}{\nu_{nj}^2(\tau) + \sigma^2 M_{nj} / n}\Bigg)
+\end{equation*}
+by definition.  Moreover
+\[\max_{\tau=0,\dots,n-1} \max_{j=1,\dots,J_n} B\Bigg(\frac{\eta_n^2 \epsilon}{\nu_{nj}^2(\tau) + \sigma^2 M_{nj} / n}\Bigg)
+= B\Bigg(\min_{\tau=0,\dots,n-1} \min_{j=1,\dots,J_n} \frac{\eta_n^2 \epsilon}{\nu_{nj}^2(\tau) + \sigma^2 M_{nj} / n}\Bigg)\]
+a.s. by monotonicity, and
+\begin{equation*}
+  \min_{\tau=0,\dots,n-1} \min_{j=1,\dots,J_n} \frac{\eta_n^2}{\nu_{nj}^2(\tau) + \sigma^2 M_{nj} / n} \to^p \infty
+\end{equation*}
+by Lemmas~\ref{res:a1}, \ref{res:16},
+and~\ref{res:B}, completing the proof of \eqref{eq:41}.
+For~\eqref{eq:4},
+\begin{equation*}
+  \sum_{j=1}^{J_n} Z_{nj}^{*2} = \eta_n^2 + \sum_{j=1}^{J_n}
+  \big(Z_{nj}^{*2} - \E^*(Z_{nj}^{*2} \mid \mathcal{M}_n)\big) +
+  \tfrac{1}{n} \sum_{\tau=0}^{n-1} \sum_{j=1}^{J_n} \big(Z_{n}(\tau,
+  M_{nj})^2 - \nu_{nj}^2(\tau)\big) \qquad
+  \text{a.s.}.
+\end{equation*}
+The first summation on the right is $o_p(\eta_n^2)$ by
+Lemma~\ref{res:H} and the second is $o_p(\eta_n^2)$ by
+Lemma~\ref{res:B}.
+
+The Dominated Convergence Theorem then ensures that
+\begin{equation}\label{eq:39}
+  \pr^{*} \Big[\sum_{j=1}^{J_n}
+  Z_{nj}^{*} / \eta_n \leq x \Big] - \Phi(x) \to^p 0.
+\end{equation}
+Lemma~\ref{res:B} proves that $\sigma_n^{*}/\eta_n \to^p 1$ and
+$\hat{\sigma}_n^{*}/\eta_n \to^p 1$, so
+\begin{equation}
+  \label{eq:17}
+  \pr^{*}\big[\sqrt{n}(\bar X_{n}^{*} - \mu_{n}^{*}) / \sigma_n^{*}
+  \leq x\big] \to^p \Phi(x)
+\end{equation}
+and
+\begin{equation}
+  \label{eq:17}
+  \pr^{*}\big[\sqrt{n}(\bar X_{n}^{*} - \mu_{n}^{*}) / \hat\sigma_n^{*}
+  \leq x\big] \to^p \Phi(x)
+\end{equation}
+for any $x$.  These results are sufficient for~\eqref{eq:30}
+and~\eqref{eq:9} since the Normal distribution is continuous
+\citep[see, for example,][Lemma 2.11]{Vaa:00}.\qed
+
+\subsection*{Proof of Theorem~\ref{thm:2}}
+Again, I will only present a proof for the Stationary Bootstrap.
+The proof follows that of \citet{JoD:00b} closely and notation is reused from the
+proof of Theorem~\ref{thm:1}.  Lemma~\ref{res:B} implies that
+$\pr^{*}[\dist(W_n^{*}, W) > \delta] \to^p 0$ is sufficient for all of Theorem~\ref{thm:2}'s
+conclusions
+  \begin{equation*}
+    W_n^{*}(\gamma) = \tfrac{1}{\sqrt{n}} \sum_{t=1}^{\lfloor \gamma n
+      \rfloor} (X^{*}_{nt} - \mu_n^{*})/\eta_{n}.
+  \end{equation*}
+  From Theorem~\ref{thm:1}, we know that
+  \begin{equation*}
+    (W^{*}_n(\gamma_1),\dots, W^{*}_n(\gamma_l)) \to^d
+    (W(\gamma_1),\dots,W(\gamma_l))
+  \end{equation*}
+  in probability for any finite $l$ and $\gamma_1,\dots,\gamma_l \in
+  [0,1]$, so the result holds if $W_n^{*}(\gamma)$ is stochastically
+  equicontinuous and if the increments of $W^{*}_n(\cdot)$ are
+  independent in the limit \citep[Theorems~15.4 and~15.5]{Bil:68}.
+
+  Stochastic equicontinuity requires that
+  \begin{equation}\label{eq:22} 
+    \lim_{\delta \to 0} \limsup_{n \to \infty} \E\Big( \pr^{*}\Big[\sup_{\gamma
+    \in [0,1]} \sup_{\gamma' \in (\gamma-\delta, \gamma+\delta) \cap
+    [0,1]]} |W_n^{*}(\gamma) - W_n^{*}(\gamma')| >
+  \epsilon \ \Big|\ \mathcal{M}_n \Big]\Big) = 0.
+  \end{equation}
+  By construction,
+  \begin{equation*}
+    W_n^*(\gamma) = \sum_{j=1}^{\lfloor \gamma J_n \rfloor} Z_{nj}^*  +
+    \big(1 - 2 \times 1\{ \gamma n \leq K_{n, \lfloor \gamma J_n \rfloor}\}\big)
+    \sum_{t \in L_n(\gamma)} (X_{nt}^* - \mu_{nt}^*)
+  \end{equation*}
+  where 
+  \[L_n(\gamma) =
+  \{\min(K_{n,\lfloor \gamma J_n \rfloor}, \lfloor n \gamma \rfloor) + 1,\dots,
+  \max(K_{n,\lfloor \gamma J_n \rfloor}, \lfloor n \gamma \rfloor)\},
+  \]
+  so we have the upper bound
+  \begin{align}\label{eq:27}
+    \E \Big(\pr^{*}\Big[&\sup_{\gamma \in [0,1]} \sup_{\gamma' \in
+      (\gamma-\delta, \gamma+\delta) \cap [0,1]]}
+    |W_n^{*}(\gamma) - W_n^{*}(\gamma')| > \epsilon \
+    \Big|\ \mathcal{M}_n \Big]\Big) \nonumber \\
+    &\leq \E \Big(\pr^{*} \Big[\sup_{\gamma \in [0,1]} \sup_{\gamma' \in
+      (\gamma, \gamma+2\delta) \cap [0,1]]} \Big\lvert
+    \sum_{j={\lfloor \gamma J_n \rfloor}}^{\lfloor \gamma'J_n \rfloor}
+    Z_{nj}^{*}/ \eta_n \Big\rvert > \epsilon \
+    \Big|\ \mathcal{M}_n \Big]\Big) \nonumber \\
+    &\quad+ 2 \E \Big(\pr^{*} \Big[\sup_{\gamma \in [0,1]} \Big\lvert
+    \tfrac{1}{\sqrt{n}} \sum_{t \in L_n(\gamma)} (X_{nt}^{*} -
+    \mu_n^{*}) / \eta_{n}\Big\rvert > \epsilon \ \Big|\ \mathcal{M}_n \Big]\Big).
   \end{align}
-  where $\kappa_{n0}$ and $\kappa_{n1}$ denote the blocks containing $t_0$
-  and $t_0 + k$, so $K_{n,\kappa_{n0} - 1} < t_0 \leq K_{n,\kappa_{n0}}$ and
-  $K_{n,\kappa_{n1} - 1} < t_0 + k \leq K_{n,\kappa_{n1}}$
-\end{lema}
+  Just as in Theorem~\ref{thm:1}, $Z_{nj}^{*}/\eta_n$ is a martingale
+  difference array conditional on $\mathcal{M}_n$, and so
+  \begin{equation*}
+    \E \Big(\pr^{*} \Big[\sup_{\gamma \in [0,1]} \sup_{\gamma' \in
+      (\gamma, \gamma+2\delta) \cap [0,1]]} \Big\lvert 
+    \sum_{j={\lfloor \gamma J_n \rfloor}}^{\lfloor \gamma'J_n \rfloor}
+    Z_{nj}^{*} / \eta_n \Big\rvert > \epsilon \
+    \Big|\ \mathcal{M}_n \Big]\Big) \leq \tfrac{C \delta}{\epsilon} \E\big(\sigma_n^{*2}/\eta_n^2\big)
+  \end{equation*}
+  for some finite $C$ that does not depend on $n$ \citep[using,
+  e.g.][Theorem~15.14]{Dav:94}. And Lemmas~\ref{res:L} and~\ref{res:B}
+  imply that
+  \begin{equation*}
+    \lim_{\delta \to 0}\limsup_{n\to\infty}  \tfrac{C \delta}{\epsilon} \E(\sigma_n^{*} /
+    \eta_n) = 0.
+  \end{equation*}
 
-\begin{proof}[Proof of Lemma~\ref{res:a4}]
-  Equation~\eqref{eq:15} is immediate.  For~\eqref{eq:16}, notice that
-  \begin{multline}
-    \var^*\Bigg(\sum_{t=t_0+1}^{t_0+k} X_{nt}^* \;\Bigg|\;
-    \mathcal{N}_n\Bigg) = \var^{*}\Bigg( \sum_{t=t_0+1}^{K_{n,\kappa_{n0}}}
-    X_{nt}^* \;\Bigg|\; \mathcal{N}_n \Bigg) 
-    \\ 
-    + \sum_{j=\kappa_{n0} + 1}^{\kappa_{n1} - 1} \var^{*}\Bigg(
-    \sum_{t=K_{n,j-1}+1}^{K_{nj}} X_{nt}^* \;\Bigg|\; \mathcal{N}_n
-    \Bigg) + \var^{*}\Bigg( \sum_{t=K_{n,\kappa_{n1} - 1}+1}^{t_0 + k}
-    X_{nt}^* \;\Bigg|\; \mathcal{N}_n \Bigg),
+  The second term in \eqref{eq:27} is a.s. equal to
+  \begin{equation*}
+    \E\Big( \tfrac{2}{n} \sum_{\tau=0}^{n-1} \pr\Big[\sup_{\gamma \in
+      [0,1]} \Big\lvert \tfrac{1}{\eta_n \sqrt{n}} \sum_{t \in I(\tau, |\lfloor
+      \gamma n \rfloor - K_{n,\lfloor \gamma J_n \rfloor}|)} (X_{nt} -
+    \bar X_n) \Big\rvert > \epsilon \ \Big|\ \mathcal{M}_n\Big]\Big)
+  \end{equation*}
+  since the $X_{nt}^{*}$'s are all in the same ``block'' by
+  construction, and this quantity is a.s. bounded by
+  \begin{multline}\label{eq:24}
+    2 \max_{\tau=0,\dots,n-1} \E \Big(\pr\Big[\sup_{\gamma \in [0,1]} \Big\lvert
+    \tfrac{1}{\eta_n \sqrt{n}} \sum_{t \in I(\tau, |\lfloor \gamma n
+      \rfloor - K_{n,\lfloor \gamma J_n \rfloor}|)} (X_{nt} -
+    \mu_{nt}) \Big\rvert > \epsilon \ \Big|\ \mathcal{M}_n\Big]\Big) \\+ 2
+    \max_{\tau=0,\dots,n-1}\E \Big(\pr\Big[\sup_{\gamma \in [0,1]} \Big\lvert
+    \tfrac{1}{\eta_n \sqrt{n}} \sum_{t \in I(\tau, |\lfloor \gamma n
+      \rfloor - K_{n,\lfloor \gamma J_n \rfloor}|)} (\mu_{nt} - \bar
+    \mu_n) \Big\rvert > \epsilon \ \Big|\ \mathcal{M}_n\Big]\Big) \\+ 2
+    \max_{\tau=0,\dots,n-1}\E\Big( \pr\Big[\sup_{\gamma \in [0,1]} \Big\lvert
+    \tfrac{1}{\eta_n \sqrt{n}} \sum_{t \in I(\tau, |\lfloor \gamma n
+      \rfloor - K_{n,\lfloor \gamma J_n \rfloor}|)} (\bar \mu_{n} -
+    \bar X_n) \Big\rvert > \epsilon \ \Big|\ \mathcal{M}_n\Big]\Big).
   \end{multline}
-  since the blocks are independent given $\mathcal{N}_n$.  Now, for
-  each block,
-  \begin{equation}
-    \var^{*}\Bigg(
-    \sum_{t=K_{n,j-1}+1}^{K_{nj}} X_{nt}^* \;\Bigg|\; \mathcal{N}_n
-    \Bigg) = n^{-1} \sum_{\tau=1}^n 
-    \Bigg\{\sum_{t=K_{n,j -1}+1}^{K_{nj}} (X_{n,\alpha_n(\tau+t)} -
-    \bar{X}_n)\Bigg\}^2,
-  \end{equation}
-  with similar formulae for the first and last blocks.
-  The same argument holds for $\var^{**}$, completing the proof.
-\end{proof}
+  Lemma~\ref{res:B} implies that $\eta_n^{-1} = O_p(n^{-1/2})$ and the
+  \lln\ implies that $K_{n,\lfloor \gamma J_n\rfloor}/n$ converges
+  i.p.  to $\gamma$.  Consequently, the first term converges to zero
+  i.p. since the partial sums of $X_{nt} - \mu_{nt}$ obey an \fclt, the
+  second term converges to zero i.p. since $\mu_{nt}-\bar{\mu}_n$ is
+  bounded, and the third term converges to zero i.p. since $\bar{X}_n
+  - \bar{\mu}_n = O_p(n^{-1/2})$, proving~\eqref{eq:22}.
 
-\begin{lema}\label{res:a1}
-  Suppose that $M_{n1},\dots,M_{n,\lfloor n p_n \rfloor}$ are
-  i.i.d. geometric random variables with success parameter $p_n = c
-  n^{-a}$ with $a, c \in (0,1)$, and that $\ell_n = (p_n \log
-  p_n^{-1})^{-1}$.  Then (i) $\max_{i=1,\dots,\lfloor n p_n \rfloor}
-  M_{ni} / n \to^p 0$ and (ii) $\max_{i=1,\dots,\lfloor n p_n \rfloor}
-  M_{ni} / \ell_n^{1+\epsilon} \to^p 0$ as $n \to \infty$ for any
-  positive $\epsilon$.
-\end{lema}
+  Since the increments of $W_n^{*}$ are asymptotically normal, we can
+  prove asymptotic independence by proving that the covariance between
+  any two distinct increments converges to zero.  Take $i < j$ and
+  define $i'$, $j'$, $i''$, and $j''$ so that
+  \begin{align*}
+    \gamma_{i-1} n &\in [K_{n,i'-1}+1,K_{n,i'}] & \gamma_{i} n &\in [K_{n,i''-1}+1,K_{n,i''}]\\
+    \gamma_{j-1} n &\in [K_{n,j'-1}+1,K_{n,j'}] & \gamma_{j} n &\in [K_{n,j''-1}+1,K_{n,j''}].
+  \end{align*}
+  Then the covariance between $W_n^*(\gamma_i) - W_n^*(\gamma_{i-1})$
+  and $W_n^*(\gamma_j) - W_n^*(\gamma_{j-1})$ equals
+  \begin{multline}\label{eq:15}
+    \E^*((W_n^*(\gamma_i) - W_n^*(\gamma_{i-1}))
+    (W_n^*(\gamma_j) - W_n^*(\gamma_{j-1}))\mid \mathcal{M}_n) =\\
+    \begin{split}
+      \E^*\Big(&\Big(\tfrac{1}{\eta_n\sqrt{n}} \sum_{t=\lfloor \gamma_{i-1} n \rfloor + 1}^{K_{ni'}} (X_{nt}^{*} - \mu_n^{*}) 
+    + \tfrac{1}{\eta_n} \sum_{k=i'+1}^{i''-1} Z_{nk}^{*} + \tfrac{1}{\eta_n \sqrt{n}} \sum_{t=K_{n,i''-1}+1}^{\lfloor \gamma_i n \rfloor} (X_{nt}^{*} - \mu_n^{*})\Big) \\
+    &
+      \times \Big(\tfrac{1}{\eta_n\sqrt{n}} \sum_{t=\lfloor \gamma_{j-1} n \rfloor + 1}^{K_{nj'}} (X_{nt}^{*} - \mu_n^{*}) 
+    + \tfrac{1}{\eta_n} \sum_{k=j'+1}^{j''-1} Z_{nk}^{*} 
+  \end{split}\\
+  + \tfrac{1}{\eta_n \sqrt{n}} \sum_{t=K_{n,j''-1}+1}^{\lfloor
+    \gamma_j n \rfloor} (X_{nt}^{*} - \mu_n^{*})\Big) \ \Big|\
+  \mathcal{M}_n \Big)
+\end{multline}
+  almost surely (with obvious modifications if $i' = i''$ or $j' =
+  j''$).  Since the blocks are independent under the bootstrap-induced
+  probability measure, the right side of~\eqref{eq:15} equals
+  \begin{equation*}
+    \E^{*}\Big( \tfrac{1}{\eta_n^2 n} \sum_{s=K_{n,i''-1}+1}^{\lfloor \gamma_i n \rfloor} (X_{ns}^{*} - \mu_n^{*})
+    \sum_{t=\lfloor \gamma_{j-1} n \rfloor + 1}^{K_{nj'}} (X_{nt}^{*} - \mu_n^{*}) \ \Big|\ \mathcal{M}_n\Big) 1\{K_{ni''} = K_{nj'} \}
+  \end{equation*}
+  which is almost surely bounded in absolute value by
+  \begin{equation*}
+     \E^{*}\Big(\Big( \tfrac{1}{\eta_n \sqrt{n}} \sum_{s=K_{n,i''-1}+1}^{\lfloor \gamma_i n \rfloor} (X_{ns}^{*} - \mu_n^{*})\Big)^2 \ \Big|\ \mathcal{M}_n\Big)^{1/2}
+     \E^{*}\Big(\Big( \tfrac{1}{\eta_n \sqrt{n}} \sum_{t=\lfloor \gamma_{j-1} n \rfloor+1}^{K_{n,j'}} (X_{nt}^{*} - \mu_n^{*})\Big)^2 \ \Big|\ \mathcal{M}_n\Big)^{1/2}.
+  \end{equation*}
+  Each of these terms converges to zero in probability as before, completing the proof.
+ \qed
+
+\section{Supplemental results}
+As in the proofs of Theorems~\ref{thm:1} and~\ref{thm:2}, we only
+present the proofs for the Stationary Bootstrap as those for the
+Circular and Moving Block bootstraps are similar but less complicated.
+
+\begin{lem}\label{res:a1}
+  Suppose that $M_{n1}, M_{n2},\dots$ are i.i.d. geometric random
+  variables with success parameter $p_n = c n^{-a}$ with $a, c \in
+  (0,1)$, and that $\ell_n = (p_n \log p_n^{-1})^{-1}$ and define
+  $J_n$ so that $\sum_{i=1}^{J_n-1} < n \leq \sum_{i=1}^{J_n} M_{ni} $
+  Then 
+  \begin{enumerate}
+  \item $\max_{i=1,\dots,\lfloor C n p_n \rfloor} M_{ni} / n \to^p 0$
+    for any positive $C$,
+  \item $\max_{i=1,\dots,J_n} M_{ni} / n \to^p 0$,
+  \item $\max_{i=1,\dots,  \lfloor C n p_n \rfloor} M_{ni} /
+  \ell_n^{1+\epsilon} \to^p 0$ as $n \to \infty$ for any positive
+  $\epsilon$ and $C$, and
+  \item $\max_{i=1,\dots,J_n} M_{ni} /
+  \ell_n^{1+\epsilon} \to^p 0$ as $n \to \infty$ for any positive
+  $\epsilon$.
+  \end{enumerate}
+\end{lem}
 
 \begin{proof}[Proof of Lemma~\ref{res:a1}]
-  We know that, for any increasing positive sequence $x_n$ such that
-  $x_n p_n \to \infty$,
-  \begin{equation}
-    \pr[\max_i M_{ni} \leq x_n] =
-    (1 - (1 - p_n)^{x_n})^{\lfloor n p_n \rfloor} \to \lim \exp(- n p_n (1 - p_n)^{x_n}).
-  \end{equation}
-  Moreover, $n p_n (1 - p_n)^{x_n} \to \lim n p_n e^{-x_n p_n}$.  To
-  prove (i), let $x_n = n x$ for any positive number $x$.  Then
-  \begin{equation}
-    \pr[\max_i M_{ni}/n \leq x ] \to \lim \exp(-n p_n e^{-n p_n x}) =
+  To prove part 1, observe that, for any increasing positive sequence
+  $x_n$ such that $x_n p_n \to \infty$,
+  \begin{equation*}
+    \pr\Big[\max_{i=1,\dots, \lfloor C n p_n \rfloor} M_{ni} \leq x_n\Big] =
+    (1 - (1 - p_n)^{x_n})^{\lfloor C n p_n \rfloor} \to \lim \exp(-C n p_n (1 - p_n)^{x_n})
+  \end{equation*}
+  and $C n p_n (1 - p_n)^{x_n} \to \lim C n p_n e^{-x_n p_n}$. Now, let
+  $x_n = n x$ for any positive number $x$.  Then
+  \begin{equation*}
+    \pr\Big[\max_{i=1,\dots,\lfloor C n p_n \rfloor} M_{ni}/n \leq x \Big] \to
+    \lim \exp(-C n p_n e^{-n p_n x}) =
     \exp(0) = 1.
-  \end{equation}
-  Since $x$ is arbitrary, $\max_i M_{ni} / n \to^p 0$.
+  \end{equation*}
+  Since $x$ is arbitrary, $\max_{i=1,\dots,\lfloor C n p_n \rfloor} M_{ni} / n \to^p 0$.
 
-  For (ii), let $x_n = \ell_n^{1 + \epsilon} x$ and note that 
-  \begin{equation}
+  For part 2, take $C$ to be an arbitrary constant strictly greater
+  than one. For any $x$,
+  \begin{align*}
+    \pr\Big[\max_{i=1,\dots,J_n} M_{ni} > x\Big] & \leq
+    \pr\Big[\max_{i=1,\dots,\lfloor C n p_n \rfloor} M_{ni} > x \text{ or
+    } J_n > \lfloor C n p_n \rfloor\Big] \\
+    & \leq \pr\Big[\max_{i=1,\dots,\lfloor C n p_n \rfloor} M_{ni} > x\Big]
+    + \pr\Big[\sum\nolimits_{i=1}^{\lfloor C n
+      p_n \rfloor} M_{ni} < n \Big]
+  \end{align*}
+  The first term converges to zero by part 1 and the second term by
+  the \lln.
+
+  For part 3, let $x_n = \ell_n^{1 + \epsilon} x$ and note that 
+  \begin{equation*}
     p_n \ell_n^{1+\epsilon} \geq p_n^{-(\epsilon-\delta-\epsilon\delta)} =
     c^{-(\epsilon-\delta-\epsilon\delta)}
     n^{a(\epsilon-\delta-\epsilon\delta)} \equiv b n^{a(\epsilon
       - \delta - \epsilon\delta)}
-  \end{equation}
+  \end{equation*}
   for any $\delta > 0$ and large enough $n$.  Choose $\delta$ small
   enough that $\epsilon > \delta(1 +\epsilon)$. Then
-  \begin{equation}
+  \begin{equation*}
     n p_n \exp(-\ell_n^{1+\epsilon} p_n) \leq n p_n
     \exp(-b n^{a(\epsilon -
       \delta - \epsilon\delta)}) = c
     v_n^{\frac{1-a}{a(\epsilon-\delta-\epsilon\delta)}}
     \exp(-b v_n) \to 0,
-  \end{equation}
+  \end{equation*}
   with $v_n = n^{a(\epsilon-\delta-\epsilon\delta)}$.  Consequently,
-  \begin{equation}
+  \begin{equation*}
     \pr[\max_i M_{ni}/\ell_n^{1+\epsilon} \leq x ] \to \exp(0) = 1
+  \end{equation*}
+  as well.  
+
+  The proof of part 4 is the same as part 2, making the obvious
+  substitutions.
+\end{proof}
+
+The next result is identical to \citepos{Mcl:75} Theorem~1.6, but is
+stated for conditional expectations so that it is relevant for our
+bootstrap results. The proof is identical to the original.
+\begin{lem}\label{res:16}
+  Let $\{\mathcal{G}_n\}$ be a sequence of $\sigma$-fields,
+  $\{\mathcal{F}_{nt}\}$ an array of $\sigma$-fields such that
+  $\mathcal{G}_n \subset \mathcal{F}_{nt}$ for each $n$ and $t$, and
+  suppose that $\{X_{nt}\}$ is an array such that
+  \begin{equation*}
+    \E\big(\big( \E( X_{nt} \mid \mathcal{F}_{n,t-m} \big)^2 \ \big|\
+    \mathcal{G}_n\big)^{1/2} \leq \psi_m c_{nt}
+  \end{equation*}
+  and
+\begin{equation*}
+  \E\big(\big(X_{nt} - \E( X_{nt}\mid F_{n,t+m}) \big)^2 \ \big|\
+  \mathcal{G}_n\big)^{1/2} \leq \psi_{m+1} c_{nt}  
+\end{equation*}
+almost surely, with $\psi_m = O(m^{-1/2-\delta})$ for some positive
+$\delta$ and $c_{nt} \in \mathcal{G}_n$ for every $n$ and $t$.  Then
+there exists a sequence of random variables $\Delta_n \in
+\mathcal{G}_n$ such that $\Delta_n = O_p(1)$ and
+\begin{equation}\label{eq:40}
+  \E\Big( \max_{u \leq s, t \leq v} \Big(\sum_{w=s}^t X_{nw}\Big)^2 \ \Big|\
+  \mathcal{G}_n\Big) \leq \Delta_n \sum_{t=u}^v c_{nt}^2
+\end{equation}
+almost surely.
+\end{lem}
+
+\begin{lem}\label{res:L}
+  Define $Z_n(\tau,m)$ as in Equation~\eqref{eq:18}.  Under the
+  conditions of Theorem~\ref{thm:1}, the family
+  \begin{equation*}
+    \Bigg\{\frac{Z_{n}(\tau,m)^2}{\E
+  Z_n(\tau,m)^2 + \sigma^2 m / n}\ ;\quad \tau, m, n\Bigg\}
+  \end{equation*}
+ is uniformly integrable.
+\end{lem}
+\begin{proof}
+  We can write 
+  \begin{multline}\label{eq:35}
+    Z_n(\tau, m)^2 = \big(Y_n(\tau, m) + \tfrac{m}{\sqrt{n}}
+    (\bar{\mu}_n - \bar{X}_n) \big)^2 + \Big(\tfrac{1}{\sqrt{n}}\sum_{t \in I_n(\tau,m)} (\mu_{nt} - \bar{\mu}_n)\Big)^2\\
+    + 2 \big(Y_n(\tau, m) + \tfrac{m}{\sqrt{n}} (\bar{\mu}_n - \bar{X}_n)\big)
+    \Big(\tfrac{1}{\sqrt{n}}\sum_{t \in I_n(\tau,m)} (\mu_{nt} - \bar{\mu}_n)\Big)
+  \end{multline}
+  almost surely, with 
+  \begin{equation}\label{eq:28}
+    Y_n(\tau, m) = \tfrac{1}{\sqrt{n}} \sum_{t \in
+      I_n(\tau, m)} (X_{nt} - \mu_{nt}).
   \end{equation}
-  as well.
-\end{proof}
-
-\begin{lema}\label{res:a3}
-  Suppose that the conditions of Lemma~\ref{res:A} hold.  Then the
-  family of random variables $\big\{\big(k^{-1/2} \sum_{t=t_0 + 1}^{t_0+k}
-  X_{nt} \big)^2\big\}_{t_0,k > 0}$ is uniformly integrable.
-\end{lema}
-
-\begin{proof}[Proof of Lemma~\ref{res:a3}]
-Follows the same argument as in de Jong (1997) or Davidson's papers.
-Need to fill in later.
-\end{proof}
-
-\begin{lema}\label{res:a4}
-  Let $\alpha_n(x)= 1 + ((x-1) \mod n)$ and suppose that the
-  conditions of Lemma~\ref{res:A} hold.  For any $t_0,k > 0$,
-  \begin{equation}\label{eq:15}
-    \E^*\Bigg(\sum_{t=t_0+1}^{t_0+k} X_{nt}^* \;\Bigg|\;
-    \mathcal{M}_n\Bigg) = \E^{**}\Bigg(\sum_{t=t_0+1}^{t_0+k}
-    X_{nt}^{**} \;\Bigg|\; \mathcal{M}_n\Bigg) = k \bar{X}_n,
+  Then the conclusion holds if
+  \begin{equation}\label{eq:34}
+    \frac{\big(\sqrt{n} Y_n(\tau, m) + m (\bar{\mu}_n - \bar{X}_n) \big)^2}
+    {\E \big(\sqrt{n} Y_n(\tau,m) + m (\bar{\mu}_n - \bar{X}_n)\big)^2  
+    + \big(\sum_{t \in I_n(\tau,m)} (\mu_{nt} - \bar{\mu}_n)\big)^2 + m \sigma^2},
   \end{equation}
   and
-  \begin{multline}\label{eq:16} 
-    \var^*\Bigg(\sum_{t=t_0+1}^{t_0+k} X_{nt}^* \;\Bigg|\;
-    \mathcal{M}_n\Bigg) = 
-    \var^{**}\Bigg(\sum_{t=t_0+1}^{t_0+k} X_{nt}^{**} \;\Bigg|\;
-    \mathcal{M}_n\Bigg) 
-    \\
-     = n^{-1} \sum_{\tau=1}^n \Bigg[ \Bigg\{\sum_{t=1}^{K_{\kappa_0}-t_0}
-       (X_{n,\alpha_n(\tau+t)} - \bar{X}_n)\Bigg\}^2 +  \sum_{j=\kappa_0+1}^{\kappa_1-1}
-       \Bigg\{\sum_{t=K_{j -1}-t_0+1}^{K_{j}-t_0}
-       (X_{n,\alpha_n(\tau+t)} - \bar{X}_n)\Bigg\}^2  +
-       \Bigg\{\sum_{t=K_{\kappa_1 - 1} - t_0 + 1}^{K_{\kappa_1}}
-       (X_{nt} - \bar{X}_n) \Bigg\}\Bigg]
-  \end{multline}
-  (the indices need to be worked out better).
-\end{lema}
-
-\begin{proof}[Proof of Lemma~\ref{res:a4}]
-  Equation~\eqref{eq:15} is immediate.  For~\eqref{eq:16}, let
-  $\kappa_0$ and $\kappa_1$ be the indices of the blocks containing
-  $s_0+1$ and $s_0 + k$, i.e. such that $K_{\kappa_0 - 1} < s_0 + 1
-  \leq K_{\kappa_0}$ and $K_{\kappa_1 - 1} < s_0 + k \leq
-  K_{\kappa_1}$.  Then
-  \begin{multline}
-    \var^*\Bigg(\sum_{t=t_0+1}^{t_0+k} X_{nt}^* \;\Bigg|\;
-    \mathcal{M}_n\Bigg) = \var^{*}\Bigg( \sum_{t=t_0+1}^{K_{\kappa_0}}
-    X_{nt}^* \;\Bigg|\; \mathcal{M}_n \Bigg) 
-    \\ 
-    + \sum_{j=\kappa_0 + 1}^{\kappa_1 - 1} \var^{*}\Bigg(
-    \sum_{t=K_{j-1}+1}^{K_{j}} X_{nt}^* \;\Bigg|\; \mathcal{M}_n
-    \Bigg) + \var^{*}\Bigg( \sum_{t=K_{\kappa_1 - 1}+1}^{K_{\kappa_1}}
-    X_{nt}^* \;\Bigg|\; \mathcal{M}_n \Bigg),
-  \end{multline}
-  since the blocks are independent given $\mathcal{M}_n$.  Now, for
-  each block,
-  \begin{equation}
-    \var^{*}\Bigg(
-    \sum_{\tau=K_{j-1}+1}^{K_{j}} X_{nt}^* \;\Bigg|\; \mathcal{M}_n
-    \Bigg) = n^{-1} \sum_{t=1}^n 
-    \Bigg\{\sum_{t=K_{\kappa_j -1}+1}^{K_{\kappa_j}} (X_{n,\alpha_n(\tau+t)} -
-    \bar{X}_n)\Bigg\}^2,
+  \begin{equation}\label{eq:33}
+    \frac{\big(\sum_{t \in I_n(\tau,m)} (\mu_{nt} - \bar{\mu}_n)\big)^2}
+    {\E \big(\sqrt{n} Y_n(\tau,m) + m (\bar{\mu}_n - \bar{X}_n) \big)^2  +\big(\sum_{t \in I_n(\tau,m)} (\mu_{nt} - \bar{\mu}_n)\big)^2 + \sigma^2}
   \end{equation}
-  with similar formulae for the first and last blocks.
-  The same argument holds for $\var^{**}$, completing the proof.
+  are all uniformly integrable.  But $\tfrac{n}{m} Y_n(\tau, m)^2$ and
+  $n (\bar{\mu_n} - \bar X_n)^2$ are uniformly integrable by existing
+  results \citep{Dav:92,Dav:93,Jon:97} and~\eqref{eq:33} is bounded
+  above by construction, completing the proof.
 \end{proof}
 
-\begin{lema}\label{res:a5}
-  Suppose the conditions of Theorem~\ref{res:C} hold, let $\ell_n = (p
-  \log p^{-1})^{-1}$, and define $Z_{nj}^C(\tau, \mathcal{M}_n)$,
-  $M_{nj}(\tau)$, and $K_{nj}(\tau)$ as in the proof of
-  Lemma~\ref{res:B}. Now let $J_n$ be the number of block lengths
-  $M_{nj}(\tau)$ that are greater that $\ell_n$; let $j_{n1},\dots,j_{n,J_n}$
-  be their indices, so that $j_{n1}$ is the index of the first such
-  block, $j_{n2}$ is index of the second, etc.; and define 
-  $W_{ni} = (V_{n,I_{i-1}+1},\dots,V_{n,I_i})$
-  with $I_0 = 0$ and, for $i > 0$,
+\begin{lem}\label{res:H}
+  Suppose the conditions of Theorem~\ref{thm:1} hold and define
+  $Z_{nj}^{*}$ and $\eta_n^2$ as in Equations~\eqref{eq:18}
+  and~\eqref{eq:26}. Then
   \begin{equation}
-    I_i =
-    \begin{cases}
-      K_{n,j_i} & j_{n,i+1} - j_{ni} = 1, \\ 
-      \lfloor (K_{n,j_{n,i+1}} + K_{n,j_{n,i}}) / 2 \rfloor & \text{otherwise.}
-    \end{cases}
+    \label{eq:2}
+    \pr^{*}\Big[\Big| \sum_{j=1}^{J_n} \big(Z_{nj}^{*2} -
+    \E^{*}(Z_{nj}^{*2} \mid \mathcal{M}_n)\big) \Big| \Big/ \eta_n^2
+    > \delta \ \Big|\ \mathcal{M}_n \Big] \to^p 0
   \end{equation}
+  for any positive $\delta$.
+\end{lem}
 
-  The, conditional on $\mathcal{M}_n$, $\{Z_{nj_i}^C(\tau,
-  \mathcal{M}_n), \mathcal{F}_{nj}\}$ is an $L_2$-mixingale of size
-  $-1/2$ with magnitude indices
+\begin{proof}
+  The proof follows the steps of, for example, Davidson's Theorem 19.7
+  using Lemma~\ref{res:L} to establish the necessary inequalities.
+  The same argument behind Lemma~\ref{res:L} ensures that, for any
+  positive $\epsilon$, there exists a constant $B_{\epsilon}$ such
+  that
   \begin{equation}
-    C D M_{n,j_i}(\tau) n^{-1} \max(1,B) \max(M_{n,j_i}(\tau)^{1/2}
-    \ell_n^{-1/2-\epsilon}, 1)
+    \label{eq:21}
+    \sup_{\tau, m, n} \big\| \big(Y_n(\tau,m)^2 n / \sigma^2 m \big)
+    1\{Y_n(\tau,m)^2 n/ \sigma^2 m  > B_{\epsilon}^2\}\ \big\|_1 \leq \epsilon
   \end{equation}
-  for some $\epsilon > 0$, with $D \geq 2 \max_t(d_{nt}/c_{nt})
-  \max_t(c_{nt})$ and $B$ a finite constant that depends only on the
-  mixingale coefficients of $X_{nt}$.\footnote{See
-    \citet[Theorem~1.6]{Mcl:75} for details.}
-\end{lema}
-\begin{proof}[Proof of Lemma~\ref{res:a5}]
-  Similar to \citet[Lemma 5]{Jon:97}, we'll show that
-  $Z^c_{nj_i}(\tau, \mathcal{M}_n)^2 - Z^c_{nj_i}(\tau,
-  \mathcal{M}_n)^2$ is an $L_2$-mixingale (conditional on
-  $\mathcal{M}_n$) by first showing that it is $L_2$-\ned\ (also
-  conditional on $\mathcal{M}_n$); the conclusion then follows
-  immediately.   By the same argument as in de Jong's
-  Equation~(A.32), for $k > 1$
-  \begin{multline}
-    \E\Big( \Big[Z_{nj_i}^C(\tau, \mathcal{M}_n) - \E(
-    Z_{nj_i}^C(\tau, \mathcal{M}_n) \mid \mathcal{M}_n;
-    W_{n,i-k},\dots,W_{n,i+k}) \Big]^2 \;\big|\; \mathcal{M}_n
-    \Big)^{\frac12}\\ \leq k^{-1/2-\epsilon} \cdot C D
-    M_{n,j_i}(\tau)^{3/2} n^{-1} \ell_n^{-1/2-\epsilon},
-  \end{multline}
-  with $\epsilon > 0$ and (for $k = 0$)
-  \begin{equation}
-    \E\Big(\Big[ Z_{nj_i}^C(\tau, \mathcal{M}_n) - \E (Z_{nj_i}^C(\tau,
-    \mathcal{M}_n) \mid \mathcal{M}_n; W_{n,i}) \Big]^2 \;\big|\; \mathcal{M}_n
-    \Big)^{\frac12} \\ \leq C D B M_{n,j_i} n^{-1}
-  \end{equation}
-  where $B$ is a finite constant that depends only on the mixingale
-  coefficients of $X_{nt}$ \citep[see][for details]{Mcl:75}.  Note
-  that $\{X_{nt}\}$ is a mixingale because it is \ned\ \citep[see,
-  e.g.][Theorem 17.5]{Dav:94}.
+  with $Y_n(\tau, m)$ defined in~\eqref{eq:28}.  Let $u_{nj}$ be the
+  discrete uniform$(1,\dots,n)$ indicating the beginning of the $j$th
+  block, so that
+  \begin{equation*}
+    (X_{n,u_{nj}},\dots,X_{n,u_{nj} + M_{n,j} - 1}) = (X_{n,K_{n,j-1}+1}^{*},\dots,X_{n,K_{n,j}}^{*})
+  \end{equation*}
+  almost surely, and define
+  \begin{equation*}
+    U_{nj} = Y_{nj}^{*2} \, 1\{Y_{nj}^{*2} \leq B_{\epsilon}^2 \sigma^2 M_{nj} / n d \}
+  \end{equation*}
+  and
+  \begin{equation*}
+    V_{nj} = Y_{nj}^{*2} - U_{nj},
+  \end{equation*}
+  so
+  \begin{multline*}
+    Z_{nj}^{*2} - \E^{*}(Z_{nj}^{*2} \mid \mathcal{G}_{n,j-1}) 
+    = U_{nj} - \E^{*}(U_{nj} \mid \mathcal{G}_{n,j-1}) + V_{nj} - \E^{*}(V_{nj} \mid \mathcal{G}_{n,j-1}) \\ 
+    + \big(Z_{nj}^{*2} - \E^{*}(Z_{nj}^{*2} \mid \mathcal{G}_{n,j-1})\big) - \big(Y_{nj}^{*2} - \E^{*}(Y_{nj}^{*2} \mid \mathcal{G}_{n,j-1})\big)
+  \end{multline*}
+  almost surely.
 
-  Consequently, $Z_{nj_i}^C(\tau, \mathcal{M}_n) - \E(Z_{nj_i}^C(\tau,
-  \mathcal{M}_n) \mid \mathcal{M}_n)$ is $L_2$-\ned\ of size $-1/2$,
-  and an $L_2$-mixingale of size $-1/2$ as well with magnitude indices
-  \begin{equation}
-    C D \max(M_{j_i}(\tau)^{3/2} n^{-1}
-    \ell_n^{-1/2-\epsilon}, M_{j_i}(\tau) n^{-1}) \max(1, B).
-  \end{equation}
-  So, using \citet[Theorem 1.6]{Mcl:75} again, we have the bound
-  \begin{multline}
-    \E\Bigg(\Bigg[ \sum_{i=1}^{J_n} \big(Z_{nj_i}^c(\tau,
-    \mathcal{M}_n)^2 - \E(Z_{nj_i}^c(\tau, \mathcal{M}_n)^2 \mid
-    \mathcal{M}_n)\big) \Bigg]^2 \;\Big|\; \mathcal{M}_n\Bigg) \\ \leq
-    A^2 C^2 \sum_{i=1}^J \max(M_{j_i}(\tau)^{3/2} n^{-1}
-    \ell_n^{-1/2-\epsilon}, M_{j_i}(\tau) n^{-1})^2 \equiv A^2 C^2 r_n,
-  \end{multline}
-  where $A$ is $D \max(1,B)$ multiplied by a constant that only
-  depends on the mixingale coefficients.  To finish the proof, notice
-  that $r_n \to^p 0$ if $\max_j M_j/n \to^p 0$ and $\max_j M_j /
-  \ell_n^{1+\epsilon} \to^p 0$, which both follow from Lemma~\ref{res:a1}.
+  Now, just as in Davidson's proof, we have (with all relationships
+  understood to hold almost surely)
+  \begin{align*}
+    \E\Big(\Big|\tfrac{1}{\eta_n^2} \sum_{j=1}^{J_n} \big(U_{nj} - \E^{*}& (U_{nj} \mid \mathcal{G}_{n,j-1})\big) \Big| \ \Big|\ \mathcal{M}_n\Big)\\
+    &\leq \tfrac{1}{\eta_n^2}\Big[\E\Big( \E^{*} \Big( \Big|\sum_{j=1}^{J_n} \big(U_{nj} 
+     - \E^{*}(U_{nj} \mid \mathcal{G}_{n,j-1})\big) \Big|^2 \ \Big|\ \mathcal{M}_n\Big)\ \Big|\ \mathcal{M}_n\Big)\Big]^{1/2}
+    \\ &= \tfrac{1}{\eta_n^2} \Big(\sum_{j=1}^{J_n} \E\big(\E^{*}\big([U_{nj} - \E^{*}(U_{nj} \mid \mathcal{G}_{n,j-1})]^2\mid \mathcal{M}_{n} \big) \mid \mathcal{M}_n\big) \Big)^{1/2} 
+    \\ &\leq \tfrac{1}{\eta_n^2} \Big(\sum_{j=1}^{J_n} \E \E^{*}(U_{nj}^2 \mid \mathcal{M}_n) \Big)^{1/2} 
+    \\ & \leq \tfrac{B_{\epsilon}}{\eta_n^2} \Big(\sum_{j=1}^{J_n} \tfrac{1}{n} \sum_{\tau=0}^{n-1} \Big[\E(Y_n(\tau, M_{nj})^2 \mid \mathcal{M}_n)\Big]^2\Big)^{1/2}
+    \\ & \leq \tfrac{C_n}{\eta_n^2} \Big(\sum_{j=1}^{J_n} M_{nj}^2 / n^2\Big)^{1/2} \to^{L_1} 0
+  \end{align*}
+  for some $C_n$, with the last inequality a consequence of Lemma~\ref{res:16}
+  and convergence a consequence of Lemma~\ref{res:a1}.  Also,
+  \begin{align*}
+    \E \E^{*}\Big(\Big\lvert &\tfrac{1}{\eta_n^2} \sum_{j=1}^{J_n} (V_{nj} -
+      \E^{*}(V_{nj} \mid \mathcal{G}_{n,j-1})) \Big\rvert \ \Big|\ \mathcal{M}_n \Big)
+    \\ & \leq 2 \E \sum_{j=1}^{J_n} \tfrac{1}{\eta_n^2} \E^{*}(\lvert V_{nj} \rvert \mid \mathcal{M}_n)
+    \\ & \leq 2 \E \sum_{j=1}^{J_n} \tfrac{1}{\eta_n^2} Y_n(u_{nj}, M_{nj})^2
+    1\big\{Y_n(u_{nj}, M_{nj})^2 > B^2_{\epsilon} \sigma^2 M_{nj}/n \big\}
+    \\ & \leq 2 \epsilon \E \sum_{j=1}^{J_n} \tfrac{\sigma^2}{\eta_n^2} M_{nj} / n
+    \\ & \leq \tfrac{2\sigma^2}{\eta_n^2} \epsilon
+  \end{align*}
+  with the second to last inequality holding by the choice of
+  $B_{\epsilon}$ and all of these relationships understood to hold
+  almost surely.
+
+  Finally, 
+  \begin{multline*}
+    \tfrac{1}{\eta_n^2} \sum_{j=1}^{J_n} \big[(Z_{nj}^{*2} - \E(Z_{nj}^{*2} \mid \mathcal{G}_{n,j-1}) - (Y_{nj}^{*2} - \E(Y_{nj}^{*2} \mid \mathcal{G}_{n,j-1}))\big] \\
+    = \tfrac{2}{\eta_n^2} \sum_{j=1}^{J_n} \big[Y_{nj}^{*} - \E^{*}(Y_{nj}^{*} \mid \mathcal{G}_{n,j-1})]
+    \Big[\tfrac{M_{nj}}{\sqrt{n}} (\bar{X}_n - \bar{\mu}_n) + \tfrac{1}{\sqrt{n}} \sum_{t \in I_n(\tau, M_{nj})} (\mu_{nt} - \bar{\mu}_n)\Big]
+  \end{multline*}
+  almost surely, which converges to zero in $L_1$ by the usual arguments, completing the proof.
 \end{proof}
 
-\begin{lema}\label{res:a6}
-  Define $M_{nj}(\tau)$ and $K_{nj}(\tau)$ as in the proof of
-  Lemma~\ref{res:B}.  Under the conditions of Theorem~\ref{res:C}, 
+\begin{lem}\label{res:B}
+  If the conditions of Theorem~\ref{thm:1} hold then
   \begin{equation}
-    n^{-1} \sum_{j=2}^{\lfloor \gamma n p_n \rfloor} \E \Bigg(
-    \sum_{t=1}^{K_{n,j-1}(\tau)} \sum_{s=K_{n,j-1}(\tau)+1}^{K_{nj}(\tau)}
-    (X_{nt} - \bar{\mu}_n) (X_{ns} - \bar{\mu}_n) \;\Big|\;
-    \mathcal{M}_n\Bigg) \to^p 0
+    \label{eq:38}
+    \eta_n^2 - \sigma^2 - \tfrac{1}{n^2} \sum_{j=1}^{J_n} \sum_{\tau=0}^{n-1} \Big(\sum_{t \in I_n(\tau, M_{nj})} (\mu_{nt} - \bar{\mu}_n) \Big)^2 = o_p(1),
   \end{equation}
-  uniformly in $\gamma$ and $\tau$.
-\end{lema}
-\begin{proof}[Proof of Lemma~\ref{res:a6}]
-  Define $\ell_n = (p_n \log p_n^{-1})^{-1}$.  Then
-  \begin{multline}
-    n^{-1} \sum_{j=2}^{\lfloor \gamma n p_n \rfloor} \E \Bigg(
-    \sum_{t=1}^{K_{n,j-1}(\tau)} \sum_{s=K_{n,j-1}(\tau)+1}^{K_{nj}(\tau)}
-    (X_{nt} - \bar{\mu}_n) (X_{ns} - \bar{\mu}_n) \;\Big|\;
-    \mathcal{M}_n\Bigg) = O_p(\ell_n p_n) \\
-    + n^{-1} \sum_{j=2}^{\lfloor \gamma n p_n \rfloor} \E \Bigg(
-    \sum_{t=1}^{K_{n,j-1}(\tau)}
-    \sum_{s=K_{n,j-1}(\tau)+\ell_n+1}^{K_{nj}(\tau)} (X_{nt} - \bar{\mu}_n)
-    (X_{ns} - \bar{\mu}_n) \;\Bigg|\; \mathcal{M}_n\Bigg)
+  \begin{equation}
+    \label{eq:19}
+    \tfrac{1}{n} \sum_{\tau=0}^{n-1} \sum_{j=1}^{J_n} Z_n(\tau,
+    M_{nj})^2 -\eta_n^2 = o_p(\eta_n^2),
+  \end{equation}
+  \begin{equation}\label{eq:37}
+    \sigma_n^{*2} - \eta_n^2 = o_p(\eta_n^2),
+  \end{equation}
+  and
+  \begin{equation}
+    \label{eq:36}
+    \hat\sigma_n^{*2} - \eta_n^2 = o_p(\eta_n^2).
+  \end{equation}
+\end{lem}
+
+\begin{proof} 
+  Equation~\eqref{eq:35}, along with Theorem~2 of \citet{Jon:97} and
+  Lemma~\ref{res:a1}, implies that
+  \begin{multline*}
+    \label{eq:52}
+    \sum_{j=1}^{J_n} \tfrac{1}{n} \sum_{\tau=0}^{n-1} Z_n(\tau,
+    M_{nj})^2 = \tfrac{1}{n} \sum_{j=1}^{J_n} \sum_{\tau=0}^{n-1}
+    Y_n(\tau, M_{nj})^2 + \tfrac{1}{n^2} \sum_{j=1}^{J_n}
+    \sum_{\tau=0}^{n-1} \Big(\sum_{t \in I_n(\tau, M_{nj})} (\mu_{nt} - \bar{\mu}_n)\Big)^2 \\
+    + \tfrac{2}{n^{3/2}} \sum_{j=1}^{J_n} \sum_{\tau=0}^{n-1}
+    Y_n(\tau, M_{nj}) \sum_{t\in I_n(\tau, M_{nj})} (\mu_{nt} -
+    \bar{\mu}_n) + o_p(1).
+  \end{multline*}
+  So~\eqref{eq:38} follows directly from Lemma~\ref{res:7}.
+  For~\eqref{eq:19}, it suffices to prove that
+  \begin{equation}
+    \label{eq:20}
+    \tfrac{1}{n} \sum_{j=1}^{J_n} \sum_{\tau=0}^{n-1} \big\{Y_n(\tau,
+    M_{nj})^2 - \E(Y_n(\tau, M_{nj})^2 \mid \mathcal{M}_n) \big\} \to^p 0,
+  \end{equation}
+  and
+  \begin{equation}
+    \label{eq:51}
+    \tfrac{1}{n^{3/2}} \sum_{j=1}^{J_n} \sum_{\tau=0}^{n-1}
+    Y_{n}(\tau, M_{nj})\sum_{t\in I_n(\tau, M_{nj})}(\mu_{nt} -
+    \bar{\mu}_n) = o_p(\eta_n).
+  \end{equation}
+  Observe that we can express the summation in~\eqref{eq:20} as
+  \begin{multline}\label{eq:47}
+    \tfrac{1}{n} \sum_{j=1}^{J_n} \sum_{\tau=0}^{n-1} \big\{Y_n(\tau,
+    M_{nj})^2 - \E(Y_n(\tau, M_{nj})^2 \mid \mathcal{M}_n) \big\} \\ =
+    \tfrac{1}{n} \sum_{j=1}^{J_n} \sum_{\tau=0}^{M_{nj}-1}
+    \sum_{i=1}^{L_{nj}}\big\{ Y_n(\tau+(i-1)M_{nj}, M_{nj})^2
+    - \E(Y_n(\tau+(i-1)M_{nj}, M_{nj})^2 \mid
+    \mathcal{M}_n)\big\} \\ + \tfrac{1}{n} \sum_{j=1}^{J_n}
+    \sum_{\tau= M_{nj}L_{nj}}^{n-1} \big\{Y_{n}(\tau, M_{nj})^2 -
+    \E(Y_n(\tau, M_{nj})^2 \mid \mathcal{M}_n)\big\}
   \end{multline}
-  uniformly in $\tau$ and $\gamma$ by \citet[Theorem~1.6]{Mcl:75}.
-  Then $\ell_n p_n \to 0$ by construction and the remainder of the
-  proof follows the same argument as \citepos{Jon:97} Lemma~4.
+  almost surely, where $L_{nj} = \lfloor n/ M_{nj} \rfloor$.  The
+  advantage of this representation is that each summation over
+  $i=1,\dots,L_{nj}$ is formed from adjacent blocks of the original
+  series, so standard blocking arguments can be applied.  Now let
+  $\ell_n = (p_n \log p_n^{-1})^{-1}$. By Lemma~\ref{res:7}, for any
+  $\delta > 0$ there exist positive $C$ and $\epsilon$ such that
+  \begin{multline*}
+    \Big\lVert\tfrac{1}{n} \sum_{j=1}^{J_n} \sum_{\tau=1}^{M_{nj}}
+    \sum_{i=1}^{L_{nj}}\big\{ Y_n(\tau+(i-1)M_{nj}, M_{nj})^2 -
+    \E(Y_n(\tau+(i-1)M_{nj}, M_{nj})^2 \mid
+    \mathcal{M}_n)\big\}\Big\rVert_1 \\ \leq C \tfrac{\ell_n}{n} + 2
+    \delta + C\, \Big\lVert \max_{j =
+      1,\dots,J_n}\big(\tfrac{M_{nj}}{n}\big)^{1/2} \max_{j =
+      1,\dots,J_n}\big(1,
+    \tfrac{M_{nj}}{\ell_n^{1+\epsilon}}\big)^{1/2} \Big\rVert_1
+  \end{multline*} 
+  which converges to $2 \delta$ by Lemma~\ref{res:a1}.  The second
+  term of~\eqref{eq:47} is $O_{p}(1 - M_{nj}/n)$ by Lemma~\ref{res:16},
+  proving~\eqref{eq:20}.  
+
+  For~\eqref{eq:51}, the Cauchy-Schwarz inequality implies that
+  \begin{multline*}
+    \tfrac{1}{n^{3/2}} \sum_{j=1}^{J_n} \sum_{\tau=0}^{n-1}
+    \Big\lvert Y_{n}(\tau, M_{nj})\sum_{t\in I_n(\tau, M_{nj})}(\mu_{nt} -
+    \bar{\mu}_n)\Big\rvert \\\leq \Big\{\tfrac{1}{n} \sum_{j=1}^{J_n}
+    \sum_{\tau=0}^{n-1} \big(\tfrac{1}{\sqrt{n}} Y_n(\tau,
+    M_{nj})^2\big)\Big\}^{1/2} \Big\{\tfrac{1}{n} \sum_{j=1}^{J_n}
+    \sum_{\tau=0}^{n-1} \Big(\tfrac{1}{\sqrt{n}} \sum_{t \in I_n(\tau,
+      M_{nj})} (\mu_{nt} - \bar{\mu}_{n} )\Big)^2\Big\}^{1/2}.
+  \end{multline*}
+  Lemma~\ref{res:16} implies that
+  \begin{equation}
+    \label{eq:23}
+    \tfrac{1}{n} \sum_{j=1}^{J_n}
+    \sum_{\tau=0}^{n-1} \big(\tfrac{1}{\sqrt{n}} Y_n(\tau,
+    M_{nj})^2\big) \to^p 0
+  \end{equation}
+  and Equation~\eqref{eq:38} that
+  \begin{equation*}
+    \tfrac{1}{n} \sum_{j=1}^{J_n} \sum_{\tau=0}^{n-1}
+    \Big(\tfrac{1}{\sqrt{n}} \sum_{t \in I_n(\tau, M_{nj})} (\mu_{nt} -
+    \bar{\mu}_{n} )\Big)^2 = O_p(\eta_n^2).
+  \end{equation*}
+  completing the proof of~\eqref{eq:19}.
+
+  Result~\eqref{eq:37} is an immediate consequence of~\eqref{eq:19}
+  and Lemma~\ref{res:L}.  Finally, for~\eqref{eq:36}, observe that
+  \begin{equation*}
+    \hat{\sigma}_n^{*2} = \eta_n^2 + (\sigma_n^{*2} - \eta_n^2) + \sum_{j=1}^{J_n}\Big[
+    Z_{nj}^{*2} - \E^*(Z_{nj}^{*2} \mid \mathcal{M}_n)
+    + \tfrac{2 M_{nj}}{\sqrt{n}} (\mu_n^{*} - \bar{X}_n^{*})
+    Z_{nj}^{*} + \tfrac{M_{nj}^2}{n} (\mu_n^{*} - \bar{X}_n^{*})^2 \Big]
+  \end{equation*}
+  implying that $\hat{\sigma}_n^{*2}/\eta_n^2 \to^p 1$
+  by~\eqref{eq:37} along with Lemmas~\ref{res:a1},~\ref{res:L},
+  and~\ref{res:H}.
 \end{proof}
 
-\subsection*{Proof of Theorem~\ref{res:C}}
-By Lemma~\ref{res:A}, it suffices to prove that $\mathbb{B}_n^{**}$
-obeys the \fclt.  We have
-\begin{multline}\label{eq:1}
-  m_n^{-1/2} \sum_{t=1}^{\lfloor \gamma m_n \rfloor} (X_{nt}^{**} -
-  \mu_n^{**}) = (n p)^{-1/2} \sum_{j=1}^{\lfloor \gamma n p_n \rfloor}
-  \Big\{(n p_n/m_n)^{1/2} \sum_{t = K_{n,j-1} + 1}^{K_{nj}}
-  (X_{nt}^{**} - \mu_n^{**})\Big\} \\ + m_n^{-1/2} \sgn(\gamma m_n -
-  K_{n,\lfloor \gamma n p_n \rfloor}) \sum_{t = \min(\lfloor \gamma
-    m_n \rfloor, K_{n,\lfloor \gamma n p_n \rfloor}) +
-    1}^{\max(\lfloor \gamma m_n \rfloor, K_{n,\lfloor \gamma n p_n
-      \rfloor})} (X_{nt}^{**} - \mu_n^{**}).
+\begin{lem}\label{res:7}
+  Define $Y_n(\tau, m)$ as in Equation~\eqref{eq:28} and $L_{nj} =
+  \lfloor n/M_{nj}\rfloor$. For any positive $\delta$, there exist
+  positive and finite constants $C$, $N$, and $\epsilon$ such that
+\begin{multline}\label{eq:29}
+  \E\Big(\Big\lvert\sum_{i=1}^{L_n} \big[Y_{n}(\tau + (i-1) M_{nj},
+  M_{nj})^2 -  Y_{n}(\tau + (i-1) M_{nj}, M_{nj} -
+  \ell)^2\big]\Big\rvert \ \Big|\
+  \mathcal{M}_n\Big) \leq C \tfrac{\ell}{n},
 \end{multline}
-We can show that the second sum in~(\ref{eq:1}) vanishes
-asymptotically.  To simplify the presentation, assume that $\gamma m_n
-> K_{n,\lfloor \gamma n p_n \rfloor}$; the same argument works for the
-reverse inequality as well.  By Lemma~\ref{res:a4},
-\begin{equation}
-  \E^{**} m_n^{-1/2} \sum_{t = K_{n,\lfloor \gamma n p_n \rfloor} +
-    1}^{\lfloor \gamma m_n\rfloor} (X_{nt}^{**} - \mu_n^{**})=
-  (\bar X_n - \bar X_n) \E^{**} (\lfloor \gamma m_n
-  \rfloor - K_{n,\lfloor \gamma n p_n \rfloor})/ m_n^{1/2} = 0
-\end{equation}
-(remember that $m_n$ is random) and
-\begin{align}
-  \var^{**}\Big(&m_n^{-1/2} \sum_{t = K_{n,\lfloor \gamma n p_n
-      \rfloor} + 1}^{\lfloor \gamma m_n\rfloor} (X_{nt}^{**} -
-  \mu_n^{**})\Big) \\&= \E^{**} (m_n n)^{-1} \sum_{\tau=1}^n
-  \Bigg\{\sum_{j=\lfloor\gamma n p_n \rfloor + 1}^{\kappa_n - 1}
-  \Bigg(\sum_{t=K_{n,j-1}+1}^{K_{nj}} (X_{nt} - \bar{X}_n)\Bigg)^2 \\
-  &\qquad+ \Bigg(\sum_{t=K_{n,\kappa_n-1}+1}^{\lfloor \gamma m_n
-    \rfloor} (X_{nt} - \bar{X}_n)\Bigg)^2 \Bigg\} \to^p 0
-\end{align}
-uniformly in $\gamma$ by \citet[Theorem~1.6]{Mcl:75}, with $\kappa_n$
-indicating the block containing $\lfloor \gamma m_n \rfloor$, so
-$K_{n,\kappa_n-1} < \lfloor \gamma m_n \rfloor \leq K_{n,\kappa_n}$.
-It now suffices to prove that the first term in~(\ref{eq:1}) satisfies
-an \fclt.
-
-Let $Z_{nj}^{**} = \sqrt{n p_n/ m_n} \sum_{t = K_{n,j-1} + 1}^{K_{nj}}
-(X_{nt}^{**} - \mu_n^{**})$; clearly $Z_{nj}^{**}$ is an \mds\
-conditional on $\mathcal{M}_n$ that has finite variance and is
-globally covariance stationarity condition by Lemma~\ref{res:B}.
-Moreover, $(n p_n)^{-1} \sum_j (Z_{nj}^{**})^2 \to^{p^{**}} 1$ by the
-\lln\ \citep[e.g.][Theorem~19.7]{Dav:94} and $\max_j (Z_{nj}^{**})^2 =
-o_{p^{**}}(n)$ given $\mathcal{M}_n$ by uniform integrability.  Then
-the random functions $\gamma \mapsto (n p_n)^{-1/2}
-\sum_{j=1}^{\lfloor \gamma n p_n \rfloor} Z_{nj}^{**}$ converge in
-distribution to $\mathcal{B}$ conditional on $\mathcal{M}_n$ by the
-\fclt\ \citep[e.g.][Theorem 27.14]{Dav:94}.  Since this limit does not
-depend on $\mathcal{M}_n$, it holds unconditionally as well.\qed
-
-\subsection*{Proof of Lemma~\ref{res:A}}
-We'll use a coupling argument.  If $m_n > n$, then $\bar{X}_n^{*} \eqd
-\bar{Y}_n^{**} \equiv n^{-1} \sum_{t=1}^{n} X_{nt}^{**}$.  Similarly,
-if $m_n < n$, $\bar{X}_n^{**} \eqd \bar{Z}_n^{*} \equiv n^{-1}
-\sum_{t=1}^{m_n} X_{nt}^{*}$.  So the result holds if $m_n^{1/2}
-(\bar{X}_n^{**} - \bar{Y}_n^{**}) \to^p 0$ and $n^{1/2} (\bar{X}_n^{*}
-- \bar{Z}_n^{*}) \to^p 0$; i.e.
-\begin{equation}\label{eq:4}
-  m_n^{-1/2} \sum_{t=\lfloor \gamma m_n \rfloor +
-    1}^{\lfloor \gamma n \rfloor} (X_{nt}^{*} - \mu_n^{*}) \to^{p}
-  0, \qquad (n^{-1/2} - m_n^{-1/2})
-  \sum_{t=1}^{\lfloor \gamma n \rfloor} (X_{nt}^* - \mu_n^*) \to^p 0
-\end{equation}
+\begin{multline}\label{eq:16}
+  \E\Big(\Big\lvert\sum_{i=1}^{L_n} \big[Y_{n}(\tau + (i-1) M_{nj},
+  M_{nj} - \ell)^2 \\- \E(Y_{n}(\tau + (i-1) M_{nj}, M_{nj} -
+  \ell)^2 \mid \mathcal{M}_n)\big]\Big\rvert \ \Big|\
+  \mathcal{M}_n\Big)\\ \leq 2 \delta + C \cdot \big(\tfrac{M_{nj}}{n}\big)^{1/2}
+  \max\big(1, \tfrac{M_{nj}}{\ell^{1+\epsilon}}\big)^{1/2},
+\end{multline}
 and
-\begin{equation}\label{eq:6}
-  n^{-1/2} \sum_{t=\lfloor \gamma n \rfloor +
-    1}^{\lfloor \gamma m_n \rfloor} (X_{nt}^{**} - \mu_n^{**}) \to^{p} 0, \qquad
-  (m_n^{-1/2} - n^{-1/2})
-  \sum_{t=1}^{\lfloor \gamma m_n \rfloor} (X_{nt}^{**} - \mu_n^{**}) \to^p 0
-\end{equation}
-uniformly in $\gamma$, where summations over empty index sets are
-defined to be zero.  I'll prove~\eqref{eq:4} as the argument
-for~\eqref{eq:6} is identical
-
-Now let $\mathcal{N}_n = (M_{n1},\dots,M_{n,N_n})$.  By
-Lemma~\ref{res:a4},
-\begin{gather}\label{eq:17}
-  \E^{*} \Big(m_n^{-1/2} \sum_{t=\lfloor \gamma m_n \rfloor +
-    1}^{\lfloor \gamma n \rfloor} (X_{nt}^{*} - \mu_n^{*}) \;\Big|\;
-  \mathcal{N}_n \Big) = \frac{(\lfloor \gamma n \rfloor - \lfloor
-    \gamma m_n
-    \rfloor)^{+}}{n^{1/2}} (\bar{X}_n - \bar{X}_n) = 0, \\
-  \E^{*} \Big((n^{-1/2} - m_n^{-1/2}) \sum_{t=1}^{\lfloor \gamma n
-    \rfloor} (X_{nt}^* - \mu_n^*) \;\Big|\; \mathcal{N}_n \Big) = 0,
-\end{gather}
-and
-\begin{align}
-  \var^{*} \Big(m_n^{-1/2} & \sum_{t=\lfloor \gamma m_n \rfloor +
-    1}^{\lfloor \gamma n \rfloor} (X_{nt}^{*} - \mu_n^{*}) \;\Big|\;
-  \mathcal{N}_n \Big) \\ &= (m_n n)^{-1} \sum_{\tau=1}^n \Bigg[
-  \Bigg\{ \sum_{t= \lfloor \gamma m_n \rfloor + 1}^{K_{n,\kappa_{n0}}}
-  (X_{n,\alpha_n(\tau + t)} - \bar{X}_n) \Bigg\}^2 \\&\quad +
-  \sum_{j=\kappa_{n0} + 1}^{\kappa_{n1} - 1} \Bigg\{ \sum_{t=K_{n,j-1}
-    + 1}^{K_{nj}} (X_{n, \alpha_n(\tau+t)} - \bar X_n)\Bigg\}^2
-  \\&\quad + \Bigg\{ \sum_{t=K_{n,\kappa_{n1} - 1} + 1}^{\lfloor
-    \gamma n \rfloor} (X_{n, \alpha_n(\tau + t)} - \bar{X}_n)\Bigg\}^2
-  \Bigg].
-\end{align}
-By \citet[Theorem~1.6]{Mcl:75},
-\begin{multline}
-  \E \var^{*} \Big( (\gamma m_n)^{-1/2} \sum_{t=\lfloor \gamma m_n
-    \rfloor + 1}^{\lfloor \gamma n \rfloor} (X_{nt}^* - \mu_n^*)
-  \;\Big|\; \mathcal{N}_n\Big) \\ \leq \gamma^{-1} \E (m_{n} n)^{-1} \sum_{\tau=1}^n
-  \E \Big[ A_{n0} (K_{n,\kappa_{n0}} - \lfloor \gamma m_n \rfloor) \\
-  + \sum_{j=\kappa_{n0} + 1}^{\kappa_{n1} - 1} A_{nj} M_{nj} +
-  A_{n,\kappa_{n1}} (\lfloor \gamma n \rfloor - K_{n,\kappa_{n1}} - 1)
-  \Big] \to 0
-\end{multline}
-uniformly in $\gamma$, since the $A_{nj}$ are uniformly bounded
-constants that only depend on the mixingale magnitude indices of
-$\{X_{nt}\}$.  Also,
-\begin{equation}
-  \var^{*} \Big((n^{-1/2} - m_n^{-1/2})
-  \sum_{t=1}^{\lfloor \gamma n \rfloor} (X_{nt}^* - \mu_n^*) \mid
-  \mathcal{N}_n\Big) \to^p 0
-\end{equation}
-uniformly by a similar argument.  \citet[Theorem~1.6]{Mcl:75} also
-ensures that the conditional variances are uniformly integrable,
-giving~\eqref{eq:4}.\qed
-
-\subsection*{Proof of Lemma~\ref{res:B}}
-For any $\tau$ in $\{1,\dots,n\}$, let $\kappa_n(\tau)$ indicate the
-block containing $\tau$, so $K_{n,\kappa_n(\tau)-1} < \tau \leq
-K_{n,\kappa_n(\tau)}$.  Also let
-\begin{equation}
-  M_{nj}(\tau) = (\min(n, K_{n,\beta_n(\kappa_n(\tau) + j)} - \tau) - \max(1,
-  K_{n,\beta_n(\kappa_n(\tau) - 1 + j)} + 1 - \tau))^{+},
-\end{equation}
-with $\beta_n(x) = (x-1) \mod \lfloor n p_n \rfloor + 1$, and let
-$K_{nj}(\tau) = \sum_{i=1}^j M_{nj}(\tau)$ and $K_{n0}(\tau) = 0$.
-Now define
-\begin{equation}
-  Z_{nj}(\tau,\mathcal{M}_n) = \sum_{t=K_{n,j-1}(\tau)+1}^{K_{nj}(\tau)} n^{-1/2} (X_{nt} - \bar \mu_n), \qquad j = 1,\dots,
-  \lfloor \gamma n p_n \rfloor.
-\end{equation}
-By Lemma~\ref{res:a4},
-\begin{equation}
-  \var^{**}\Big(m_n^{-1/2} \sum_{t=1}^{\lfloor \gamma m_n\rfloor} X_{nt}^{**} \mid \mathcal{M}_n\Big) = n^{-1}
-  \sum_{\tau = 1}^n \sum_{j=1}^{\lfloor \gamma n p_n \rfloor} Z_{nj}(\tau,
-  \mathcal{M}_n)^2 + o_p
-\end{equation}
-uniformly in $\gamma$.  The advantage of this representation is that
-each series $\{Z_{nj}(\tau, \mathcal{M})\}_j$ is formed from
-consecutive blocks of the original series.
-
-Define the lower bound $\ell_n$ on the lengths $M_{ni}$ as $\ell_n =
-(p_n \log p_n^{-1})^{-1}$.  Since
-\begin{multline}
-  \sum_{j=1}^{\lfloor \gamma n p_n \rfloor} \E\big( Z_{nj}(\tau,
-  \mathcal{M}_n)^2 \ind\{M_{nj}(\tau) > \ell_n\}\big) \leq \\ \big((1
-  - p_n)^{1/p_n}\big)^{p_n\ell_n} \sum_{j=1}^{\lfloor \gamma n p_n
-    \rfloor} \E Z_{nj}(\tau, \mathcal{M}_n)^2 = e^{-p_n\ell_n} O(1)
-  \to 0,
-\end{multline}
-with the last equality a consequence of \citet[Theorem~1.6]{Mcl:75},
-we have
-\begin{equation}
-  \var^{**}(m_n^{1/2} \bar{X}^{**}_n \mid \mathcal{M}_n) = n^{-1} \sum_{\tau=1}^n
-  \sum_{j=1}^{\lfloor \gamma n p_n \rfloor} Z_{nj}(\tau, \mathcal{M}_n)^2
-  \ind\{M_{nj}(\tau) > \ell_n\} + o_p.
-\end{equation}
-
-Now, truncate $Z_{nj}(\tau, \mathcal{M}_n)$ similar to
-\citet[Lemma~5]{Jon:97}: define
-\begin{equation}\label{eq:3}
-  Z^C_{nj}(\tau, \mathcal{M}_n) = 
-  \begin{cases}
-    0 & M_{nj}(\tau) \leq \ell_n, \\ Z_{nj}(\tau, \mathcal{M}_n) &
-    M_{nj}(\tau) > \ell_n ,\ |Z_{nj}(\tau, \mathcal{M}_n)| \leq C
-    \sqrt{M_{nj}(\tau)/n} \\ C \sqrt{M_{nj}(\tau)/n} & M_{nj}(\tau) >
-    \ell_n ,\ Z_{nj}(\tau, \mathcal{M}_n) >C \sqrt{M_{nj}(\tau)/n} \\
-    -C \sqrt{M_{nj}(\tau)/n} & M_{nj}(\tau) > \ell_n,\ Z_{nj}(\tau,
-    \mathcal{M}_n) < -C \sqrt{M_{nj}(\tau)/n}.
-  \end{cases}
-\end{equation}
-\citet[Theorem~1.6]{Mcl:75} establishes that the family $\{n
-Z_{nj}(\tau, \mathcal{M})^2 / M_{nj}(\tau); n,j,\tau,\mathcal{M}\}$ is
-uniformly integrable,\footnote{See also \citet[Lemma 3.2]{Dav:92} and
-  \citet[Lemma 5]{Jon:97}} so $Z_{nj}(\tau,\mathcal{M}_n)^2 -
-Z^c_{nj}(\tau,\mathcal{M}_n)^2$ can be made arbitrarily small by
-choosing a large enough $C$.  So it suffices to prove
-\begin{equation}\label{eq:7}
-  \sum_{j=1}^{\lfloor \gamma n p_n \rfloor} \big(Z_{nj}^C(\tau,
-  \mathcal{M}_n)^2 - \E(Z_{nj}^C(\tau,
-  \mathcal{M}_n)^2 \mid \mathcal{M}_n) \big) \to^p 0
-\end{equation}
-and
-\begin{equation}\label{eq:8}
-  n^{-1} \sum_{\tau=1}^n \sum_{j=1}^{\lfloor \gamma n p_n \rfloor}
-  \E(Z_{nj}(\tau, \mathcal{M}_n)^2 \mid \mathcal{M}_n) \to^p
-  \gamma. 
-\end{equation}
-
-\citet[Theorem~1.6]{Mcl:75} and Lemma~\ref{res:a5} imply that, for
-some $\epsilon > 0$,
-\begin{multline}
-  \E\Bigg(\Bigg\{\sum_{j=1}^{\lfloor \gamma n p_n \rfloor}
-  \big(Z_{nj}^C(\tau, \mathcal{M}_n)^2 - \E(Z_{nj}^C(\tau,
-  \mathcal{M}_n)^2 \mid \mathcal{M}_n) \big)\Bigg\}^2 \;\Big|\;
-  \mathcal{M}_n \Bigg) \\ \leq A^2 C^2 \sum_{j=1}^{\lfloor \gamma n
-    p_n \rfloor} (M_{nj}(\tau)/n)^2 \max(1, M_{nj}(\tau) /
-  \ell_n^{1+\epsilon}),
-\end{multline}
-which converges to zero if $\max_j M_{nj}/n \to^p 0$ and $\max_j
-M_{nj}/\ell_n^{1+\epsilon} \to^p 0$.  Both follow from
-Lemma~\ref{res:a1}, proving~\eqref{eq:7}.
-
-To prove~(\ref{eq:8}), let $d_n$ be a sequence of integers such that
-$d_n \to \infty$ and $d_n/n \to \infty$ and let $\zeta_n(\gamma)$ be a
-sequence of functions such that $\zeta_n(x) = \zeta_n(x - 1)$ for all
-$x$ and
-\begin{equation}
-  (2 d_n)^{-1} \sum_{s,t = \lfloor \gamma n \rfloor - d_n +
-    1}^{\lfloor \gamma n \rfloor + d_n} \E (X_{ns} -
-  \bar{\mu}_n)(X_{nt} - \bar{\mu}_n) - \zeta_n(\gamma) \to 0
-\end{equation}
-for all $\gamma \in (0,1]$. It is obvious that \eqref{eq:8} holds for
-$\gamma = 0$.  Lemmas~\ref{res:a5} and~\ref{res:a6} and the fact that
-$\sum_{\tau=1}^n n^{-1} \zeta_n(x + \tau/n) \to 1$ uniformly in $x$ by
-assumption imply that
-\begin{align}
-  n^{-1} \sum_{\tau=1}^n \sum_{j=1}^{\lfloor \gamma n p_n \rfloor}
-  \E(Z_{nj}^2(\tau, \mathcal{M}_n) \mid \mathcal{M}_n) &=
-  \sum_{\tau=1}^n \sum_{j=1}^{\lfloor \gamma n p_n \rfloor}
-  \frac{\zeta_n(\tau/n + j/np_n)}{n^2 p_n} + o_p \\ &= \gamma + o_p,
-\end{align}
-completing the proof.  \qed
-
-\bibliography{AllRefs}
+  \begin{multline}
+    \label{eq:5}
+    \E\Big(\Big\lvert \sum_{i=1}^{L_{n}} \E(Y_n(\tau + (i-1) M_{nj}, M_{nj} - \ell)^2 \mid
+    \mathcal{M}_n) - \sigma^2 \Big\rvert \ \Big|\ \mathcal{M}_n\Big) \leq 
+    \\ C\,  \nu_n^2(0, n) \Big(\ell \log(\ell)^2 \psi(\ell)^2 
+     + \sum_{m=\ell}^{\infty} \log(m)^2 \psi(m)^2 \Big)^{1/2} \Big( \psi(0)^2 + \sum_{v=1}^{\infty} \log(v)^2 \psi(v)^2 \Big)^{1/2}
+  \end{multline}
+  almost surely for all $j = 1,\dots,J_n$, $\tau= 0,\dots,n-1$,
+  $\ell=1,\dots,M_{nj}-1$, and $n > N$.  Moreover, if $\ell_n =
+  (p_n^{-1} \log p_n^{-1})^{-1}$ then
+  \begin{equation}
+    \label{eq:46}
+    \sup_{\tau=0,\dots,n-1} \E\Big(\Big\lvert \sum_{j=1}^{L_{n}} \E(Y_n(\tau + (i-1) M_{nj}, M_{nj} - \ell_n)^2 \mid
+    \mathcal{M}_n) - \sigma^2 \Big\rvert \ \Big|\ \mathcal{M}_n\Big) \to^{L_1} 0.
+  \end{equation}
+\end{lem}
+\begin{proof}
+  Result~\eqref{eq:29} is immediate from Lemma~\ref{res:16}
+  and~\eqref{eq:46} follows directly from~\eqref{eq:5}.
+  Results~\eqref{eq:16} and~\eqref{eq:5} are direct extensions of
+  \citepos[Lemmas 5 and 4, respectively]{Jon:97}, replacing de Jong's
+  implicit use of inequalities with explicit inequalities.
+\end{proof}
+\bibliography{texextra/AllRefs}
 \end{document}
 
 
 % LocalWords:  CLT Kun LiS PoR GoW GoJ nt indices eq studentized JoD reindex nj
 % LocalWords:  de Jong's ns Mcl AllRefs nn th nm ni HaH formulae jn gcalhoun nN
-% LocalWords:  jel PaP DPP np
+% LocalWords:  jel PaP DPP np Ames Resampling nonstationary cdf
+
+

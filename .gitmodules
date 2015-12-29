@@ -1,0 +1,3 @@
+[submodule "texextra"]
+	path = texextra
+	url = git@github.com:gcalhoun/texextra.git
