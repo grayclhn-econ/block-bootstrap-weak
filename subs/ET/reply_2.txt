@@ -1,0 +1,104 @@
+Thank you for your close reading of this paper and your helpful
+comments.  
+
+I have made several changes to the paper to improve its clarity; the
+CLT and FCLT results are now presented separately and I have tried to
+incorporate your suggestions about areas to emphasize and discuss.
+The paper's proofs have also been substantially revised to streamline
+and simplify the main arguments.  Specifically, asymptotic normality
+now comes from a martingale difference sequence CLT, not a mixingale
+CLT; and I no longer use $X_{nt}^{**}$ as an intermediate approximation
+for the bootstrap process $X_{nt}^*$.  There are several other changes
+as well, but those are the most significant.
+
+Specific comments
+-----------------
+
+- "The informal 'I'll' (p. 2, 5, etc) should be substituted by the
+  more formal 'I will' (or even better—third person, 'it will be
+  done.')"
+ 
+I have tried to make this correction through the paper.  Thank you.
+
+- "Footnotes 1 and 2 are confounded (it reads as footnote 12)."
+
+Thank you, fixed.
+
+- "The weakest condition for the block bootstrap consistency under stationarity 
+  were given by Radulovic (Stat. Prob. Letters, 1996), and are tantamount to a 
+CLT. However, Radulovic does not tackle nonstationarity, nor the stationary 
+bootstrap."
+
+Thank you for the reference.  I've added a reference to it in the new version 
+of the paper.
+
+"In Theorem 1, please:"
+
+- "define strong and uniform mixing of a nonstationary series"
+
+Strong mixing and uniform mixing series are not required to be stationary;
+I have added a brief discussion of this to the paper.
+
+- "define the norm in Assumption 2"
+
+I have added a definition of the norm in the sentence immediately prior to 
+Theorem 1.
+
+- "which quantity is uniformly bounded in Assumption 2"
+
+I have clarified this issue.
+
+- "define the notion of uniformly finite"
+
+I've rephrased this assumption to remove the phrase 'uniformly finite'
+
+- "the final convergence in distribution is stated too vaguely here (and in 
+  other theorems); one of the two distributions (the bootstrap one) is gotten 
+conditional on the data, and is therefore unconditionally a random variable.  
+So, usually the way to write this is use a distance between the two      
+distributions (the true one and the bootstrap) and show that this distance 
+tends to zero either in probability or a.s.  Which of the two are you proving?"
+
+The distance between the conditional distributions converges to zero in 
+probability.  I have amended the results to make this convergence more clear.
+
+- "p. 3 (bottom 3 lines): is this referring to the norm convergence in 
+  Assumption 2?  Why is the variance of $X_{nt}$ not depending on $t$?"
+
+I have removed discussion of this issue at the recommendation of another 
+referee; as it was originally written, the variance should depend on $t$.  
+However this issue is peripheral to the main point of the paper and is 
+unnecessarily confusing, so I have removed it.
+
+- "The discussion before Corollary 3 does not do justice to the findings there.  
+There is a positive result (Corollary 3) and a negative result (inconsistency 
+under too much nonstationarity).  These paragraphs need to be re-written to 
+bring these out more.  Also, the conditions that control the degree of 
+nonstationarity in Corollary 3 must be explained."
+
+I have substantially rewritten this part of the paper.  Thank you for the 
+suggestion.
+
+- "There is a recent discussion by Goncalves and Politis that also revisits the 
+  issue of block bootstrap consistency under some degree of nonstationarity.  
+How does their discussion fit in with the paper at hand?"
+
+Thank you, I've added a reference to their paper.
+
+- "Just after Corollary 3, a new Section could start entitled 'An auxiliary 
+  finding' or something like that."
+
+I have streamlined the paper's presentation, so this material has been moved.
+
+- Define $var^{**}$ before Lemma 5.
+
+I've changed the paper's approach, so we no longer use $P^{**}$ as an 
+intermediate approximation.  Hence, references to $var^{**}$ have been removed.
+
+- I am wondering if the Tapered Block Bootstrap of Paparoditis and Politis 
+  (Biometrika, 2001) can also be shown to be consistent under the same NED 
+conditions.
+
+I suspect that it could, but I am focusing the paper's attention on
+"traditional" block bootstrap techniques to keep it more focused and
+concise.  Thank you for the suggestion.

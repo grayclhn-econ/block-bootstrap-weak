@@ -1,0 +1,132 @@
+Thank you for your close reading of my paper and your helpful comments.
+
+In your report, you mention concerns about uniformity that arise from
+conditioning on the sequence of block lengths in the Stationary
+Bootstrap.  To address these concerns, I have substantially rewritten
+the proofs: I had originally used mixingale arguments to justify the
+CLT and the FCLT and argued that the bootstrapped process was a
+mixingale "conditional on" an additional information set, but that
+concept is nonstandard, causing confusion, and introduces many subtle
+technical issues that you alerted me to.  The revised paper uses
+instead a martingale difference sequence CLT for the bootstrapped
+sample mean and shows that the CLTs assumptions are justified by
+deriving the necessary inequalities from NED properties of the
+original process.  This change leads to a more direct and more
+standard logical argument and I hope addresses these concerns.
+
+I have made several changes to the paper to improve its clarity; the
+CLT and FCLT results are now presented separately.  The paper's proofs
+have also been substantially revised to streamline and simplify the
+main arguments.  Specifically, asymptotic normality now comes from a
+martingale difference sequence CLT, not a mixingale CLT; and I no
+longer use $X_{nt}^{**}$ as an intermediate approximation for the
+bootstrap process $X_{nt}^*$.  There are several other changes as
+well, but those are the most significant.
+
+Specific comments
+-----------------
+
+1. "On page 3 and 4, the notation $\to^d$: does this signify weak convergence 
+or pointwise convergence?  The notation suggests pointwise convergence, yet the 
+paper mentions the FCLT. In Corollary 3, does the 'convergence in distribution' 
+mean pointwise, or did you mean to indicate that an FCLT holds here?"
+
+The CLT and FCLT results have been split up in this version of the paper, which 
+hopefully removes this source of confusion.  Theorem 1 establishes the CLT for 
+the bootstrapped process and Theorem 2 establishes the FCLT.  The original 
+version's Corollary 3 has been incorporated into Corollary~2 of the revised 
+paper and the notation has been changed to clearly indicate an FCLT.  See 
+Equations (2) and (3) along with Theorem 2 for more precise statements.
+
+2. "Page 7: 'for any t₀ and k such that the index of the following summations 
+are well defined,...': this read a bit odd, perhaps you need to explain better 
+what is meant here."
+
+Lemma A.1 no longer appears in the paper, but I agree that the phrasing is 
+awkward and have tried to avoid it elsewhere.
+
+3. "Lemma A.3: in the definition of $\ell_n$, $p$ seems to be  missing a 
+subscript."
+
+Thanks, fixed.
+
+4. "The definition of the 'mixingale conditional on $\mathcal{M}_n$ is a tricky 
+thing.  It is clear from the followup how it is intended to be defined; yet the 
+mixingale numbers depend on $\mathcal{M}_n$ now; so that seems okay, and 
+equalities such as (19) are then 'almost sure' inequalities.  The proof however 
+proceeds then with Equation (22), at which point I get lost in the argument.  
+You use McLeish's (1975) Theorem 1.6, which is a maximal inequality for partial 
+sums, which suggests that perhaps the author intends to have a supremum inside 
+the expectation—yet that does not seem to be the author's intention.  Then 
+after applying the maximal inequality, an object that depends on  
+$\mathcal{M}_n$ results, which is $O_p(l_n p_n)$ apparently, yet no argument is 
+provided.  More detail would be welcome here."
+
+I have changed the proofs to address this concern and the next few points.  
+Rather than use a "mixingale conditional on ...", I now derive asymptotic 
+normality directly from a martingale difference sequence CLT (since the blocks 
+are independent under the bootstrap) and use NED of the original stochastic 
+array to derive the necessary conditions on the second moments; this often 
+involves explicitly rederiving known inequalities for the bootstrapped process 
+to show that they hold even when conditioning on $\mathcal{M}_n$.  Lemmas 2-6 
+of the latest version of the paper make these arguments explicit, and this 
+version no longer includes the phrase, "mixingale conditional on...."
+
+The same points apply to issues 5, 6, and 8-10.
+
+7. "On page 11, bottom, the author states that 'clearly $Z_{nj}^{**}$ is an MDS 
+conditional on $\mathcal{M}_n$ that has finite variance and is globally 
+covariance stationary condition by Lemma 5.' (sic).  This statement I cannot 
+interpret at all.  Lemma 5 does not seem to have that information.  I do not 
+understand how conditional on $\mathcal{M}_n$ there can be a stationarity 
+property, as block lengths are different conditional on $\mathcal{M}_{n}$.  In 
+short, you may consider rewriting this area of your paper and providing 
+additional detail.
+
+This argument has been elaborated quite a bit.  Theorem 1 of the new version of 
+the paper proves the CLT directly and Theorem 2 proves the FCLT using Theorem 1 
+and the stochastic equicontinuity argument from de Jong and Davidson (2000).  
+Note that, in the context of the FCLT, 'global covariance stationarity' is 
+different from and does not necessarily imply 'stationarity,' so it accommodates 
+blocks of different lengths.  Global covariance stationarity 
+
+11. "p. 14, middle and below Equation (43): '$\{Z_{nj}(\tau, 
+\mathcal{M})\}_{j}$': here $\mathcal{M}$ has lost its $n$ subscript, why?"
+
+This was a typo.  Thank you for catching it.
+
+12. "Page 14, Equation (41): it seems that Lemma A2 and independence is used 
+here; perhaps that should be mentioned."
+
+I have tried to make it more clear where independence between the resampled 
+blocks is used, thank you for the suggestion.
+
+13. "Page 15, above Equation 44: 'can be made arbitrarily small by choosing 
+large enough $C$': this appears to me to be an ambiguous statement, as this 
+concerns a random variable, so I suggest that you state the exact mathematical   
+assertion here.  $C$ may depend on $\mathcal{M}_n$ here now."
+
+Thank you for pointing this out; Lemma 3 in the new version of the paper spells 
+out the uniform integrability argument and its proof explicitly.  This result 
+is slightly different than the one cited.   The original version of the paper 
+did not account for the effect of heterogeneous means and so the normalization 
+was inadequate.
+
+14. "p. 15, below the middle: 'which converges to zero': the object is random, 
+so you need to assert a mode of convergence."
+
+This particular line is no longer in the paper, but I have tried to be 
+sensitive to this concern in general.
+
+15. "p. 15, bottom: 'To prove (45)' and onwards: here, I do not understand 
+where the $\zeta$ function is coming from.  You assert the existence of such a 
+sequence of functions with the property $\zeta_n(x) = \zeta_n(x-1)$ for all 
+$x$, but I do not understand why such a sequence of functions should exist.  
+Then, you use  Lemma A.3 and A.4 and 'the fact that $\sum_{\tau=1}^n n^{-1} 
+\zeta(x + \tau/n) \to 1$ uniformly in $x$ by assumption'. That last property I 
+cannot see being assumed, and how this property plus A.3 and A.4 adds up to the 
+assertion I do not know."
+
+This argument is not used in the latest version of the paper, since the FCLT is 
+proved directly from the CLT and stochastic equicontinuity (Theorem 2).  The 
+new argument is (I hope) more transparent.

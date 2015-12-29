@@ -1,0 +1,74 @@
+Thank you for your close reading of this paper.  In your report, you
+express concern that this paper only shows convergence in distribution
+of the bootstrapped sample average, but that generally one wants to
+"prove uniform convergence in probability of the difference between
+the conditional probability measure of the statistic computed from the
+resampled data and hte corresponding distribution in the original
+data."  I have modified the paper's theorems to prove uniform
+convergence, as you suggest.
+
+The paper's proofs have also been substatially revised to streamline
+and simplify the main arguments.  Specifically, asymptotic normality
+now comes from a martingale difference sequence CLT, not a mixingale
+CLT; and I no longer use $X_{nt}^{**}$ as an intermediate approximation
+for the bootstrap process $X_{nt}^*$.  There are several other changes
+as well, but those are the most significant.
+
+Specific comments
+-----------------
+
+1. "Page 3, condition 2 of Theorem 1, $\bar \mu_n$ is not yet defined.  (The 
+definition is in Corollary 2, move it here.)"
+
+Thanks; this has been fixed.
+
+2. "Page 3, Condition 3 of Theorem 1: 'uniformly finite'?  What does this 
+mean?"
+
+I have changed the claim from "uniformly finite" to "uniformly bounded" and 
+hope that is more clear.
+
+3. "Pages 3/4. The discussion of the random norming case is not very clear or 
+useful.  Either expand this paragraph to give the relevant extensions, or 
+delete it."
+
+I have deleted it as suggested.
+
+4. "Page 4, Equation 2.  What is $\xi$?  Should this read $\gamma$?  Otherwise 
+it is not clear what it refers to.  I do not find it anywhere in the sequel."
+
+I have rewritten this section to avoid that notation.
+
+5. "Page 5, line before equation (5).  How weak is very weak?  More explicit 
+conditions required here."
+
+The statement of Theorem 1 lists the precise moment conditions required.
+
+6. "Page 6, Lemma 4, Condition 1.  The set of block lenghts is given the symbol 
+$\mathcal M_n$, but this does not appear subsequently.  I suspect that it is 
+supposed to appear as the conditioning variables in the expression following 
+equation (6)."
+
+I have substantially rewritten this section, so the comment no longer directly 
+applies, but I have tried to be more careful in explicitly labeling 
+conditioning variables.
+
+7. "The procedure described in Lemma 4 appears to be that the assembled blocks 
+are random in length but fixed in number, so that the length of the resampled 
+series is either greater or less than sample size n.  This might be explained 
+more clearly.  At the moment the description leavse the reader wondering what's 
+different."
+
+Thank you for the suggestion; the new version of the paper does not use this 
+fixed-number-of-blocks bootstrap as an intermediate approximation, so Lemma 4 
+is no longer necessary and has been removed.
+
+8. "The statement of Lemma 4 should specify convergence in distribution."
+
+As mentioned above, Lemma 4 has been removed.
+
+9. Page 12, line 3.  I don't think that the symbol = surmounted by a 'd' has 
+been defined at this point.  Nor for that matter is the role of the identity 
+symbol $\equiv$ very clear.
+
+In revising the paper  I have removed the use of the symbol $=^d$.

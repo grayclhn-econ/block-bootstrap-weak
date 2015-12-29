@@ -1,0 +1,57 @@
+Dear Robert,
+
+Thank you again for giving me the opportunity to revise my submission to
+Econometric Theory, "Block bootstrap consistency under weak assumptions"
+(manuscript #2868).
+
+As you mention in your letter, two of the referees have concerns about the
+execution of the proofs in the paper, in particular (in the case of referee
+3) technical concerns about uniformity that arise from conditioning on the
+sequence of block lengths in the Stationary Bootstrap.  To address these
+concerns, I have substantially rewritten the proofs: I had originally used
+mixingale arguments to justify the CLT and the FCLT and argued that the
+bootstrapped process was a mixingale "conditional on" an additional
+information set, but that concept is nonstandard, causing confusion, and
+introduces many subtle technical issues that referee 3 alerted me to.  The
+revised paper uses instead a martingale difference sequence CLT for the
+bootstrapped sample mean and shows that the CLTs assumptions are justified
+by deriving the necessary inequalities from NED properties of the original
+process.  This change leads to a more direct and more standard logical
+argument and I hope addresses the referees' concerns.
+
+The referees also point out that the conclusions of the main results of the
+paper could be presented more precisely.  In the revised paper, I present
+the CLT and the FCLT results as separate theorems and make my claims about
+"convergence in distribution" much more precise: see Theorems 1 and 2 for
+the revised statements.  I should point out that referee 1 had the main
+concern:
+
+"The above-cited papers, in common with most of this literature, prove
+uniform convergence in probability of the difference between the conditional
+probability measure of the statistic computed from the resampled data and
+the corresponding distribution in the original data.... This is not done
+here."
+
+This concern comes from my presentation of the results but not from the
+underlying math (in particular, since the limit is continuous, the uniform
+convergence that the referee desires is a direct consequence of convergence
+in distribution).  I have changed the conclusions to make this uniform
+convergence explicit and explain the connection in the proof of Theorem 1.
+I should also note that this notion of "uniformity" is distinct from the
+technical issues that concern referee #3 (referee #3 is concerned about
+uniformity over parameters related to events in the conditioning sigma-field,
+not over the domain of the CDF), and the mixingale/MDS changes I mention
+above are needed to address referee #3.
+
+Finally, I have made many other changes to the paper's proofs to try to
+improve its clarity.  The most substantial of these changes is the removal
+of an intermediate approximation: the original version of the paper
+approximated the bootstrap process $X_t^*$ with a second bootstrap process
+$X_t^{**}$ that was marginally easier to analyze.  Needless to say, this
+approach caused some confusion so I removed those intermediate steps,
+resulting in a clearer argument.  Other changes in the same vein have
+been made as well.
+
+I have included parts of this letter in my replies to individual
+referees.  Thank you again for this opportunity.  I look forward to
+your response.
