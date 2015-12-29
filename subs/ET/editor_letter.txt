@@ -1,0 +1,89 @@
+Re: Submission reference ET #2868 "Block bootstrap consistency
+under weak assumptions" by Gray Calhoun
+
+Dear Gray,
+
+I have now heard back from three referees on the above paper which you submitted to Econometric Theory and which was assigned to me to handle as Co-Editor.  Their reports are attached to this e-mail.
+
+The recommendations of the three reviewers pretty much cover the
+spectrum of opinion.  One referee (R1) recommends that your paper
+be rejected outright, one referee (R2) is positive and one (R3)
+is lukewarm seeing major technical problems with your paper but
+on balance feels you should be afforded the opportunity to try
+and address those issues, although he/she believes that this
+would be a very hard task.
+
+In a covering letter, R1 wrote to me regarding your submission as
+follows:
+
+"I'm afraid my recommendation is to reject. I don't think this is
+strong enough for ET as it stands, and no obvious revision that
+would not be a new paper. It's an interesting area, though, so
+you should try to make encouraging noises - keep at it, that sort
+of thing."
+
+R2 did not provide a cover letter, but as you'll see from the
+attached report recommends publication subject to a satisfactory
+revision of the paper.
+
+Finally, R3 wrote to me as follows:
+
+"This paper considers bootstrap consistency in a time series
+setting under weak dependence. In terms of topic, it is my
+judgement that a well-executed paper on this subject is certainly
+suitable for Econometric Theory.  Unfortunately, the current
+paper does not make a great case. There are many aspects of the
+proof that I found unclear, and I suspect that some of my
+comments point towards analytical errors. A paper like this,
+which is essentially a proof, should ideally be as easy to follow
+as possible and correct. Right now, it seems that in terms of
+readability and correctness, the paper falls far short of the
+usual Econometric Theory standards. Therefore, in this case, I
+would suggest to ask this author for a revision, but also make it
+clear to him that this revision will need to be a lot clearer and
+mathematically immaculate, that the current version of his paper
+is quite remote from that point at this time, and that a very
+hard task is ahead of him if he chooses to undertake that
+challenge.
+
+This author may end up needing additional space in order to
+achieve clarity of his arguments. I think that some growth of the
+size of this paper should be acceptable to Econometric Theory if
+it leads to clarity."
+
+
+My own view of your paper lies closest to that of R3.  I think
+that there is merit in the subject matter of your paper and it
+tackles an interesting area of research.  For that reason I have
+decided to go with the recommendation of R3.  That is, I would
+like to offer you the opportunity to submit a Major Revision of
+your paper for further consideration.  I would send your revision
+back to the three original referees.  In preparing this revision
+I strongly recommend that you follow closely the advice of R3
+expressed in his/her covering comments above and that, as far as
+possible, you address all of the comments raised in his/her
+report.  Of course you should also address as best you can the
+comments made in R1 and R2 in their reports.  It is of note that
+a number of the technical concerns raised by R3 are also raised
+by R1.  At this stage I will not place a page limit on your
+revision.
+
+Please let me know if you would like to take up my offer.
+Because this is a Major revise and resubmit and because the
+reaction of the reviewers to the present version of your paper is
+so mixed I am sure you will appreciate that I cannot guarantee
+publication of your paper at this stage.
+
+As is standard, if you do decide to submit a revision of your
+paper, please also include with your re-submission memoranda of
+responses to each of the three referees and a separate covering
+letter to me detailing how you have revised your paper to address
+the reviewers' comments.
+
+I hope that you will submit a revised version of your paper.
+Thank you for sending your work to Econometric Theory.
+
+Best wishes,
+
+Robert Taylor
+Co-Editor, Econometric Theory.
