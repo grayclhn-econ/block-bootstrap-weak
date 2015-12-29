@@ -1,11 +1,5 @@
-.PHONY: all clean burn zip
+.PHONY: all
+all: Paper.pdf Appendix.pdf
 
-TeXFLAGS := -p -b -q -c
-
-all: Paper.pdf
-
-Paper.pdf: Paper.tex VERSION
-	texi2dvi $< $(TeXFLAGS)
-
-%.pdf: %.tex
-	$(R) CMD texi2dvi $< $(TeXFLAGS)
+Appendix.pdf Paper.pdf: %.pdf: %.tex preamble.tex
+	texi2dvi $< -p -b -q -c
