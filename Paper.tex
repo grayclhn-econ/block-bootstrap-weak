@@ -1,4 +1,6 @@
 \documentclass[11pt]{article}
+\IfFileExists{VERSION.tex}{\input{VERSION}}%
+{\date{Pdf compiled \today. (Version unclear; run `make VERSION.tex'.)}}
 \input{preamble}
 
 \begin{document}
