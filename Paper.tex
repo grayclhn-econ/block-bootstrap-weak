@@ -381,13 +381,26 @@ original observations that could be chosen by the bootstrap.%
   matching the defining aspect of the stationary and circular block
   bootstraps.} %
 By convention, summations over empty index sets will be considered
-equal to zero. Also let
+equal to zero. Note that the $I_n$ satisfy
+\begin{align}\label{eq:4}
+   \begin{split}
+   I_n(K_{n0}, M_{n1}) &= \{1,\dots,K_{n1}\} \\
+   I_n(K_{n1}, M_{n2}) &= \{K_{n1}+1,\dots,K_{n2}\} \\
+   \vdots \\
+   I_n(K_{n,J_n-1}, M_{nJ_{n}}) &= \{K_{n,J_{n-1}}+1,\dots,n \},
+   \end{split}
+\end{align}
+so $I_n(K_{n0}, M_{n1}),\dots,I_n(K_{n,J_n-1}, M_{nJ_{n}})$ exactly
+partition the set $\{1,\dots,n\}$ into consecutive blocks with
+lengths determined by the bootstrap.
+
+Let
 \newcommand{\Zb}[1][j]{{Z^*_{n{#1}}}}
 \begin{align}\label{eq:11}
   Z_n(\tau, m) &= \tfrac{1}{\sqrt{n}} \sum_{t\in I_n(\tau, m)} (X_{nt} - \bar X_n) \\
   Z_n^*(\tau,m)&= \tfrac{1}{\sqrt{n}} \sum_{t \in I_n(\tau,m)} (X_{nt}^{*} - \bar X_n) \label{eq:12}
 \intertext{and}
-  \Zb          &= Z_n^*(K_{n,j-1}, M_{nj}),
+  \Zb          &= Z_n^*(K_{n,j-1}, M_{nj}) = \tfrac{1}{\sqrt{n}} \sum_{t=K_{n,j-1}+1}^{K_{n,j}} (X_{nt}^* - \bar X_n) \label{eq:1}
 \intertext{and define the corresponding demeaned terms}
   Z_n'(\tau, m) &= \tfrac{1}{\sqrt{n}} \sum_{t\in I_n(\tau, m)} (X_{nt} - \mu_{nt})
   \label{eq:13}\\
@@ -405,7 +418,7 @@ bootstrapped dataset. Further, define the filtration
 so that $\{Z_{nj}^* / \sigma_n^*, \Gs_{nj}\}$ is a martingale difference
 array.
 
-By construction,
+By construction, (see Equations~\eqref{eq:4} and~\eqref{eq:1})
 \begin{equation}\label{eq:16}
   \tfrac{1}{\sqrt{n}} \sum_{t=1}^n (X_{nt}^{*} - \bar X_n)
   = \sum_{j=1}^{J_n} \Zb
