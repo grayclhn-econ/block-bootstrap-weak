@@ -8,7 +8,7 @@ all: Paper.pdf Appendix.pdf $(replies)
 Appendix.pdf Paper.pdf: %.pdf: %.tex preamble.tex VERSION.tex
 	texi2dvi $< -p -b -q -c
 
-$(wildcard subs/ETr2/*.tex): preamble.tex
+$(wildcard subs/ETr2/*.tex): preamble.tex subs/ETr2/summary
 $(replies): %.pdf: %.tex
 	cd $(@D) && texi2dvi $(<F) -p -b -q
 

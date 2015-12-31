@@ -1,0 +1,5 @@
+\begin{itemize}
+\item The array $\{V_{nt}\}$ as used in the proof of Theorem 7 is
+different from how the notation has been used elsewhere in the
+paper. I've changed it to $T_{nt}$ to reduce confusion.
+\end{itemize}
