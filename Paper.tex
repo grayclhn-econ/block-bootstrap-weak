@@ -240,7 +240,7 @@ $\E^*$ only averages over the starting point of each block, we have
   \Big(\tfrac{1}{\sqrt{n}}
   \sum_{t= \tau + 1}^{\tau + M_n} (X_{nt} - \bar X_n) \Big)^2 \\
   &= \tfrac{1}{n} \sum_{\tau_0 = 0}^{M_n-1}
-  \sum_{j=1}^{J_n-1}
+  \sum_{j=1}^{J_n}
   \Big(\tfrac{1}{\sqrt{n}}
   \sum_{t= (j - 1) M_n + \tau_0 + 1}^{j M_n + \tau_0} (X_{nt} - \bar X_n) \Big)^2
 \end{align*}
@@ -819,24 +819,24 @@ $\pr^*[ |\hat\sigma_n^{*2} - \sigma^2| > \epsilon] \to^p 0$.
   $\bar X$ itself obeys the \lln.
 
   To show that $\sigma_n^{*2}$ converges, we can write
-  \begin{multline*}
+  \begin{multline}\label{eq:38}
     \sigma_n^{*2} - \sigma^2 = \E^*\Big\{ \sum_{j=1}^{J_n} (Z_{nj}^{*2} - Z_{nj}^{\prime*2}) \Big\}
     + \tfrac{1}{n} \sum_{\tau=0}^{n-1} \E^* \Big\{\sum_{j=1}^{J_n}
     \big( Z_{n}^{\prime}(\tau,M_{nj})^2 - \Em Z_{n}^{\prime}(\tau,M_{nj})^2 \big)\Big\} \\
     + \tfrac{1}{n} \sum_{\tau=0}^{n-1} \E^* \Big\{\sum_{j=1}^{J_n}
     \Em Z_{n}^{\prime}(\tau,M_{nj})^2  - \sigma^2\Big\}.
-  \end{multline*}
+  \end{multline}
   Uniform integrability ensures that the convergence in~(\ref{eq:25})
   holds in $L_1$ as well and
   Lemma~\ref{equivalent-convergence-from-lie-lemma} then implies that
-  the first term converges to zero in probability.
+  the first term in \eqref{eq:38} converges to zero in probability.
   Lemma~\ref{lln-for-real-zsq} proves that the second and third
   summation converge to zero in probability.
 
   Next,
   \begin{equation*}
     \hat \sigma_n^{*2} - \sigma_n^{*2}
-    = \sum_{j=1}^{J_n} \big( Z_{nj}^* + (M_{nj}/\sqrt{n}) (\bar X_n - \bar X_{n}^*) \big)
+    = \sum_{j=1}^{J_n} \big( Z_{nj}^* + (M_{nj}/\sqrt{n}) (\bar X_n - \bar X_{n}^*) \big)^2
     - \E^*  \sum_{j=1}^{J_n} Z_{nj}^{*2}
   \end{equation*}
   so, in light of the previous arguments, $\hat\sigma_n^{*2} \to^p \sigma^2$ if
