@@ -348,12 +348,13 @@ lengths alone,
 and the conditional probability $\Pm(\cdot) = \pr[\cdot \mid \Ms]$.
 (And define $\Pm^*(\cdot) = \pr^*[\cdot \mid \Ms]$, $\Em(\cdot) =
 \E^*(\cdot \mid \Ms)$, etc.) An important property is
-that $\Ms$ is \emph{independent} of the $X_{nt}$, so we can treat any
+that $\Ms$ is \emph{independent} of the $X_{nt}$'s, $V_{nt}$'s, and
+$u_{nj}$'s, so we can treat any
 $M_{nj}$ and $J_n$ terms as constants within $\Em(\cdot)$ and
 $\Pm[\cdot]$ and integrate over the unconditional distributions of the
-$X_{nt}$. This property is especially important because it allows us
+other random variables. This property is especially important because it allows us
 to use maximal inequalities and other moment inequalities for
-mixingale arrays without modification to construct almost sure bounds on the
+mixingale arrays with only small modifications to construct almost sure bounds on the
 conditional moments $\Em$.
 
 Also define
@@ -772,7 +773,8 @@ completing the proof.\qed
 \end{proof}
 
 \begin{lem}\label{equivalent-convergence-from-lie-lemma}
-  If $\{A_n\}$ is a sequence of events then the following are equivalent:
+  If $\{A_n\}$ is a sequence of events in $\Omega$ then the following
+  are equivalent:
   \begin{align*}
   \pr[A_n] &\to 0, &
   \pr^*[A_n] &\to 0 \text{\ in\ }L_1, &
