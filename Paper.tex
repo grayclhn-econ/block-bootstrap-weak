@@ -863,45 +863,60 @@ smaller block size that satisfies $\ell_n J_n / n \to^p 0$.
     &\leq \E \tfrac{1}{n} \sum_{j=1}^{J_n} \sum_{\tau=0}^{M_{nj}-1}
     \Em \Big| \sum_{i=0}^{L_{nj}-1} \big\{ Z_n'(\tau + i M_{nj}, M_{nj} - \ell_n)^2 -
     \Em \big(Z_n'(\tau + i M_{nj}, M_{nj} - \ell_n)^2\big) \big\} \Big|\\
-    &\leq \E \Big(\tfrac{1}{n} \sum_{j=1}^{J_n} \sum_{\tau=0}^{M_{nj}-1} 
+    &\leq \E \Big(\tfrac{1}{n} \sum_{j=1}^{J_n} \sum_{\tau=0}^{M_{nj}-1}
     \big(2 \delta + C \, \tfrac{M_{nj}}{n^{1/2} \ell^{1/2+\epsilon}}\big)\Big)
   \end{align*}
   for large enough $n$, which converges to $2 \delta$ by
-  Lemma~\ref{block-length-convergence-lemma}. Also,
+  Lemma~\ref{block-length-convergence-lemma}.
   Lemma~\ref{zsq-uniform-integrability-lemma} ensures that there
   exists a value $C$ (possibly different from the value above) such
   that
-  \begin{equation*}
+  \begin{align*}
     \E\Big(\tfrac{1}{n}  \sum_{j=1}^{J_n} \sum_{\tau=0}^{M_{nj}-1} \sum_{i=0}^{L_{nj}-1}
-    Z_n'(\tau + (i+1) M_{nj} - \ell_n, \ell_n)^2 \Big)
-    \leq C \E \Big(\sum_{j=1}^{J_n} L_{nj} \ell_n M_{nj} / n^2\Big)
-  \end{equation*}
+    & Z_n'(\tau + (i+1) M_{nj} - \ell_n, \ell_n)^2 \Big) \\
+    &= \E \Em \Big(\tfrac{1}{n}  \sum_{j=1}^{J_n} \sum_{\tau=0}^{M_{nj}-1} \sum_{i=0}^{L_{nj}-1}
+    Z_n'(\tau + (i+1) M_{nj} - \ell_n, \ell_n)^2 \Big) \\
+    &\leq C \E \Big(\sum_{j=1}^{J_n} L_{nj} \ell_n M_{nj} / n^2\Big)
+  \end{align*}
   and
   \begin{equation*}
     \E \Big(\tfrac{1}{n} \sum_{j=1}^{J_n} \sum_{\tau= M_{nj}L_{nj}}^{n-1} Z_{n}'(\tau, M_{nj})^2\Big)
     \leq
     C \E \Big(\sum_{j=1}^{J_n} M_{nj}^2 / n^2 \Big)
   \end{equation*}
-  for large enough $n$, both of which converge to zero in $L_1$ as $n
-  \to \infty$ by Lemma~\ref{block-length-convergence-lemma}.  These
-  three convergence results imply that the \textsc{rhs} of
-  (\ref{eq:29}) converges to zero, completing the proof.
+  for large enough $n$,%
+\footnote{Lemma~\ref{dejong-restatement-lemma}
+  and~\ref{zsq-uniform-integrability-lemma} are stated for the
+  unconditional expectation, which may cause some confusion here. Note
+  that $M_{nj}$ is measurable with respect to $\mathcal{M}_n$ and
+  is treated the same as the constant $m$ in the statement of
+  these Lemmas.  The other random variables in
+  these expressions are independent of $\mathcal{M}_n$. So the only
+  effect of conditioning on $\mathcal{M}_n$ is to prevent integration
+  over the distributions of the $M_{nj}$ and the expectation otherwise
+  behaves exactly like the unconditional expectation.\label{f:1}} %
+  both of which converge to zero in $L_1$ as $n \to \infty$ by
+  Lemma~\ref{block-length-convergence-lemma}.  These three convergence
+  results imply that the \allcaps{rhs} of (\ref{eq:29}) converges to
+  zero in probability, completing the proof.
 \end{proof}
 
 \begin{proof}[Proof of~(\ref{eq:28})]
-  After using similar arguments to in the previous part of the proof,
+  After using similar arguments to the previous part of the proof,
   the conclusion holds if
   \begin{equation*}
     \tfrac{1}{n} \sum_{j=1}^{J_n} \sum_{\tau=0}^{M_{nj}-1} \sum_{i=0}^{L_{nj} - 1}
     \Em Z_n'(\tau + i M_{nj}, M_{nj} - \ell_n)^2 \to^p \sigma^2,
   \end{equation*}
-  which is a direct implication of Lemma~\ref{dejong-restatement-lemma}.
+  which is a direct implication of
+  Lemma~\ref{dejong-restatement-lemma}.%
+  \footnote{The discussion in Footnote~\ref{f:1} applies here as well.}
 \end{proof}
 
 \begin{lem}\label{bootstrapped-zsq-uniform-integrability-lemma}
   Under the conditions of Theorem~\ref{main-bootstrap-clt},
   \begin{multline}\label{eq:35}
-    \lim_{C \to 0} \limsup_{n \to \infty} \sup_{m' = 1,\dots,n}
+    \lim_{C \to \infty} \limsup_{n \to \infty} \sup_{m' = 1,\dots,n}
     \E\Big(\Big(\sum_{\tau=0}^{n-1} \max_{m=1,\dots,m'} Z_n(\tau, m)^2 / m'\Big) \\
     \times\ind\Big\{\sum_{\tau=0}^{n-1} \max_{m=1,\dots,m'} Z_n(\tau, m)^2 / m' > C\Big\}\Big) = 0.
   \end{multline}
@@ -912,9 +927,8 @@ smaller block size that satisfies $\ell_n J_n / n \to^p 0$.
     \times \ind\Big\{\max_{m = 1,\dots,m'} n \, Z^*_n(\tau, m)^2 / m' > C\Big\}\Big)
     = 0,
   \end{multline}
-  making the families of random variables $\{\max_{m=1,\dots,m'}
-  Z_n(\tau, m)^2 n / m'\}$ and $\{\max_{m=1,\dots,m'}
-  Z^{*}_n(\tau, m)^2 n / m'\}$ uniformly integrable.
+  making the family of random variables $\{\max_{m=1,\dots,m'}
+  Z^{*}_n(\tau, m)^2 n / m'; \tau, m', n\}$ uniformly integrable.
 \end{lem}
 
 \begin{proof}
@@ -925,24 +939,25 @@ smaller block size that satisfies $\ell_n J_n / n \to^p 0$.
   is uniformly integrable if and only if it is uniformly $L_1$-bounded
   and there exists an $\epsilon'$ such that
   \[
-  \sup_{n, m} \E\Big( \ind(A) \sum_{\tau=0}^{n-1} \max_{m=1,\dots,m'} Z_n(\tau, m)^2 / m' \Big)
+  \sup_{n, m'} \E\Big( \ind(A) \sum_{\tau=0}^{n-1} \max_{m=1,\dots,m'} Z_n(\tau, m)^2 / m' \Big)
   < \epsilon
   \]
-  for every event $A$ satisfying $\pr(A) < \epsilon'$.
+  for every event $A \in \Omega_n$ satisfying $\pr(A) < \epsilon'$.
   (\citealp{Dav:94}, 12.9.)
-  Lemma~\ref{zsq-uniform-integrability-lemma} ensures that there is an
+  Lemma~\ref{zsq-uniform-integrability-lemma} ensures uniform integrability of
+  $\max_{m=1,\dots,m'} Z_n'(\tau, m)^2 n/m'$, so there exists an
   $\epsilon'$ such that
   \begin{equation*}
     \sup_{n, m', \tau} \E\big( \ind(A) \max_{m=1,\dots,m'} Z_n'(\tau, m)^2 n / m' \big) \leq \epsilon / 9
   \end{equation*}
-  for all $A$ with $\pr(A) \leq \epsilon'$. Then, writing
+  for all $A \in \Omega_n$ with $\pr(A) \leq \epsilon'$. Then, writing
   \begin{align*}
     Z_n(\tau, m) &= Z_n'(\tau, m)
     + \tfrac{1}{\sqrt{n}} \sum_{t \in I_n(\tau, m)}
     \big((\mu_{nt} - \bar \mu_n) + (\bar \mu_n - \bar X_n)\big) \\
     &= Z_n'(\tau, m)
     + \tfrac{1}{\sqrt{n}} \sum_{t \in I_n(\tau, m)} (\mu_{nt} - \bar \mu_n)
-    - m Z'_n(0, n) \\
+    - (m/n) Z'_n(0, n)
   \end{align*}
   gives the relationship
   \begin{align*}
@@ -950,61 +965,87 @@ smaller block size that satisfies $\ell_n J_n / n \to^p 0$.
     &\leq 3 \sum_{\tau=0}^{n-1} \E\big( \ind(A)  \max_{m=1,\dots,m'} Z'_n(\tau, m)^2/m'\big) \\
     &\quad+(3/n m') \E\Big(\ind(A) \sum_{\tau=0}^{n-1} \max_{m=1,\dots,m'}
     \Big(\sum_{t \in I_n(\tau, m)} (\mu_{nt} - \bar \mu_n) \Big)^2\Big) \\
-    &\quad+ (3/m') \sum_{\tau=0}^{n-1}
-    \E (\ind(A) \max_{m=1,\dots,m'} m Z'_n(0, n)^2) \\
-    &\leq (2 \epsilon/3) + \pr(A) (3/n)\sum_{t=1}^n (\mu_{nt} - \bar \mu_n)^2
+    &\quad+ (3 m' / n) \E (\ind(A) Z'_n(0, n)^2) \\
+    &\leq (2 \epsilon/3) + (3 \epsilon' m' / n)\sum_{t=1}^n (\mu_{nt} - \bar \mu_n)^2
   \end{align*}
   where the last inequality holds as a consequence of $A$'s
-  construction. Since $(1/n)\sum_{t=1}^n (\mu_{nt} - \bar \mu_n)^2 \to
-  0$, choose $n$ large enough that this average is less than
-  $\epsilon/9$. The proof that that the first moment is bounded is
-  similar, which completes the proof of~(\ref{eq:35})
+  construction. Since $\sum_{t=1}^n (\mu_{nt} - \bar \mu_n)^2 \to
+  0$, choose $n$ large enough that this sum is less than
+  $\epsilon/9\epsilon'$. The proof that that the first moment is bounded is
+  similar, which completes the proof of~(\ref{eq:35}).
 
   For~(\ref{eq:30}), we will first show that, for every $\epsilon > 0$,
   there exists an $\epsilon' > 0$ with the property that
   \begin{equation}\label{eq:31}
     \Em \Big(\ind(A) \times \max_{m = 1,\dots,m'} Z^*_n(\tau, m)^2 n / m'\Big) < \epsilon
   \end{equation}
-  for any event $A \in \Gs \equiv \sigma(X_{11},\dots,X_{nn};\
-  M_{n1},\dots,M_{n,J_n};\ J_n)$ with $\pr(A) \leq \epsilon'$. Then we
-  will show that this property implies uniform integrability.%
-\footnote{The difference between this proof and the proof
-  of~\eqref{eq:35} is the measurability requirement. Here we need to
-  finesse measurability of the sets $A$.} %
+  for any event $A \in \Fs_n \equiv \sigma(X_{n1},\dots,X_{nn};\,
+  M_{n1},\dots,M_{n,J_n};\, J_n)$ with $\pr(A) \leq
+  \epsilon'$. Then we will show that this property implies uniform
+  integrability.%
+\footnote{The novelty in this part of the proof is the measurability
+  requirement. The sigma-field $\Fs_n$ intentionally exlcudes the
+  block start periods $u_{n1},\dots,u_{n,J_n}$, so
+  $Z_n^{*}(\tau, m)^2$ is not $\Fs_n$-measureable. If we instead
+  proved~\eqref{eq:31} for all $A \in \Omega_n$, as we did for the
+  first part of the proof, then uniform integrebality would be an
+  immediate consequence and would not need to be shown separately. See
+  \citet[Theorem 12.9]{Dav:94}.} %
 
   Take an arbitrary $\epsilon > 0$ and a value of $\epsilon' > 0$
   so that
   \begin{equation*}
-    \Em \Big(\ind(A) \sum_{\tau = 0}^{n-1} \tfrac{1}{m'} \max_{m = 1,\dots,m'}
-    Z_n(\tau, m)^2\Big) < \epsilon / 4
+    \sup_{m'=1,\dots,n} \Em \Big(\ind(A) \sum_{\tau = 0}^{n-1} \tfrac{1}{m'} \max_{m = 1,\dots,m'}
+    Z_n(\tau, m)^2\Big) < \epsilon / 6
   \end{equation*}
-  for any $A \in \Gs$ with $\pr(A) \leq \epsilon'$, which is shown to
-  exist in the first part of this Lemma. Then define $J(x)$ to be the
-  block index such that $K_{n,J(x) - 1} < x \leq K_{n,J(x)}$. We have
-  the relationships
+  for any $A \in \Fs_n$ with $\pr(A) \leq \epsilon'$, which is
+  shown to exist in the first part of this Lemma. Then, for any $x$,
+  define $J(x)$ to be the block index such that $K_{n,J(x) - 1} < x
+  \leq K_{n,J(x)}$. For any $m$, we can decompose $Z_n^{*}(\tau, m)$ as
+  \begin{equation*}
+  Z^{*}_n(\tau, m) = Z_n^*(\tau, K_{n,J(\tau)} - \tau) +
+  \sum_{j=J(\tau)+1}^{J(\tau + m)-1} Z_{nj}^* + Z_n^*(K_{n,J(\tau+m)-1}, m - K_{n,J(\tau + m)-1}),
+  \end{equation*}
+  giving
+  \begin{align}
+  \Em \Em^* \Big(&\ind(A) \times \max_{m = 1,\dots,m'} n \, Z^*_n(\tau, m)^2 / m'\Big)
+  \notag \\
+  &\leq 3 \Em \Em^* \Big[\ind(A) \tfrac{n}{m'}\max_{m = 1,\dots, m'}
+  \Big(Z_n^*(\tau, K_{n,J(\tau)} - \tau) + \sum_{j=J(\tau)+1}^{J(\tau + m)-1} Z_{nj}^*\Big)^2\Big]
+  \notag \\
+  &\quad + 3 \Em \Em^* \big[\ind(A) \tfrac{n}{m'}
+  \max_{m=1,\dots,m'} Z_n^*(K_{n,J(\tau+m)-1}, m - K_{n,J(\tau + m)-1})^2 \big]\label{eq:6}
+  \end{align}
+  almost surely.
+
+  Since $Z_{nj}^*$ is a martingale difference array, Doob's maximal
+  inequality for martingales \citep[see][Theorem 15.15, for
+  example]{Dav:94} along with the construction of $Z_{nj}^{*}$ gives
+  a bound for the first term on the \allcaps{RHS} of~\eqref{eq:6},
+  \begin{multline*}
+  \Em \Em^* \Big[\ind(A) \tfrac{n}{m'}\max_{m = 1,\dots, m'}
+  \Big(Z_n^*(\tau, K_{n,J(\tau)} - \tau) + \sum_{j=J(\tau)+1}^{J(\tau + m)-1} Z_{nj}^*\Big)^2\Big] \\
+  \leq \tfrac{1}{m'} \sum_{u = 0}^{n-1} \Big\{\Em\big[\ind(A) Z_n(u, K_{n,J(\tau)} - \tau)^2\big] +
+  \sum_{j=J(\tau)+1}^{J(\tau + m')-1} \Em \big[\ind(A) Z_n(u, M_{nj})^2]\Big\}
+  \end{multline*}
+  and this term is less than $\epsilon/6$ by construction of $A$.
+  For the second term on the \allcaps{RHS}~\eqref{eq:6}, use the sequence of inequalities
   \begin{align*}
-    \Em \Em^* \Big(&\ind(A) \times \max_{m = 1,\dots,m'} n \, Z^*_n(\tau, m)^2 / m'\Big) \\
-    &= \Em \ind(A) \Em^* \Big[ \tfrac{n}{m'}\max_{m = 1,\dots, m'}
-    \Big(\sum_{j=J(\tau)+1}^{J(\tau + m)-1} Z_{nj}^*
-    + Z_n^*(\tau, K_{n,J(\tau)} - \tau) \\
-    &\quad+ Z_n^*(K_{n,J(\tau+m)-1}, m - K_{n,J(\tau + m)-1}) \Big)^2\Big] \\
-    &\leq 4 \Em \ind(A) \tfrac{1}{m'} \sum_{u = 0}^{n-1} \Big( \sum_{j=J(\tau)+1}^{J(\tau + m')-1}
-    Z_n(u, M_{nj})^2 + Z_n(u, K_{n,J(\tau)} - \tau)^2 \\
-    &\quad + Z_n(u, m' - K_{n,J(\tau+m')-1})^2\Big) \\
-    &= (4/m') \sum_{j=J(\tau)+1}^{J(\tau + m')-1} \Em\Big[ \ind(A) \sum_{u = 0}^{n-1} Z_n(u, M_{nj})^2\Big] \\
-    &\quad + (4/m') \Em\Big[\ind(A) \sum_{u = 0}^{n-1} Z_n(\tau_{J(\tau)}, M_{n,J(\tau)})^2\Big] \\
-    &\quad + (4/m') \Em\Big[ \ind(A)  \sum_{u = 0}^{n-1} Z_n(u, m' - K_{n,J(\tau+m')})^2\Big] \\
-    &\leq \epsilon.
+  \Em \Em^* \big[\ind(A) &\tfrac{n}{m'}
+  \max_{m=1,\dots,m'} Z_n^*(K_{n,J(\tau+m)-1}, m - K_{n,J(\tau + m)-1})^2 \big] \\
+  &\leq \sum_{j=J(\tau) + 1}^{J(\tau+m')-1} \tfrac{n}{m'} \Em \Em^* \big[\ind(A)
+  \max_{m=1,\dots, \min(M_{nj}, m' - K_{n,j-1})} Z_n^*(K_{n,j}, m)^2 \big] \\
+  &\leq \sum_{j=J(\tau) + 1}^{J(\tau+m')} \tfrac{M_{nj}}{m'} \sum_{u=0}^{n-1} \Em \big[\ind(A)
+  \max_{m=1,\dots,\min(M_{nj}, m' - K_{n,j-1})} Z_n(u, m)^2 / M_{nj} \big] \\
+  &\leq \sum_{j=J(\tau) + 1}^{J(\tau+m')} \epsilon \cdot \min(M_{nj}, m' - K_{n,j-1}) / 6 m' \\
+  &\leq \epsilon/6.
   \end{align*}
-  The first inequality is a consequence of Doob's maximal inequality
-  for martingales \citep[see][Theorem 15.15, for example]{Dav:94},
-  since $Z_{nj}^*$ is a martingale difference array, and the second
-  equality and last inequality follow by construction of $A$. A
+  Together, these bounds imply~(\ref{eq:31}). A
   similar argument also implies that $n Z_n^*(\tau, m)^2 / m'$ has
   finite first moment.
 
   Now, for uniform integrability, take $\epsilon > 0$, choose
-  $\epsilon'$ so that~\eqref{eq:31} holds for all $A \in \Gs$
+  $\epsilon'$ so that~\eqref{eq:31} holds for all $A \in \Fs_n$
   s.t. $\pr(A) \leq \epsilon'$, and choose $C_0$ large enough that
   \begin{equation*}
     \Pm\Big[ \max_{m = 1,\dots,m'} n \, Z^*_n(\tau, m)^2 / m' > C_0 \Big] \leq \epsilon'.
