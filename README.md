@@ -4,13 +4,6 @@ Block bootstrap consistency under weak assumptions
 This directory contains the code necessary to build my paper, "Block
 bootstrap consistency under weak assumptions."
 
-Version history
----------------
-
-2014-10-06: Sent to ET for second R&R
-2013-03-26: Sent to ET as response to R+R
-2011-08-05: Initial submission to ET
-
 Documentation
 -------------
 
