@@ -1,5 +1,6 @@
 # Copyright 2015, Gray Calhoun
 .PHONY: all VERSION.tex
+.DELETE_ON_ERROR:
 
 replies = $(patsubst %.tex,%.pdf,$(wildcard subs/*/*.tex))
 all: Paper.pdf Appendix.pdf $(replies)
