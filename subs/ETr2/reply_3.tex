@@ -18,6 +18,36 @@ previous submission:
     specifically, either for this to be dropped, or for examples to be
     given showing its role in applications.}
 
+  The aim of the paper is to relax the conditions required by
+  \cite{GoW:02} and \cite{GoJ:03}. A major focus of \cite{GoW:02} is
+  proving consistency of these block bootstraps under some degree of
+  heterogeneity in the means\,---\,one example is, as they put it, ``a
+  finite number of properly behaved breaks in means.'' For our results
+  to be comparable to theirs in this way, even to show that we do not
+  allow as much heterogeneity in the means as those papers do, it's
+  important that we use array notation. So, an example where array
+  notation is important in applciations is when there is a break in
+  the mean at observation $n/2$.
+
+  While I agree with what you wrote in the previous letter, ``it is
+  never a good practice to copy what other authors do, as an
+  alternative to justifying it,'' I also think that readers generally
+  benefit when authors reuse decent notation from other closely
+  related papers, even if a different notation is incrementally
+  better.
+
+  Another question raised in your previous letter was: why explicitly
+  normalize by $1/\sqrt{n}$ and why take means? As mentioned in the
+  previous paragraph, each $X_{nt}$ is allowed to have nonzero mean,
+  so estimates of the variance need to be explicitly demeaned. Making
+  the normalization explicit makes these operations transparent. Once
+  the series is demeaned (either using the sample mean or the
+  population mean), all of the mathematics uses the various $Z_{nj}$
+  terms which have an implicit normalization.
+
+  In any case, I have added an explanation for these choices as
+  Footnote 6 in the paper.
+
 \item \textit{The second [issue] concerned the specification of the
     statistical model, in particular, to define the probability space
     appropriately, so as to develop the formal relationships between
@@ -38,4 +68,6 @@ previous submission:
   version of the paper.
 
 \end{enumerate}
+
+\bibliography{../../texextra/references}
 \end{document}
