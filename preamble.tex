@@ -12,6 +12,7 @@
   url,
 }
 
+\usepackage[letterspace=20]{microtype}
 \usepackage[small]{caption}
 \usepackage[mmddyyyy,hhmmss]{datetime}
 \usepackage[T1]{fontenc}
@@ -56,12 +57,13 @@
 
 \renewcommand{\mod}{\operatorname{mod}}
 
-\newcommand{\clt}{\textsc{clt}}
-\newcommand{\fclt}{\textsc{fclt}}
-\newcommand{\hac}{\textsc{hac}}
-\newcommand{\lln}{\textsc{lln}}
-\newcommand{\mds}{\textsc{mds}}
-\newcommand{\ned}{\textsc{ned}}
+\newcommand{\allcaps}[1]{\textls{\MakeUppercase{#1}}}
+\newcommand{\clt}{\allcaps{clt}}
+\newcommand{\fclt}{\allcaps{fclt}}
+\newcommand{\hac}{\allcaps{hac}}
+\newcommand{\lln}{\allcaps{lln}}
+\newcommand{\mds}{\allcaps{mds}}
+\newcommand{\ned}{\allcaps{ned}}
 
 \newcommand{\textif}{\text{if}}
 \newcommand{\textand}{\text{and}}

@@ -30,7 +30,7 @@
   bootstrapped partial sums satisfy a Functional \clt\ under the same
   conditions.
 
-  \noindent \textsc{jel} Classification: C12, C15
+  \noindent \allcaps{jel} Classification: C12, C15
 
   \noindent Keywords: Resampling, Time Series, Near Epoch Dependence,
   Functional Central Limit Theorem
@@ -38,14 +38,14 @@
 
 \newpage
 \noindent Block bootstraps, e.g.\ the Moving Blocks
-\citep{Kun:89,LiS:92}, Circular Block \citep{PoR:92}, and Stationary
+(\citealp{Kun:89}, and \citealp{LiS:92}), Circular Block \citep{PoR:92}, and Stationary
 Bootstraps \citep{PoR:94}, have become popular in Economics, partly
 because they do not require the researcher to make parametric
 assumptions about the data generating process.  They are valid under
 general weak dependence and moment conditions.  Some recent papers
-(\citealp{GoW:02}; \citealp{GoJ:03}) relax the dependence and moment
-conditions of the original papers to fit with those commonly used in
-Econometrics based on Near-Epoch-Dependence (\ned).%
+(\citealp{GoW:02}, and \citealp{GoJ:03}) relax the dependence and moment
+conditions of the original papers to fit with the Near-Epoch-Dependence
+(\ned) assumptions commonly used in econometrics.%
 \footnote{\citet{GoW:02} show that these bootstrap methods can be
   applied to heterogeneous $L_{2+\delta}$-\ned\ processes of size
   $-2(r-1)/(r-2)$ on a strong mixing sequence of size
@@ -65,7 +65,7 @@ Econometrics based on Near-Epoch-Dependence (\ned).%
   with $v_m \to 0$ as $m \to \infty$ and $\{d_{nt}\}$ an array of
   positive constants.  It is of size $-\gamma$ if $v_m = O(m^{-\gamma
     - \delta})$ for all $\delta>0$.  Dropping the index ``$n$'' gives
-  the series definition.  Note that strong and uniform mixing arrays
+  the series definition.  Note that the underlying strong and uniform mixing arrays
   are not required to be stationary.} %
 But these conditions are still stronger than
 required for a \clt\ to hold; \citet{Jon:97} has established the \clt\
@@ -77,7 +77,7 @@ restrictions.%
   $r$-moments.} %
 This paper shows that these block bootstrap
 methods consistently estimate the distribution of the sample mean
-under \citepos{Jon:97} assumptions, and show that an \fclt\ holds as
+under \citepos{Jon:97} assumptions and show that an \fclt\ holds as
 well.%
 \footnote{\citet{Rad:96} proves consistency for the Moving Blocks
   Bootstrap for any stationary strong mixing sequence that satisfies
@@ -109,14 +109,15 @@ block bootstrap.  Consequently, there has been renewed interest in the
 Stationary Bootstrap since stationarity of the bootstrap samples can
 be a useful property in theoretical research.  \cite{KrP:11} provides
 a recent review of the bootstrap for time-series
-processes,%
-\footnote{Also see the discussion papers:
-  \citet{Dah:11,GoP:11,Hor:11,JeM:11,KrP:11b}.} %
+processes%
+\footnote{Also see the discussion papers by \citet{Dah:11},
+\citet{GoP:11}, \citet{Hor:11}, \citet{JeM:11}, and
+\citet{KrP:11b}.} %
 and \citet{GoP:11} further discuss recent developments in
 block-bootstraps.
 
 Theorem~\ref{main-bootstrap-clt} presents the main result, asymptotic normality of
-the distribution of bootstrapped partial sums.  This paper adopts the
+the distribution of bootstrapped sums. This paper adopts the
 standard notation that $\E^{*}$, $\var^{*}$, etc.\ are the usual
 operators with respect to the probability measure induced by the
 bootstrap and will use explicit stochastic array notation
@@ -124,7 +125,7 @@ for precision.  Also note that all results are presented for the
 scalar case but generalize immediately to random vectors.  All of the
 proofs are presented in the appendix; only proofs for the Stationary
 Bootstrap are presented, since proofs for the other methods are
-similar and easier to follow.  All limits are taken as $n \to \infty$
+similar and easier to construct.  All limits are taken as $n \to \infty$
 unless otherwise noted and $\lVert \cdot \rVert_r$ denotes the
 $L_r$-norm.
 
@@ -132,7 +133,7 @@ $L_r$-norm.
   Suppose the following conditions hold.
   \begin{enumerate}
   \item $X_{nt}$ is $L_2$-\ned\ of size $-1/2$ on an array
-    $V_{nt}$ that is either strong mixing of size $-r/(r-2)$ or
+    $\{V_{nt}\}$ that is either strong mixing of size $-r/(r-2)$ or
     uniform mixing of size $-r/2(r-1)$, with $r > 2$.  The
     \ned\ magnitude indices are denoted $\{d_{nt}\}$.
   \item The array $\mu_{nt} - \bar \mu_n$ is uniformly bounded
@@ -165,7 +166,7 @@ $L_r$-norm.
     \sqrt{n}(\bar X_{n}^{*} -  \E^* \bar X_n^*) \big/ \hat\sigma_n^{*}
     \leq x \big] - \Phi(x) \big\rvert \to^p 0,
   \end{equation}
-  where $\Phi$ is the \textsc{cdf} of the Standard Normal
+  where $\Phi$ is the \allcaps{cdf} of the Standard Normal
   distribution and
     \begin{equation}
       \label{eq:3}
@@ -205,8 +206,8 @@ random variables,
 \begin{equation*}
   Z_{nj} = \tfrac{1}{\sqrt{n}} \sum_{t=(j-1) M_n +1}^{j M_n} (X_{nt} - \mu_{nt}),
 \end{equation*}
-that adds up to the original summation, plus potentially a negligible
-residual, so $\sum_j Z_{nj}= (1/\sqrt{n}) \sum_t (X_{nt} - \mu_{nt}) +
+that adds up to the original summation (plus potentially a negligible
+residual) so $\sum_j Z_{nj}= (1/\sqrt{n}) \sum_t (X_{nt} - \mu_{nt}) +
 o_p(1)$. In \citet{Jon:97}, for example, the \clt\ for mixingale
 arrays assumes that there exists a sequence of blocks such that $\sum_j
 Z_{nj}^2$ converges i.p., and the \ned\ \clt\ establishes conditions
@@ -244,7 +245,7 @@ the summation can be expected to converge in probability through the
 same arguments that were used to establish the \clt\ for the original
 array.%
 \footnote{Some of the details of the argument will typically need to
-  change, since the original \clt\ only requires convergence for
+  change because the original \clt\ only requires convergence for
   $\tau_0 = 0$, but these details are often incidental to the original
   argument.}%
 \footnote{Lemmas~\ref{bootstrap-variance-convergence-lemma} and
@@ -259,12 +260,11 @@ bootstrap process and the sum of squared blocks of the original
 array. Even though the details of our proof rely on specific
 techniques for \ned\ arrays, this connection implies that block
 bootstraps are typically consistent when the original dependent array
-obeys the \clt, and the connection should be useful for proving
+obeys the \clt\ and the connection should be useful for proving
 consistency of the bootstrap under other dependence conditions.
 
-For some uses, a \clt\ is inadequate and an \fclt\ is necessary.
-Theorem~\ref{main-bootstrap-clt} can be extended to give an \fclt\
-(using arguments from \citealp{JoD:00b}). We show in
+Theorem~\ref{main-bootstrap-clt} can be further extended to give an
+\fclt\ using arguments from \citet{JoD:00b}. We show in
 Theorem~\ref{main-bootstrap-invariance-theorem} that the partial sum
 of the bootstrapped process obeys an \fclt\ and can be used to derive
 critical values for other test statistics under the same assumptions
@@ -334,7 +334,7 @@ The rest of the paper presents the mathematical proofs in detail.
 For both results, we only present a proof for the stationary
 bootstrap. The moving blocks and circular block bootstrap follow the
 same general argument but are simpler. First we will define some
-notation that will be used repeatedly in our results.
+notation that will be used repeatedly.
 
 Define the \sigmafield
 \begin{equation}
@@ -457,15 +457,15 @@ a martingale difference \clt\ \citep[e.g.][Theorem 3.3]{HaH:80}.%
   arguments like Hall and Heyde's (1980) Theorem 3.3
   apply without modification on this probability measure. See
   also Section 23.2 of \citet{Vaa:00}.
-
   Also note that Hall and Heyde's Theorem 3.3 as stated imposes an
   additional restriction on the sigma-fields. However, as Hall and
   Heyde discuss on pages 59 and 63--64, that condition is unnecessary
-  here because the $\sigma_n^{*2}$ is measurable with respect to
+  here because $\sigma_n^{*2}$ is measurable with respect to
   all of the $\Gs_{nj}$.} %
 
-For~\eqref{eq:20}, since $Z_{nj}^*$ and $Z_{nk}^*$ ($k \neq j$) are uncorrelated
-conditional on $X_{n1},\dots,X_{nn},$ and $\Ms$, we have
+For~\eqref{eq:20}, $Z_{nj}^*$ and $Z_{nk}^*$ (when $k \neq j$) are
+conditionally uncorrelated given $X_{n1},\dots,X_{nn},$ and $\Ms$, which
+implies
 \begin{equation*}
   \sum_{j=1}^{J_n} Z_{nj}^{*2} - \sigma_n^{*2} =
   \sum_{j=1}^{J_n} \Big( Z_{nj}^{*2} - (1/J_n) \E^* \sum_{j=1}^{J_n} Z_{nj}^{*2} \Big)
@@ -476,8 +476,8 @@ almost surely. But
    \ \Gs_{nj} \Big\}
 \end{equation*}
 is a uniformly-integrable martingale difference array
-by Lemma~\ref{bootstrapped-zsq-uniform-integrability-lemma},
-and satisfies the \lln\ (e.g., \citealp{Dav:94}, Theorem 19.7), so
+by Lemma~\ref{bootstrapped-zsq-uniform-integrability-lemma}
+and satisfies the \lln\ (e.g., \citealp{Dav:94}, Theorem 19.7). So
 this sum converges to zero in conditional probability, proving~\eqref{eq:20}.
 
 To prove~\eqref{eq:19}, it suffices to show that
@@ -543,7 +543,7 @@ almost surely. Then
   \sup_{x \in (-\infty, +\infty)} \big| \pr^*\big[\sqrt{n} (\bar X_n^* - \bar X_n) \leq x] - \Phi(x/\sigma) \big| \\
   \leq \sup_{i=0,\dots,k} \big|\pr^{*}\big[\sqrt{n}(\bar X_{n}^{*} - \bar X_n) \leq x_i \big] - \Phi(x_i/\sigma) \big| + 1/k
 \end{multline*}
-almost surely, and~\eqref{eq:23} ensures that
+almost surely and~\eqref{eq:23} ensures that
 \begin{equation*}
   \sup_{i=0,\dots,k} \big|\pr^{*}\big[\sqrt{n}(\bar X_{n}^{*} - \bar X_n)
   \leq x_i \big] - \Phi(x_i/\sigma) \big| + 1/k \to^p 1/k
@@ -551,7 +551,6 @@ almost surely, and~\eqref{eq:23} ensures that
 for any finite $k$. Since $k$ is arbitrary,~\eqref{eq:37} holds. Since
 Theorem~\ref{main-bootstrap-clt}'s assumptions ensure that the original
 array obeys the \clt,~\eqref{eq:36} holds \citep[Theorem 2]{Jon:97}.
-
 A similar argument applies to the asymptotic distribution of
 $\sqrt{n}(\bar X_n^* - \bar X_n) / \hat\sigma_n^*$, completing the
 proof.\qed
@@ -587,8 +586,8 @@ $X_{1n},\dots,X_{nn}$, and $\Ms$, we have
     \E\big| (W_n^{\prime *}(\delta' + \gamma') - W_n^{\prime *}(\gamma'))
   (W_n^{\prime *}(\delta + \gamma) - W_n^{\prime *}(\gamma)) \big| = 0
 \end{equation*}
-for large enough $n$ if $\gamma' > \gamma + \delta$ and, if $\gamma' =
-\gamma + \delta$,
+for large enough $n$ if $\gamma' > \gamma + \delta$. If $\gamma' =
+\gamma + \delta$ then
 \begin{multline*}
   \E\big[(W_n^{\prime *}(\delta' + \gamma') - W_n^{\prime *}(\gamma'))
   (W_n^{\prime *}(\delta + \gamma) - W_n^{\prime *}(\gamma)) \big] = \\
@@ -802,7 +801,7 @@ $\pr^*[ |\hat\sigma_n^{*2} - \sigma^2| > \epsilon] \to^p 0$.
   Lemma~\ref{equivalent-convergence-from-lie-lemma} then implies that
   the first term converges to zero in probability.
   Lemma~\ref{lln-for-real-zsq} proves that the second and third
-  summation converge to zero in probability as well.
+  summation converge to zero in probability.
 
   Next,
   \begin{equation*}
@@ -824,7 +823,7 @@ $\pr^*[ |\hat\sigma_n^{*2} - \sigma^2| > \epsilon] \to^p 0$.
     \pr\Big[ \Big\lvert
     \tfrac{1}{n} \sum_{\tau=0}^{n-1} \sum_{j=1}^{J_n}
     \big[ Z_n'(\tau, M_{nj})^2 - \Em Z_n'(\tau, M_{nj})^2 \big]
-    \Big\rvert > \epsilon \Big] \to 0,\label{eq:27}
+    \Big\rvert > \epsilon \Big] \to 0 \label{eq:27}
     \intertext{and}
     \pr\Big[ \Big\lvert
     \tfrac{1}{n} \sum_{\tau=0}^{n-1} \sum_{j=1}^{J_n}
@@ -851,7 +850,6 @@ smaller block size that satisfies $\ell_n J_n / n \to^p 0$.
     \big\{Z_{n}'(\tau, M_{nj})^2 - \Em Z_n'(\tau, M_{nj})^2 \big\}
   \end{multline}
   almost surely.
-
   By Lemma~\ref{dejong-restatement-lemma} (Equation~\ref{eq:32}), for
   any $\delta > 0$ there exist positive $C$ and $\epsilon$ such that
   \begin{align*}
@@ -942,7 +940,7 @@ smaller block size that satisfies $\ell_n J_n / n \to^p 0$.
     + \tfrac{1}{\sqrt{n}} \sum_{t \in I_n(\tau, m)} (\mu_{nt} - \bar \mu_n)
     - m Z'_n(0, n) \\
   \end{align*}
-  gives the relations
+  gives the relationship
   \begin{align*}
     \E\Big(\ind(A) \sum_{\tau=0}^{n-1} & \max_{m=1,\dots,m'} Z_n(\tau, m)^2/m'\Big) \\
     &\leq 3 \sum_{\tau=0}^{n-1} \E\big( \ind(A)  \max_{m=1,\dots,m'} Z'_n(\tau, m)^2/m'\big) \\
@@ -958,7 +956,7 @@ smaller block size that satisfies $\ell_n J_n / n \to^p 0$.
   $\epsilon/9$. The proof that that the first moment is bounded is
   similar, which completes the proof of~(\ref{eq:35})
 
-  For~(\ref{eq:30}), we'll first show that, for every $\epsilon > 0$,
+  For~(\ref{eq:30}), we will first show that, for every $\epsilon > 0$,
   there exists an $\epsilon' > 0$ with the property that
   \begin{equation}\label{eq:31}
     \Em \Big(\ind(A) \times \max_{m = 1,\dots,m'} Z^*_n(\tau, m)^2 n / m'\Big) < \epsilon
@@ -970,7 +968,7 @@ smaller block size that satisfies $\ell_n J_n / n \to^p 0$.
   of~\eqref{eq:35} is the measurability requirement. Here we need to
   finesse measurability of the sets $A$.} %
 
-  First, take an arbitrary $\epsilon > 0$ and a value of $\epsilon' > 0$
+  Take an arbitrary $\epsilon > 0$ and a value of $\epsilon' > 0$
   so that
   \begin{equation*}
     \Em \Big(\ind(A) \sum_{\tau = 0}^{n-1} \tfrac{1}{m'} \max_{m = 1,\dots,m'}
@@ -1029,7 +1027,7 @@ smaller block size that satisfies $\ell_n J_n / n \to^p 0$.
     \big(\tfrac{m}{\ell^{1+\epsilon}}\big)^{1/2}.
 \end{multline}
 Also, there exists a constant $C$ and a finite function $D(x)$ such
-that $D(x) \to 0$ as $x \to \infty$ such that, for large enough $n$,
+that $D(x) \to 0$ as $x \to \infty$ and, for large enough $n$,
   \begin{equation}
     \label{eq:33}
     \E \Big\lvert \isum \E(Z_n'(\tau + i m, m - \ell)^2
@@ -1041,7 +1039,7 @@ Results~\eqref{eq:32} and~\eqref{eq:33} are direct extensions of
 \citepos{Jon:97} Lemmas 5 and 4, respectively, replacing De Jong's
 implicit use of inequalities with explicit inequalities. The
 supplemental appendix presents a proof of~\eqref{eq:33} to show the
-basic idea.
+main idea.
 
 \begin{lem}\label{zsq-uniform-integrability-lemma}
 \newcommand{\uiterm}{\max_{m \in 1,\dots,m'} \Big(
