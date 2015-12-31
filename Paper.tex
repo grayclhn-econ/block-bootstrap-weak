@@ -509,30 +509,40 @@ To prove~\eqref{eq:19}, it suffices to show that
 \begin{equation}\label{eq:21}
   \Em \sum_{j=1}^{J_n} \Em^{*}\big(Z_{nj}^{*2} \ind\{Z_{nj}^{*2} > \epsilon\}\big) \to^p 0.
 \end{equation}
-Lemma~\ref{bootstrapped-zsq-uniform-integrability-lemma} implies that there exists a finite,
-monotone function $B(\cdot)$ such that $B(x) \to 0$ as $x \to \infty$
-and
-\begin{equation*}
-  \Em( (n Z_{nj}^{*2} / M_{nj}) \ind\{n Z_n^{*2} / M_{nj} > \epsilon n / M_{nj}\}) \\
-  \leq B(\epsilon n /M_{nj})
-\end{equation*}
-almost surely for large enough $n$ and all $j$ and $\tau$.  Consequently,
+For any $j$ and $m$ and for large enough $n$,
+\begin{align}
+\Em \Em^{*}\big((Z_n(u_{nj}, m)^2n/m) &\ind\{Z_n(u_{nj}, m)^2n/m > \epsilon n/m\}\big) \notag \\
+&= \E \big((Z_n^{*}(0, m)^2n/m) \ind\{Z_n^{*}(0, m)^2n/m > \epsilon n/m\}\big) \notag \\
+&\leq B(\epsilon n/m)\label{eq:5}
+\end{align}
+where $B$ is some finite monotone function such that $B(x) \to 0$ as
+$x \to \infty$; the existence of a function $B$ that satisfies these
+conditions (and does not depend on $n$ or $m$) is a consequence of
+Lemma~\ref{bootstrapped-zsq-uniform-integrability-lemma},
+Equation~\eqref{eq:30}. Since $J_n$ and $M_{nj}$ are both $\Ms$-measureable
+and independent of the $u_{nj}$'s and $X_{nt}$'s,~\eqref{eq:5} implies that
 \begin{align*}
-    \Em \sum_{j=1}^{J_n} \Em^{*}( Z_{nj}^{*2} \ind\{Z_{nj}^{*2} > \epsilon\})
-    & \leq \sum_{j=1}^{J_n} ( M_{nj} / n )\, B(\epsilon n /M_{nj}) \\
-    & \leq \max_{j = 1,\dots,J_n} B(\epsilon n / M_{nj}) \sum_{i=1}^{J_n} M_{ni} / n \\
-    & = B(\epsilon n / \max_{j = 1,\dots,J_n} M_{nj}) \\
-    & \to^p 0 \text{\ as\ } n \to \infty,
+\Em &\sum_{j=1}^{J_n} \Em^{*}\big(Z_{nj}^{*2} \ind\{Z_{nj}^{*2} > \epsilon\}\big) \\
+& = \sum_{j=1}^{J_n} (M_{nj}/n) \Em \Em^{*}
+\big((Z_n(u_{nj}, M_{nj})^2 n/M_{nj})
+\ind\{Z_n(u_{nj}, M_{nj})^2n/M_{nj} > \epsilon n/M_{nj}\}\big) \\
+& \leq \sum_{j=1}^{J_n} (M_{nj}/n) \, B(\epsilon n/M_{nj}) \\
+& \leq \max_{j = 1,\dots,J_n} B(\epsilon n / M_{nj}) \sum_{i=1}^{J_n} M_{ni} / n \\
+& = B(\epsilon n / \max_{j = 1,\dots,J_n} M_{nj}) \\
+& \to^p 0 \text{\ as\ } n \to \infty.
 \end{align*}
-where the equality holds by monotonicity of $B$ and convergence in
-probability holds by Lemma~\ref{block-length-convergence-lemma},
-completing the proof of~\eqref{eq:19}.
-The Dominated Convergence Theorem then ensures that
+The first equality follows from simple algerbra and the definition
+of the $u_{nj}$'s. The first inequality is a
+consequence of~\eqref{eq:5}.  The second equality holds by
+monotonicity of $B$. And convergence in probability holds by
+Lemma~\ref{block-length-convergence-lemma}, completing the proof
+of~\eqref{eq:19}. The Dominated Convergence Theorem and~(\ref{eq:18})
+then ensure that
 \begin{equation}\label{eq:22}
   \pr^{*} \Big[\sum_{j=1}^{J_n}
   Z_{nj}^{*} / \sigma_n^* \leq x \Big] - \Phi(x) \to^p 0.
 \end{equation}
-follows from~(\ref{eq:18}). (Also see
+(Also see
 Lemma~\ref{equivalent-convergence-from-lie-lemma}.)
 
 Lemma~\ref{bootstrap-variance-convergence-lemma} implies that
@@ -574,12 +584,11 @@ almost surely and~\eqref{eq:23} ensures that
   \leq x_i \big] - \Phi(x_i/\sigma) \big| + 1/k \to^p 1/k
 \end{equation*}
 for any finite $k$. Since $k$ is arbitrary,~\eqref{eq:37} holds. Since
-Theorem~\ref{main-bootstrap-clt}'s assumptions ensure that the original
-array obeys the \clt,~\eqref{eq:36} holds \citep[Theorem 2]{Jon:97}.
-A similar argument applies to the asymptotic distribution of
-$\sqrt{n}(\bar X_n^* - \bar X_n) / \hat\sigma_n^*$, completing the
-proof.\qed
-}
+Theorem~\ref{main-bootstrap-clt}'s assumptions ensure that the
+original array obeys the \clt,~\eqref{eq:36} holds \citep[Theorem
+2]{Jon:97}.  A similar argument applies to the asymptotic distribution
+of $\sqrt{n}(\bar X_n^* - \bar X_n) / \hat\sigma_n^*$, completing the
+proof.\qed }
 
 \subsection*{Proof of Theorem~\ref{main-bootstrap-invariance-theorem}}
 \newcommand{\gn}{{\lfloor \gamma n \rfloor}}
@@ -1108,6 +1117,11 @@ implicit use of inequalities with explicit inequalities. The
 supplemental appendix presents a proof of~\eqref{eq:33} to show the
 main idea.
 
+Note that these results apply immediately to the conditional expectation
+$\Em$ because the block lengths $M_{jn}$ do not appear in~\eqref{eq:32}
+and~\eqref{eq:33} and are independent of all of the random variables
+used for these bounds.
+
 \begin{lem}\label{zsq-uniform-integrability-lemma}
 \newcommand{\uiterm}{\max_{m \in 1,\dots,m'} \Big(
   \sum_{t \in I_n(\tau, m)} (X_{nt} - \mu_{nt})\Big)^2 \Big/
@@ -1122,12 +1136,12 @@ main idea.
   \end{multline}
 \end{lem}
 
-\begin{proof}
-  See supplemental appendix for the proof of~\eqref{eq:34}, which
-  follows \citet[Lemma 6.5]{Mcl:75b} and \citet[Lemma 3.5]{Mcl:77}
-  almost exactly and is also presented as Theorem~16.13 in
-  \citet{Dav:94}.
-\end{proof}
+For proof, see supplemental appendix for the proof of~\eqref{eq:34}, which
+follows \citet[Lemma 6.5]{Mcl:75b} and \citet[Lemma 3.5]{Mcl:77}
+almost exactly and is also presented as Theorem~16.13 in
+\citet{Dav:94}. The same comment that follows
+Lemma~\ref{dejong-restatement-lemma} applies here as well: the bounds
+apply equally well to $\Em$.
 
 \bibliography{texextra/references}
 \end{document}
