@@ -1,0 +1,60 @@
+\documentclass[12pt]{article}
+\frenchspacing
+\input{../../preamble.tex}
+\usepackage[tiny]{titlesec}
+
+\begin{document}
+\section*{\hfill Reply to referee 2\hfill}
+
+\begin{enumerate}
+\item \textit{Corollary 1: Assuming there exists an estimator
+$\hat{\sigma}_n^2(\gamma)$ such that $\sup_{\gamma}
+|\sigma_n^2(\gamma)/\hat{\sigma}_n^2(\gamma) - 1| \to^p 0$ may not be
+innocent. After all, for an i.i.d.\ sequence of mean zero, finite
+variance $\varepsilon_i$, we could have
+\[
+\hat{\sigma}_{n}^2(\gamma) = \tfrac{1}{n} \sum_{i=1}^{[\gamma n]} \varepsilon_i^2
+\quad\text{and}\quad
+\sigma_n^2(\gamma) = [\gamma n] \sigma^2 / n.
+\]
+Then
+\begin{align*}
+\sup_{0 \leq \gamma \leq 1} | \sigma_n^2(\gamma) / \hat{\sigma}_n^2(\gamma) - 1 |
+& = \sup_{0 \leq \gamma \leq 1} \Big| \sigma^2 \Big/ ([n\gamma])^{-1} \sum_{i=1}^{[\gamma n]} \varepsilon_i^2 - 1 \Big| \\
+& = \sup_{k:1 \leq k \leq n} \Big| \sigma^2 \Big/ k^{-1} \sum_{i=1}^{k} \varepsilon_i - 1 \Big|
+\end{align*}
+and the last expression converges a.s. to a non-degenerate random
+variable. It is not clear to me what exactly the author wants to
+achieve by dividing by $\hat{\sigma}_n(\gamma)$. Clearly such a
+division achieves that the resulting process is $N(0,1)$ and not
+$N(0,\gamma)$ for each $\gamma$ which means that the limit is not
+Wiener measure, and therefore I did not understand how the resulting
+process can end up at $W^{*}$, which is undefined, but is suggested
+through the use of the letter $W$ to be some type of Wiener measure.}
+
+\item \textit{p. 11, first equation: there is an expectation of an
+    absolute value there; should the absolute value be there?}
+
+\item p. 12, Lemma 1: typo: ``$\sum_{i=1}^{J_n-1} < n$'' should read
+  ``$\sum_{i=1}^{J_n-1} M_{ni} < n$''.
+
+\item \textit{On page 7, I could not verify that (18) holds; that is,
+    I could not see that none of the $X_{nt}^*$ is not counted twice
+    or excluded in the $\sum_{j=1}^{J_n} Z_{nj}^*$.}
+
+\item \textit{At this time, I still do not understand the reasoning of
+    the author when it comes to conditioning issues. The author to his
+    credit has added explanations, and very likely the problem is
+    simply my lack of experience with bootstrap issues. However, on
+    page 9 for example, the author says that Lemma 5 implies that
+    there exists a finite, monotone function $B(\cdot)$ that has a
+    limit of 0. As I read Lemma 5, I would think that this $B(\cdot)$
+    depends on $\mathcal{M}$. Similarly, on page 15, the author
+    applies Lemma 6, Equation 37; yet that result was derived for an
+    unconditional expectation appearing on the spot where the author
+    now uses $E_{\mathcal{M}}$. In short, I am still confused by some
+    of the conditioning issues, but am willing to assume that the
+    problem is with me and not with the author.}
+
+\end{enumerate}
+\end{document}
