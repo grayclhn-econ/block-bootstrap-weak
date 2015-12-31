@@ -40,5 +40,5 @@ esac
 if [ $(git describe --tags --exact-match 2> /dev/null) ]; then
     echo $(git describe --tags --exact-match)
 else
-    echo "$commit_short on $date_string ($branch)"
+    echo "$date_string, commit $commit_short"
 fi
