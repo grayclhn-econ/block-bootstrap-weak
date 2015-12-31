@@ -1,5 +1,7 @@
 # Copyright 2015, Gray Calhoun
 .PHONY: all VERSION.tex
+.DELETE_ON_ERROR:
+
 all: Paper.pdf Appendix.pdf
 
 Appendix.pdf Paper.pdf: %.pdf: %.tex preamble.tex VERSION.tex
