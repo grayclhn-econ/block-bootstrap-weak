@@ -39,6 +39,18 @@ Wiener measure, and therefore I did not understand how the resulting
 process can end up at $W^{*}$, which is undefined, but is suggested
 through the use of the letter $W$ to be some type of Wiener measure.}
 
+$\hat{W}_n(\gamma)$ should have been defined as
+\begin{equation*}
+\hat{W}_n(\gamma) = \sqrt{\tfrac{\gamma}{n}} \sum_{t=1}^{\lfloor \gamma n \rfloor}
+(X_{nt} - \bar{\mu}_n) / \hat{\sigma}_n(\gamma),
+\end{equation*}
+would make the limit a Wiener process and (I think) would have
+prevented a lot of your confusion. In any case, I have merged this
+corollary with the previous theorem (Theorem 2) and have edited the
+surrounding text to make this part more clear. I have also removed the
+conditions for normalizing partial sums that would not converge to a
+Wiener processes and left that element implicit.
+
 \item \textit{p. 11, first equation: there is an expectation of an
     absolute value there; should the absolute value be there?}
 

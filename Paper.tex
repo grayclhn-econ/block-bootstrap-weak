@@ -267,68 +267,62 @@ bootstraps are typically consistent when the original dependent array
 obeys the \clt\ and the connection should be useful for proving
 consistency of the bootstrap under other dependence conditions.
 
-Theorem~\ref{main-bootstrap-clt} can be further extended to give an
-\fclt\ using arguments from \citet{JoD:00b}. We show in
+Theorem~\ref{main-bootstrap-clt} can also be extended to give an \fclt\
+using arguments from \citet{JoD:00b}. We show in
 Theorem~\ref{main-bootstrap-invariance-theorem} that the partial sum
 of the bootstrapped process obeys an \fclt\ and can be used to derive
 critical values for other test statistics under the same assumptions
-as Theorem~\ref{main-bootstrap-clt}.
+as Theorem~\ref{main-bootstrap-clt}. For this result, define the
+following partial sums,
+\begin{align*}
+W_n(\gamma) &=
+\tfrac{1}{\sqrt{n}} \sum_{t=1}^{\lfloor \gamma n \rfloor}
+(X_{nt} - \bar\mu_n) &&\text{and}&
+W_n^{*}(\gamma) &= \tfrac{1}{\sqrt{n}}
+\sum_{t=1}^{\lfloor \gamma n \rfloor}
+(X^*_{nt} - \mu_n^{*}).
+\end{align*}
+Also let $W$ denote standard Brownian Motion and $\sigma W$ denote
+Brownian Motion scaled by the constant $\sigma$.
 
 \begin{thm}\label{main-bootstrap-invariance-theorem}
-  Suppose that the conditions of Theorem~\ref{main-bootstrap-clt}
-  hold, let $W$ be standard Brownian Motion, and define
-  \begin{equation}
-    \label{eq:6}
-    W_n^{*}(\gamma) = \tfrac{1}{\sqrt{n}}
-    \sum_{t=1}^{\lfloor \gamma n \rfloor} (X^*_{nt} - \mu_n^{*}) / \sigma_{n}^{*}
-  \end{equation}
-  and
-  \begin{equation}
-    \label{eq:7}
-    \hat{W}_n^{*}(\gamma) = \tfrac{1}{\sqrt{n}}
-    \sum_{t=1}^{\lfloor \gamma n \rfloor} (X^*_{nt} - \mu_n^{*}) / \hat\sigma_n^{*}.
-  \end{equation}
-  Then $\pr^{*}[\dist(W_n^{*}, W) > \delta] \to 0$ i.p.\ and
-  $\pr^{*}[\dist(\hat{W}_n^{*}, W) > \delta] \to 0$ i.p.\ for any
-  positive $\delta$ and distance $\dist$ that metricizes weak
-  convergence.
+Suppose that the conditions of Theorem~\ref{main-bootstrap-clt} hold
+and let $\dist$ be any distance function that metricizes weak
+convergence. Then
+\begin{equation}\label{eq:7}
+\pr^{*}[\dist(W_n^{*}, \sigma W) > \delta] \to^p 0
+\end{equation}
+for any positive  $\delta$.
+If, in addition, $\sup_{t=1,\dots,n}|\mu_{nt} -
+\bar \mu_n| = o(1/\sqrt{n})$ and
+\begin{equation}\label{eq:4}
+n^{-1} \sum_{s,t=1}^{\lfloor \gamma n \rfloor} \cov(X_{ns}, X_{nt}) \to \sigma^2 \gamma
+\end{equation}
+for all $\gamma \in [0,1]$, then
+\begin{equation}\label{eq:8}
+\pr[\dist(W_n, \sigma W) > \delta] \to 0
+\end{equation}
+for any positive $\delta$.
 \end{thm}
+If both~\eqref{eq:7} and~\eqref{eq:8} hold then the bootstrap can be
+used to approximate the distribution of partial sums.
+Note that Theorem~\ref{main-bootstrap-invariance-theorem} imposes
+stronger assumptions for the original process
+than for the bootstrapped process. Without~\eqref{eq:4}, the
+partial sum of the original observations converges to a transformed
+Brownian Motion with a different covariance process. The bootstrapped
+partial sum, on the other hand, always converges to standard (but
+potentially scaled) Brownian Motion because the resampling strategies
+ensure that the bootstrapped process is globally covariance stationary.
 
-Obviously, Theorem~\ref{main-bootstrap-invariance-theorem}, has
-natural corollaries that allow it to be used to approximate the
-behavior of partial sums of the original series.  But applying this
-result requires stronger assumptions than
-Theorem~\ref{main-bootstrap-clt}. The bootstrapped processes are
-(essentially) homoskedastic, so they are unable to match patterns of
-heteroskedasticity in the original series and we can not estimate the
-covariance process of the original partial sum in the bootstrap. This
-necessitates a separate consistent estimator of the covariance process, which
-we did not need for the sample mean.  Other methods, such as the Local
-Block Bootstrap \citep{PaP:02,DPP:03}, may be able to capture this
-additional heterogeneity with the bootstrap alone, but we do not
-pursue that possibility further.
-
-\begin{cor}
-  Suppose the conditions of Theorem~\ref{main-bootstrap-clt} hold and
-  that $\sup_{t=1,\dots,n}|\mu_{nt} - \bar \mu_n| = o(1/\sqrt{n})$. Define
-  \begin{equation}
-    \label{eq:8}
-    \sigma_n^2(\gamma) = \tfrac{1}{n}
-    \sum_{s,t=1}^{\lfloor \gamma n \rfloor} \cov(X_{ns}, X_{nt}),
-  \end{equation}
-  let $\hat\sigma_n^2(\cdot)$ be an estimator of $\sigma_n^2(\cdot)$
-  such that $\sup_{\gamma} |\sigma_n^2(\gamma) /
-  \hat{\sigma}_n^2(\gamma) - 1| \to^p 0$, and let
-  \begin{equation}
-    \label{eq:9}
-    \hat{W}_n(\gamma) = \tfrac{1}{\sqrt{n}} \sum_{t=1}^{\lfloor \gamma
-      n \rfloor} (X_{nt} - \bar\mu_n) / \hat{\sigma}_{n}(\gamma).
-  \end{equation}
-  Then $\pr^{*}[\dist(W_n^{*}, \hat{W}_n) > \delta] \to^p 0$ and
-  $\pr^{*}[\dist(\hat{W}_n^{*}, \hat{W}_n) > \delta] \to^p 0$ for any
-  positive $\delta$ and any distance $\dist$ that metricizes weak
-  convergence.
-\end{cor}
+If the original process does not satisfy~\eqref{eq:4}, it would be
+necessary to normalize $W_n$ with a uniformly
+consistent estimator of the true covariance process of the series to
+make use of these results. This would be the case if the variance
+permanently changes partway through the series, for example.  Other
+methods, such as the Local Block Bootstrap \citep{PaP:02,DPP:03}, may
+be able to capture this additional heterogeneity with the bootstrap
+alone, but we do not pursue that possibility further.
 
 The rest of the paper presents the mathematical proofs in detail.
 
@@ -593,37 +587,45 @@ proof.\qed }
 \newcommand{\gn}{{\lfloor \gamma n \rfloor}}
 \newcommand{\gJ}{{\lfloor \gamma J_n \rfloor}}
 \newcommand{\lastK}{{K_{n, \gJ}}}
-Define $W_n^{\prime*}$ as
-\begin{equation*}
-  W^{\prime*}_n(\gamma)
-  = \tfrac{1}{\sqrt{n}} \sum_{t=1}^\gn (X_{nt}^* - \bar X_{n})/\sigma
-  = \sum_{j=1}^\gJ \Zb /\sigma + Z_n^*(\lastK, \gn - \lastK) / \sigma.
-\end{equation*}
-Lemma~\ref{bootstrap-variance-convergence-lemma} ensures that
-$\sigma_n^{*2}$ and $\hat\sigma_n^{*2}$ both converge in probability to
-$\sigma^2$, so it suffices to prove that $\pr^*[\dist(W_n^{\prime*}, W) >
-\delta)] \to^p 0$; we can also assume without loss of generality that
-$\sigma^2 = 1$. Moreover,
-Lemma~\ref{equivalent-convergence-from-lie-lemma} ensures that it
-suffices to prove unconditional convergence, so we will establish
-$\pr[\dist(W_n^{\prime *}, W) > \delta] \to 0$.
 
-Theorem~\ref{main-bootstrap-clt} implies that, for any fixed $\gamma$,
-$W_n^{\prime *}(\gamma)$ is asymptotically normal and, as a
-partial sum of an \mds, $W_n^{\prime *}$ has asymptotically independent
-increments. To see this, choose $\gamma, \gamma' \in [0,1]$ and
+We will only present proofs for the bootstrap results, since
+Theorem~3.1 of \cite{JoD:00b} establishes the result for the partial
+sums of the original process.  Theorem~\ref{main-bootstrap-clt}
+implies that, for any fixed $\gamma$, $W_n^{*}(\gamma)$ is
+asymptotically normal with limiting variance $\gamma \sigma^2$, so we
+can assume that $\sigma^2 = 1$ without loss of generality. Moreover,
+Lemma~\ref{equivalent-convergence-from-lie-lemma} shows that it is
+sufficient to prove unconditional convergence, so we will establish
+$\pr^*[\dist(W_n^{*}, W) > \delta)] \to^p 0$. As in \cite{JoD:00b},
+this will hold if we show that $W_n^{*}$ has asymptotically
+independent increments and stochastic equicontinuity, namely
+\begin{equation}\label{eq:9}
+  \lim_{\delta \to 0} \limsup_{n \to \infty} \pr[\sup_{\gamma \in [0,1]}
+  \sup_{\gamma' \in [\gamma - \delta, \gamma + \delta]}
+    | W_n^{*}(\gamma) - W_n^{*}(\gamma') | > \epsilon] = 0
+\end{equation}
+for any positive $\epsilon$.
+
+First observe that we can write $W_n^{*}$ as
+\begin{equation*}
+  W^{*}_n(\gamma)
+  = \tfrac{1}{\sqrt{n}} \sum_{t=1}^\gn (X_{nt}^* - \bar X_{n})
+  = \sum_{j=1}^\gJ \Zb + Z_n^*(\lastK, \gn - \lastK).
+\end{equation*}
+To show that the increments of this process are asymptotically
+independent, choose $\gamma, \gamma' \in [0,1]$ and
 $\delta, \delta' > 0$ so that $\delta + \gamma \leq \gamma'$. Since
-the increments of $W_n^{\prime *}$ are uncorrelated conditional on
+the blocks of $W_n^{*}$ are conditionally uncorrelated given
 $X_{1n},\dots,X_{nn}$, and $\Ms$, we have
 \begin{equation*}
-    \E\big[ (W_n^{\prime *}(\delta' + \gamma') - W_n^{\prime *}(\gamma'))
-  (W_n^{\prime *}(\delta + \gamma) - W_n^{\prime *}(\gamma)) \big] = 0
+  \E\big[ (W_n^{*}(\delta' + \gamma') - W_n^{*}(\gamma'))
+  (W_n^{*}(\delta + \gamma) - W_n^{*}(\gamma)) \big] = 0
 \end{equation*}
 for large enough $n$ if $\gamma' > \gamma + \delta$. If $\gamma' =
 \gamma + \delta$ then
 \begin{multline*}
-  \E\big[(W_n^{\prime *}(\delta' + \gamma') - W_n^{\prime *}(\gamma'))
-  (W_n^{\prime *}(\delta + \gamma) - W_n^{\prime *}(\gamma)) \big] = \\
+  \E\big[(W_n^{*}(\delta' + \gamma') - W_n^{*}(\gamma'))
+  (W_n^{*}(\delta + \gamma) - W_n^{*}(\gamma)) \big] = \\
   \E \Em^*\big\{- Z_n^*(\lfloor \gamma' n \rfloor, K_{n, \lceil \gamma' J_n \rceil }- \lfloor \gamma' n \rfloor)
   Z_n^*(K_{n,\lfloor (\gamma + \delta) J_n \rfloor},
   \lfloor (\gamma + \delta) n \rfloor - K_{n,\lfloor (\gamma + \delta) J_n \rfloor}))\big\}.
@@ -643,43 +645,38 @@ for some constant $C$ by
 Lemma~\ref{bootstrapped-zsq-uniform-integrability-lemma}. This term
 converges to zero by Lemma~\ref{block-length-convergence-lemma}.
 
-Consequently, as in \cite{JoD:00b}, the result follows from stochastic
-equicontinuity \citep[Theorems 15.4 and 15.5]{Bil:68} namely that
-\begin{equation*}
-  \lim_{\delta \to 0} \limsup_{n \to \infty} \pr[\sup_{\gamma \in [0,1]}
-  \sup_{\gamma' \in [\gamma - \delta, \gamma + \delta]}
-    | W_n^{\prime *}(\gamma) - W_n^{\prime *}(\gamma') | > \epsilon] = 0
-\end{equation*}
-for any positive $\epsilon$.  Fix $\delta> 0$ such that $D = 2/\delta$
-is a positive integer and let $\gamma_d = d/D$ for $d =
-0,\dots,D$. Then, mimicking the argument in \cite{JoD:00b},
+For~\eqref{eq:9}, fix $\delta> 0$ such that $D = 2/\delta$ is a
+positive integer and let $\gamma_d = d/D$ for $d =
+0,\dots,D$. Mimicking the argument in \cite{JoD:00b} gives the bounds
 \begin{align*}
   \pr[\sup_{\gamma \in [0,1]} &
   \sup_{\gamma' \in [\gamma - \delta, \gamma + \delta]}
-  | W_n^{\prime *}(\gamma) - W_n^{\prime *}(\gamma') | > \epsilon] \\
+  | W_n^{*}(\gamma) - W_n^{*}(\gamma') | > \epsilon] \\
   &\leq \pr[ \sup_{d = 1,\dots,D} \sup_{\gamma \in [0,\delta]}
-  | W_n^{\prime *}(\gamma + \gamma_d) - W_n^{\prime *}(\gamma_d) | > \epsilon/2] \\
+  | W_n^{*}(\gamma + \gamma_d) - W_n^{*}(\gamma_d) | > \epsilon/2] \\
   &\leq  (4/\epsilon^2) \sum_{d=1}^D \E[\sup_{\gamma \in [0,\delta]}
-  | W_n^{\prime *}(\gamma + \gamma_d) - W_n^{\prime *}(\gamma_d) |^2 \\
+  | W_n^{*}(\gamma + \gamma_d) - W_n^{*}(\gamma_d) |^2 \\
   &\qquad\qquad\qquad \times \ind\{\sup_{\gamma \in [0,\delta]}
-  | W_n^{\prime *}(\gamma + \gamma_d) - W_n^{\prime *}(\gamma_d) |^2 > \epsilon^2/4\}] \\
+  | W_n^{*}(\gamma + \gamma_d) - W_n^{*}(\gamma_d) |^2 > \epsilon^2/4\}] \\
   &\leq  (4/\epsilon^2) \max_{d=1,\dots,D} \E[\sup_{\gamma \in [0,\delta]}
-  (1/\delta) | W_n^{\prime *}(\gamma + \gamma_d) - W_n^{\prime *}(\gamma_d) |^2 \\
+  (1/\delta) | W_n^{*}(\gamma + \gamma_d) - W_n^{*}(\gamma_d) |^2 \\
   &\qquad\qquad\qquad \times \ind\{\sup_{\gamma \in [0,\delta]}
-  (1/\delta) | W_n^{\prime *}(\gamma + \gamma_d) - W_n^{\prime *}(\gamma_d) |^2 > \epsilon^2/4\delta\}].
+  (1/\delta) | W_n^{*}(\gamma + \gamma_d) - W_n^{*}(\gamma_d) |^2 > \epsilon^2/4\delta\}].
 \end{align*}
 Lemma~\ref{bootstrapped-zsq-uniform-integrability-lemma} implies that
 \begin{equation*}
   \sup_{\gamma \in [0,\delta]}
-  (1/\delta) | W_n^{\prime *}(\gamma + \gamma_d) - W_n^{\prime *}(\gamma_d) |^2
+  (1/\delta) | W_n^{*}(\gamma + \gamma_d) - W_n^{*}(\gamma_d) |^2
 \end{equation*}
-is uniformly integrable, so there exists a finite and positive
-function $B$ such that $B(x) \to 0$ as $x \to \infty$ and
+is uniformly integrable, so an argument similar to that used in the
+proof of Theorem~\ref{main-bootstrap-clt} shows that there exists a
+finite and monotone function $B$ such that $B(x) \to 0$ as
+$x \to \infty$ and
 \begin{multline*}
   \E[\sup_{\gamma \in [0,\delta]}
-  (1/\delta) | W_n^{\prime *}(\gamma + \gamma_d) - W_n^{\prime *}(\gamma_d) |^2
+  (1/\delta) | W_n^{*}(\gamma + \gamma_d) - W_n^{*}(\gamma_d) |^2 \times \\
   \ind\{\sup_{\gamma \in [0,\delta]}
-  (1/\delta) | W_n^{\prime *}(\gamma + \gamma_d) - W_n^{\prime *}(\gamma_d) |^2 > x\}] \\
+  (1/\delta) | W_n^{*}(\gamma + \gamma_d) - W_n^{*}(\gamma_d) |^2 > x\}]
   \leq B(x)
 \end{multline*}
 for all $d$ and $\delta$ and all large enough $n$.
@@ -688,7 +685,7 @@ As a result,
 \begin{align*}
   \lim_{\delta \to 0} \limsup_{n\to\infty} \pr[\sup_{\gamma \in [0,1]}
   \sup_{\gamma' \in [\gamma - \delta, \gamma + \delta]}
-  | W_n^{\prime *}(\gamma) - W_n^{\prime *}(\gamma') | > \epsilon] & \leq
+  | W_n^{*}(\gamma) - W_n^{*}(\gamma') | > \epsilon] & \leq
   \lim_{\delta \to 0} (4/\epsilon^2)
   B(\epsilon^2/4\delta) \\
   &= 0,

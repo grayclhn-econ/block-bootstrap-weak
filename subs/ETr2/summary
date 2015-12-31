@@ -1,4 +1,6 @@
 \begin{itemize}
+\item Corollary 1 (convergence to Brownian Motion) has been merged
+with Theorem 2 and simplified.
 \item The appendix now includes a definition of the probability space
 containing all of the random elements, which is especially helpful in
 the proof of Lemma~5.
