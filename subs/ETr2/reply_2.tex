@@ -79,5 +79,24 @@ through the use of the letter $W$ to be some type of Wiener measure.}
     of the conditioning issues, but am willing to assume that the
     problem is with me and not with the author.}
 
+  The important point to keep in mind is that $\mathcal{M}$ only
+  contains information about the block lengths for the stationary
+  bootstrap. Lemmas 5 and 6 present results for the unconditional
+  expectation that hold for \emph{every fixed} block length ($m'$ in
+  Lemma 5, $m$ in Lemma 6). Uniform integrability over the family of
+  block lengths (as in Lemma 5) implies that the same $B(\cdot)$
+  applies to every $m'$ in $1,\dots,n$. Then on page 9, we use the
+  fact that the same $B(\cdot)$ works for every $m'$ implies that it
+  works for a randomly chosen $m'$ as well.
+
+  I've added an intermediate step in that application of Lemma 5 to
+  try to make the argument less opaque.
+
+  The use of Lemma 6 is similar. In that expression, $M_{nj}$ is
+  measurable with respect to $\mathcal{M}_n$, so it is treated the
+  same as the constant $m$ in the statement of Lemma 6, and the other
+  random variables are independent of $\mathcal{M}_n$. I have added
+  some additional explanation that (I hope!) make this point more clear.
+
 \end{enumerate}
 \end{document}

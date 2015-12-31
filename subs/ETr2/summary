@@ -4,6 +4,10 @@ containing all of the random elements, which is especially helpful in
 the proof of Lemma~5.
 \item The relationship between the $Z_{nj}^*$ and
 $X_{nt}^* - \bar X_n$ has been explained in a bit more detail.
+\item I have added further explanation of the role between the
+unconditional expectations $\E$ and $\E^*$ and the conditional
+expectations $\Em$ and $\Em^*$ in proving inequalities based on
+uniform integrability.
 \item A small error in the proof of Lemma 5 has been corrected.
 \item The array $\{V_{nt}\}$ as used in the proof of Theorem 7 is
 different from how the notation has been used elsewhere in the
