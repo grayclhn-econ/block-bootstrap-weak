@@ -187,14 +187,59 @@ maximal $\{c_{nt}\}$ over each block well-behaved, while this
 paper requires this condition to hold for every possible partition of
 blocks.  This additional restriction is required because the
 Stationary Bootstrap will select the blocks randomly and is similar to
-\citepos{JoD:00b} requirement for the \fclt. Similarly, our assumption
-on the dispersion of the individual means, $(\mu_{nt} - \bar\mu_n)^2$, is
-slightly stronger than \citepos{GoW:02} and \citepos{GoJ:03} to
-accommodate larger block sizes.%
-\footnote{Note that this is one reason that we are presenting our
-  results using general triangular-array notation: to allow for the
-  means to change over time for comparison with \citepos{GoW:02} and
-  \citepos{GoJ:03} results.}
+\citepos{JoD:00b} requirement for the \fclt.
+
+The assumption on the dispersion of the individual means,
+$(\mu_{nt} - \bar\mu_n)^2$, is the same as \citepos{GoW:02} and
+\citepos{GoJ:03} when the expected block length is $o(\sqrt{n})$. When
+the blocks are longer than $o(\sqrt{n})$, a case that \citet{GoW:02}
+and \citet{GoJ:03} do not consider, the dispersion must be smaller.
+To see these implications of this assumption, it is helpful to
+consider a simple example: a stochastic process with a single break of
+size $\Delta_n$ at time $T_n$,
+\begin{equation*}
+\mu_{nt} =
+\begin{cases}
+  \mu & \text{if } t \leq T_n \\
+  \mu + \Delta_n & \text{otherwise}
+\end{cases}
+\end{equation*}
+A small amount of algebra gives the relationship,
+\begin{equation*}
+  \sum_{t=1}^n (\mu_{nt} - \bar \mu_n)^2
+  = T_n (n - T_n) \Delta_n^2 / n \equiv D_n;
+\end{equation*}
+we have defined $D_n$ to minimize notation in the subsequent
+discussion.  For the Moving and Circular Block Bootstraps,
+Theorem~\ref{T1}'s Assumption 2 holds if $D_n = o(n / M_n^2)$, and for
+the Stationary Bootstrap the same relationship must hold for the
+expected block length. If $\Delta_n = \Delta_0$ and $T_n = \pi n$ for
+some constants $\Delta_0$ and $\pi$ and for all $n$, then
+$D_n \approx \Delta_0^2 \, c (1 - c) \, n$ and Assumption~2 fails to
+hold. These values of $\Delta_n$ and $T_n$ describe a scenario where
+there is a break large enough that its timing could be precisely
+estimated \citep[as in][]{Bai:94}, but the break is ignored and the
+bootstrap is applied to the entire dataset.
+
+We can also use the same DGP to produce scenarios where
+Theorem~\ref{T1}'s Assumption~2 is satisfied.  The first mimics a
+setting where the break is estimated and the bootstrap is applied to
+the post-break sample, but a small number of pre-break observations
+are accidentally included in the data set as well. Here
+$\Delta_n = \Delta_0$ and $T_n = T_0$ for some finite $T_0$. In this
+case, Assumption 2 holds hold as long as $M_n = o(\sqrt{n})$.
+Similarly, if the break is moderate with unknown timing in the sense
+of \citet{ElM:07}, so $\Delta_n = \Delta / \sqrt{n}$ and
+$T_n = \pi n$, then $D_n \approx \Delta c (1 - c)$ and Assumption 2
+again holds as long as $M_n = o(\sqrt{n})$. Consequently, block sizes
+of length $o(\sqrt{n})$ ensure that the conditions of
+Theorem~\ref{T1}'s when there is a moderate amount of
+heterogeneity---either because the sample is chosen to lie after a
+large break estimated break or because any breaks are smaller in
+magnitude and, consequently, potentially difficult to detect. When the
+degree of heterogeneity is very small or nonexistent, so
+$\sum_t (\mu_{nt} - \bar \mu_n)^2$ grows even slower, then larger
+block lengths can also satisfy Assumption 2.
 
 Theorem~\ref{T1} relies on a general insight about the
 variance of the sample mean under the bootstrap-induced
