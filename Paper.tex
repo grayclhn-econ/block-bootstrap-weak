@@ -710,7 +710,7 @@ completing the proof.\qed
   \item $\max_{i=1,\dots,J_n} M_{ni} /
   \ell_n^{1+\epsilon} \to^p 0$ as $n \to \infty$ for any positive
   $\epsilon$, and
-  \item $\sum_{i=1}^{J_n} M_{ni}^2 / n^2 \to^p 0$.
+  \item $\sum_{i=1}^{J_n} M_{ni}^2 = O_p(n/p_n)$.
   \end{enumerate}
 \end{lem}
 
@@ -766,9 +766,17 @@ completing the proof.\qed
   as well.
 
   The proof of part 4 is the same as part 2, making the obvious
-  substitutions. Part 5 holds because $\sum_{i=1}^{J_n} M_{ni}^2/n^2
-  \leq \max_{i=1,\dots,J_n} M_{ni}/n$ which converges to zero in
-  probability by part 2.
+  substitutions.
+  Using the same argument as in part 2 of this Lemma, it suffices to
+  prove that
+  $\sum\nolimits_{i=1}^{\lfloor C n p_n \rfloor} M_{ni}^2 =
+  O_p(n/p_n)$ where $C$ is an arbitrary constant greater than 1.  The
+  LLN implies that
+  \begin{equation*}
+    \tfrac{1}{C n p_n} \sum\nolimits_{i=1}^{\lfloor C n p_n \rfloor}
+    M_{ni}^2 = \tfrac{2 - p_n}{p_n^2} + o_p(\tfrac{2 - p_n}{p_n^2})
+  \end{equation*}
+  and the result follows immediately.
 \end{proof}
 
 \begin{lem}\label{L2}
