@@ -193,12 +193,13 @@ Stationary Bootstrap will select the blocks randomly and is similar to
 
 The assumption on the dispersion of the individual means,
 $(\mu_{nt} - \bar\mu_n)^2$, is the same as \citepos{GoW:02} and
-\citepos{GoJ:03} when the expected block length is $o(\sqrt{n})$. When
-the blocks are longer than $o(\sqrt{n})$, a case that \citet{GoW:02}
+\citepos{GoJ:03} under their additional requirement that the
+expected block length be $o(\sqrt{n})$. When
+the blocks are larger than $o(\sqrt{n})$, a case that \citet{GoW:02}
 and \citet{GoJ:03} do not consider, the dispersion must be smaller.
 To see these implications of this assumption, it is helpful to
 consider a simple example: a stochastic process with a single break of
-size $\Delta_n$ at time $T_n$,
+size $\Delta_n$ at time $T_n$, implying
 \begin{equation*}
 \mu_{nt} =
 \begin{cases}
@@ -233,15 +234,15 @@ case, Assumption 2 holds hold as long as $M_n = o(\sqrt{n})$.
 Similarly, if the break is moderate with unknown timing in the sense
 of \citet{ElM:07}, so $\Delta_n = \Delta / \sqrt{n}$ and
 $T_n = \pi n$, then $D_n \approx \Delta c (1 - c)$ and Assumption 2
-again holds as long as $M_n = o(\sqrt{n})$. Consequently, block sizes
-of length $o(\sqrt{n})$ ensure that the conditions of
-Theorem~\ref{T1}'s when there is a moderate amount of
+again holds as long as $M_n = o(\sqrt{n})$. Consequently, using block sizes
+of length $o(\sqrt{n})$ ensures that Theorem 1's assumptions on the
+dispersion of the $\mu_{nt}$ hold when there is a moderate amount of
 heterogeneity---either because the sample is chosen to lie after a
 large break estimated break or because any breaks are smaller in
 magnitude and, consequently, potentially difficult to detect. When the
 degree of heterogeneity is very small or nonexistent, so
 $\sum_t (\mu_{nt} - \bar \mu_n)^2$ grows even slower, then larger
-block lengths can also satisfy Assumption 2.
+block lengths can also satisfy this condition.
 
 Theorem~\ref{T1} relies on a general insight about the
 variance of the sample mean under the bootstrap-induced
