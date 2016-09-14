@@ -3,9 +3,9 @@
 .DELETE_ON_ERROR:
 
 replies = $(patsubst %.tex,%.pdf,$(wildcard subs/*/*.tex))
-all: Paper.pdf Appendix.pdf $(replies)
+all: Paper.pdf Appendix.pdf Paper_diffed.pdf $(replies)
 
-Appendix.pdf Paper.pdf: %.pdf: %.tex preamble.tex VERSION.tex
+Appendix.pdf Paper.pdf Paper_diffed.pdf: %.pdf: %.tex preamble.tex VERSION.tex
 	texi2dvi $< -p -b -q -c
 
 $(wildcard subs/ETr2/*.tex): preamble.tex subs/ETr2/summary
