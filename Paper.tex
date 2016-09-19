@@ -875,34 +875,37 @@ Under the conditions of Theorem~\ref{T1},
 and $\bar \mu_n^{*} = \E^{*} \bar \mu_n^{*} + o_{L_2}(n^{-1/2})$.
 \end{lem}
 \begin{proof}
-  Since the blocks are independent and
-  $\E^{*} \bar\mu_n^{*} = \bar\mu_n$ under the stationary bootstrap,
-  the result on $\bar\mu_n^{*}$ follows from~\eqref{eq:40}. To
-  show~\eqref{eq:40}, observe that
+  The second result, on $\bar\mu_n^*$ is an immediate implication of
+  Equation~\eqref{eq:40}. To show~\eqref{eq:40}, observe that
   \begin{align*}
     \E \Big(\sum_{j=1}^{J_n} &\Big( \sum_{t= K_{n,j-1} +1}^{K_{nj}}
     (\mu_{nt}^{*} - \bar \mu_n)\Big)^2\Big)= \\
-    &= \E\Big(\sum_{j=1}^{J_n}\sum_{s,t = K_{n,j-1}+1}^{K_{nj}}
+    &= \E\Big(\sum_{j=1}^{J_n} \big\lvert \sum_{s,t = K_{n,j-1}+1}^{K_{nj}}
     \E \big((\mu_{ns}^{*} - \bar{\mu}_n)
-    (\mu_{nt}^{*} - \bar{\mu}_n) \mid \Ms \big)\Big)\\
-    &= \E\Big( \sum_{j=1}^{J_n}
-    \sum_{k,l = -n}^{n} \tfrac{1}{n} \sum_{\tau=0}^{n-1}
+    (\mu_{nt}^{*} - \bar{\mu}_n) \mid \Ms \big) \big\rvert \Big)\\
+    &\leq \E\Big( \sum_{j=1}^{J_n}
+    \sum_{k,l = -n}^{n} \tfrac{1}{n} \sum_{\tau=0}^{n-1} \big\lvert
     (\mu_{n,\tau+k} - \bar{\mu}_n) (\mu_{n,\tau+l} - \bar{\mu}_n) \;
-    1\{ \tau + k, \tau + l \in I_n(\tau, M_{nj})\}\Big)\\
-    &\leq \E\Big(\sum_{j=1}^{J_n}
-    \Big(\sum_{k = -n}^{n} \Big(\tfrac{1}{n} \sum_{\tau=0}^{n-1}
+    1\{ \tau + k, \tau + l \in I_n(\tau, M_{nj})\} \big\rvert \Big)\\
+    &\leq \E\Big(\sum_{j=1}^{J_n} \Big[
+    \sum_{k = -n}^{n} \big(\tfrac{1}{n} \sum_{\tau=0}^{n-1}
     (\mu_{n,\tau+k} - \bar{\mu}_n)^2
-    1\{ \tau + k \in I_n(\tau, M_{nj})\}\Big)^{1/2}\Big)^{2}\Big)\\
+    1\{ \tau + k \in I_n(\tau, M_{nj})\}\big)^{1/2}\Big]^{2}\Big)\\
     &= \E\Big(\sum_{j=1}^{J_n}
     M_{nj}^2 \Big\lvert \tfrac{1}{n} \sum_{\tau=0}^{n-1}
     (\mu_{n,\tau} - \bar{\mu}_n)^2 \Big\lvert\Big)\\
     &= o(n p_n).
   \end{align*}
-  The first line follows from the LIE. The second exploits the
-  fact that the conditional expectation in the previous line
-  just averages over the block's starting period. The
-  inequality is an application of the Cauchy-Schwarz inequality.
-  The next line holds because the summation
+  The first equality follows from the LIE. The first inequality
+  exploits the fact that the conditional expectation in the previous
+  expression averages over the block's starting period but treats
+  every other random variable as contstant. (The argument of the
+  indicator function and the indices of the summations are
+  deliberately chosen to accomodate blocks that include observations
+  from both the beginning and the end of the series.) The second
+  inequality is an application of the Cauchy-Schwarz inequality to the
+  inner-most summation. The next equality holds because the
+  summation
   \[
     \sum_{\tau=0}^{n-1} (\mu_{n,\tau+k} - \bar{\mu}_n)^2
     1\{ \tau + k \in I_n(\tau, M_{nj})\}
