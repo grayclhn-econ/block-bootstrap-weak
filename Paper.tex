@@ -934,14 +934,15 @@ $\pr^*[ |\hat\sigma_n^{*2} - \sigma^2| > \epsilon] \to^p 0$.
   Lemma~\ref{L6}, and
   satisfies the \lln. (See~\citealp{Dav:94}, Theorem 19.7.)
   For~\eqref{eq:26}, observe that
-  \begin{multline*}
+  \begin{align*}
     \Big| \sum_{j=1}^{J_n} (Z_{nj}^{*2} - Z_{nj}^{\prime*2}) \Big|
-    \leq 2 \Big(\sum_{j=1}^{J_n} Z_{nj}^{*2} \Big)^{1/2}
+    &= \Big| \sum_{j=1}^{J_n} \big(Z_{nj}^{*} - \big[Z_{nj}^{*} + \tfrac{1}{\sqrt{n}} \sum_{t=K_{n,j-1}+1}^{K_{nj}} (\bar X_n - \mu_{nt}^*)\big]^2\big) \Big| \\
+    &\leq 2 \Big(\sum_{j=1}^{J_n} Z_{nj}^{*2} \Big)^{1/2}
     \Big(\tfrac{1}{n} \sum_{j=1}^{J_n} \Big( \sum_{t= K_{n,j-1} + 1}^{K_{nj}}
-    (\mu_{nt}^{*} - \bar X_n)\Big)^2 \Big)^{1/2} \\
-    + \tfrac{1}{n} \sum_{j=1}^{J_n} \Big( \sum_{t= K_{n,j-1} + 1}^{K_{nj}}
+    (\mu_{nt}^{*} - \bar X_n)\Big)^2 \Big)^{1/2}\\
+    &\quad + \tfrac{1}{n} \sum_{j=1}^{J_n} \Big( \sum_{t= K_{n,j-1} + 1}^{K_{nj}}
     (\mu_{nt}^{*} - \bar X_n)\Big)^2
-  \end{multline*}
+  \end{align*}
   from the Cauchy-Schwarz inequality. Lemma~\ref{L5}, along
   with~\eqref{eq:17} and~\eqref{eq:25}, implies that
   $\sum_j Z_{nj}^{*2} = O_p(1)$. Lemma~\ref{L3} implies that
