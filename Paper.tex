@@ -1068,14 +1068,20 @@ smaller block size that satisfies $\ell_n J_n / n \to^p 0$.
     \lim_{C \to \infty} \limsup_{n \to \infty} \sup_{\substack{\tau = 0,\dots,n-1 \\ m'=1,\dots,n}}
     \E\Big(\max_{m = 1,\dots,m'} (n \, Z^*_n(\tau, m)^2 / m') \\
     \times \ind\Big\{\max_{m = 1,\dots,m'} n \, Z^*_n(\tau, m)^2 / m' > C\Big\}\Big)
-    = 0,
+    = 0.
   \end{multline}
-  making the family of random variables $\{\max_{m=1,\dots,m'}
-  Z^{*}_n(\tau, m)^2 n / m'; \tau, m', n\}$ uniformly integrable.
+  Moreover, the families of random variables
+  $\{\max_{m=1,\dots,m'} Z^{*}_n(\tau, m)^2 n / m'; \tau, m', n\}$ and
+  $\{\max_{m=1,\dots,M_{nj}} Z^{*}_{nj}(u_{nj}, m)^2 n / M_{nj}; j, n\}$ are uniformly integrable.
 \end{lem}
 
 \begin{proof}
-  We will first show that, for every $\epsilon > 0$ and large enough
+  We will just present a proof of~\eqref{eq:30}. Uniform integrability
+  of the first family of random variables is simply a restatement of
+  that expression and unifom integrability of $Z_{nj}^{*2} n / M_{nj}$
+  follows an abbreviated version of the proof of~\eqref{eq:30}.
+
+  First we will show that, for every $\epsilon > 0$ and large enough
   $n$, there exists an $\epsilon' > 0$ with the property that
   \begin{equation}\label{eq:31}
     \E \Big(\ind(A) \times \max_{m = 1,\dots,m'} Z^*_n(\tau, m)^2 n / m'\Big) < \epsilon
