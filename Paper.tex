@@ -1150,7 +1150,7 @@ smaller block size that satisfies $\ell_n J_n / n \to^p 0$.
   \sum_{j=J(\tau)}^{J(\tau+m')-1} M_{nj}^2/n^2 \Big] \\
   &\leq (3\delta/m') \E (K_{n,J(\tau+m')-1} - \tau)
     + 3\delta \E\Big(\sum_{j=J(\tau)}^{J(\tau+m')-1} M_{nj}^2/n^2 \Big) \\
-  &\quad+ 3(\delta'/n) \E\Big( \Big(\sum_{t \in I_n(u, K_{n,J(\tau)} - \tau)}
+  &\quad+ \tfrac{3\delta'}{nm'} \sum_{u=0}^{n-1}\E\Big( \Big(\sum_{t \in I_n(u, K_{n,J(\tau)} - \tau)}
   (\mu_{nt} - \bar \mu_n)\Big)^2 +
   \sum_{j=J(\tau)+1}^{J(\tau + m')-1}\Big( \sum_{t \in I_n(u,M_{nj})}
   (\mu_{nt} - \bar{\mu}_n) \Big)^2 \Big) \\
