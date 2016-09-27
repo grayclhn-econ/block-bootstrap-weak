@@ -1,7 +1,7 @@
 \documentclass[11pt]{article}
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL Paper_2015-12-31.tex   Wed Sep 14 16:18:38 2016
-%DIF ADD Paper.tex              Wed Sep 14 16:19:05 2016
+%DIF ADD Paper.tex              Mon Sep 26 09:37:57 2016
 \IfFileExists{VERSION.tex}{\input{VERSION}}%
 {\date{Pdf compiled \today. (Version unclear; run `make VERSION.tex'.)}}
 \input{preamble}
@@ -254,7 +254,7 @@ size $\Delta_n$ at time $T_n$:
   \DIFadd{\sum_{t=1}^n (\mu_{nt} - \bar \mu_n)^2
   = T_n (n - T_n) \Delta_n^2 / n \equiv D_n;
 }\end{equation*}
-\DIFadd{we have defined $D_n$ to minimize notation in the subsequent
+\DIFadd{we have introduced $D_n$ to minimize notation in the subsequent
 discussion.  For the Moving and Circular Block Bootstraps,
 Theorem~\ref{T1}'s Assumption 2 holds if $D_n = o(n / M_n^2)$, and for
 the same relationship must hold for the expected block length for the
@@ -262,7 +262,7 @@ Stationary Bootstrap. If $\Delta_n = \Delta_0$ and $T_n = \pi n$ for
 some constants $\Delta_0$ and $\pi$ and for all $n$, then
 $D_n \approx \Delta_0^2 \, c (1 - c) \, n$ and Assumption~2 fails to
 hold. These values of $\Delta_n$ and $T_n$ describe a scenario where
-there is a break large enough that its timing could be precisely
+there is a break large enough that $\pi$ could be precisely
 estimated \mbox{%DIFAUXCMD
 \citep[as in][]{Bai:94}}%DIFAUXCMD
 , but the break is ignored and the
@@ -274,7 +274,7 @@ other parametrizations of this DGP. First, let $\Delta_n = \Delta_0$
 and $T_n = T_0$ for some finite $T_0$. This mimics a setting where a
 researcher intends to apply the bootstrap to a post-break sample, but
 mistakenly includes a small number of pre-break observations as
-well. In this case, Assumption 2 holds hold as long as
+well. In this case, Assumption 2 holds as long as
 $M_n = o(\sqrt{n})$.  Similarly, suppose
 $\Delta_n = \Delta / \sqrt{n}$ and $T_n = \pi n$, which mimics a
 setting with a moderate break with unknown timing.  Then
@@ -532,19 +532,8 @@ starting points.
 {%
 \newcommand{\Db}[1][j]{D_{n#1}^{*}}
 \newcommand{\Zsum}{\sum_{j=1}^{J_n} \Zb / \sigma_n}
-\DIFaddbegin \DIFadd{Observe that
-}\[
-\DIFadd{\sqrt{n}(\bar X_{n}^{*} -  \E^{*} \bar X_n^{*})
-= \sqrt{n}((\bar{X}_{n}^{*} - \bar{\mu}_{n}^{*}) - \E^{*} (\bar X_n^{*} - \bar{\mu}_n^{*}))
-+ \sqrt{n}(\bar{\mu}_{n}^{*} - \E^{*} \bar{\mu}_n^{*}).
-}\]
-\DIFadd{Lemma~\ref{L3} implies that the last term is $o_{L_2}(1)$, so we can assume that
-$\mu_{nt}$ is constant in $t$ for each $n$ for the proof of normality. Convergence
-in probability of the bootstrap variance and the bootstrap variance estimator
-holds by Lemma~\ref{L4}.
-}
 
-\DIFaddend First we prove that
+First we prove that
 \begin{equation}\label{eq:37}
   \sup_x \big\lvert \pr^{*}\big[
   \sqrt{n}(\bar X_{n}^{*} -  \bar X_n) \big/ \sigma_n^{*}
@@ -625,8 +614,9 @@ For any $j$ and $m$ and for large enough $n$,
 where $B$ is some finite monotone function such that $B(x) \to 0$ as
 $x \to \infty$; the existence of a function $B$ that satisfies these
 conditions (and does not depend on $n$ or $m$) is a consequence of
-Lemma~\ref{L6},
-Equation~\eqref{eq:30}. Since $J_n$ and $M_{nj}$ are both $\Ms$\DIFdelbegin \DIFdel{-measureable
+Lemma~\ref{L6}\DIFaddbegin\DIFadd{.}\DIFaddend%
+\DIFdelbegin\DIFdel{, Equation~\eqref{eq:30}} \DIFdelend
+Since $J_n$ and $M_{nj}$ are both $\Ms$\DIFdelbegin \DIFdel{-measureable
 }\DIFdelend \DIFaddbegin \DIFadd{-measurable
 }\DIFaddend and independent of the $u_{nj}$'s and $X_{nt}$'s,~\eqref{eq:5} implies that
 \begin{align*}
@@ -911,7 +901,7 @@ completing the proof.\qed
     }&\DIFadd{= \E\Big( \sum_{i=1}^{J_n} \E((M_{ni} - \tfrac{1}{p_n})^2 \mid M_{n1},\dots,M_{n,i-1})\Big)}\\
     &\DIFadd{= \tfrac{1 - p_n}{p_n^2} \E J_n.
   }\end{align*}
-  \DIFadd{Then $\E J_n = (n-1) p_n + 1$, completing the proof.
+  \DIFadd{Finally, $\E J_n = (n-1) p_n + 1$, completing the proof.
 }\DIFaddend \end{proof}
 
 \begin{lem}\label{L2}
@@ -938,34 +928,37 @@ completing the proof.\qed
 \DIFadd{and $\bar \mu_n^{*} = \E^{*} \bar \mu_n^{*} + o_{L_2}(n^{-1/2})$.
 }\end{lem}
 \begin{proof}
-  \DIFadd{Since the blocks are independent and
-  $\E^{*} \bar\mu_n^{*} = \bar\mu_n$ under the stationary bootstrap,
-  the result on $\bar\mu_n^{*}$ follows from~\eqref{eq:40}. To
-  show~\eqref{eq:40}, observe that
+  \DIFadd{The second result, on $\bar\mu_n^*$, is an immediate implication of
+  Equation~}\eqref{eq:40}\DIFadd{. To show~}\eqref{eq:40}\DIFadd{, observe that
   }\begin{align*}
     \DIFadd{\E \Big(\sum_{j=1}^{J_n} }&\DIFadd{\Big( \sum_{t= K_{n,j-1} +1}^{K_{nj}}
     (\mu_{nt}^{*} - \bar \mu_n)\Big)^2\Big)= }\\
-    &\DIFadd{= \E\Big(\sum_{j=1}^{J_n}\sum_{s,t = K_{n,j-1}+1}^{K_{nj}}
+    &\DIFadd{= \E\Big(\sum_{j=1}^{J_n} \big\lvert \sum_{s,t = K_{n,j-1}+1}^{K_{nj}}
     \E \big((\mu_{ns}^{*} - \bar{\mu}_n)
-    (\mu_{nt}^{*} - \bar{\mu}_n) \mid \Ms \big)\Big)}\\
-    &\DIFadd{= \E\Big( \sum_{j=1}^{J_n}
-    \sum_{k,l = -n}^{n} \tfrac{1}{n} \sum_{\tau=0}^{n-1}
+    (\mu_{nt}^{*} - \bar{\mu}_n) \mid \Ms \big) \big\rvert \Big)}\\
+    &\DIFadd{\leq \E\Big( \sum_{j=1}^{J_n}
+    \sum_{k,l = -n}^{n} \tfrac{1}{n} \sum_{\tau=0}^{n-1} \big\lvert
     (\mu_{n,\tau+k} - \bar{\mu}_n) (\mu_{n,\tau+l} - \bar{\mu}_n) \;
-    1\{ \tau + k, \tau + l \in I_n(\tau, M_{nj})\}\Big)}\\
-    &\DIFadd{\leq \E\Big(\sum_{j=1}^{J_n}
-    \Big(\sum_{k = -n}^{n} \Big(\tfrac{1}{n} \sum_{\tau=0}^{n-1}
+    1\{ \tau + k, \tau + l \in I_n(\tau, M_{nj})\} \big\rvert \Big)}\\
+    &\DIFadd{\leq \E\Big(\sum_{j=1}^{J_n} \Big[
+    \sum_{k = -n}^{n} \big(\tfrac{1}{n} \sum_{\tau=0}^{n-1}
     (\mu_{n,\tau+k} - \bar{\mu}_n)^2
-    1\{ \tau + k \in I_n(\tau, M_{nj})\}\Big)^{1/2}\Big)^{2}\Big)}\\
+    1\{ \tau + k \in I_n(\tau, M_{nj})\}\big)^{1/2}\Big]^{2}\Big)}\\
     &\DIFadd{= \E\Big(\sum_{j=1}^{J_n}
     M_{nj}^2 \Big\lvert \tfrac{1}{n} \sum_{\tau=0}^{n-1}
     (\mu_{n,\tau} - \bar{\mu}_n)^2 \Big\lvert\Big)}\\
     &\DIFadd{= o(n p_n).
   }\end{align*}
-  \DIFadd{The first line follows from the LIE. The second exploits the
-  fact that the conditional expectation in the previous line
-  just averages over the block's starting period. The
-  inequality is an application of the Cauchy-Schwarz inequality.
-  The next line holds because the summation
+  \DIFadd{The first equality follows from the LIE. The first inequality
+  exploits the fact that the conditional expectation in the previous
+  expression averages over the block's starting period but treats
+  every other random variable as contstant. (The argument of the
+  indicator function and the indices of the summations are
+  deliberately chosen to accomodate blocks that include observations
+  from both the beginning and the end of the series.) The second
+  inequality is an application of the Cauchy-Schwarz inequality to the
+  inner-most summation. The next equality holds because the
+  summation
   }\[
     \DIFadd{\sum_{\tau=0}^{n-1} (\mu_{n,\tau+k} - \bar{\mu}_n)^2
     1\{ \tau + k \in I_n(\tau, M_{nj})\}
@@ -1002,14 +995,15 @@ $\pr^*[ |\hat\sigma_n^{*2} - \sigma^2| > \epsilon] \to^p 0$.
     + \tfrac{1}{n} \sum_{t=1}^n (\mu_{nt} - \bar X_n)^2
   }\end{displaymath}
   %DIFAUXCMD
-\DIFdel{after several applications of }\DIFdelend \DIFaddbegin \begin{multline*}
+\DIFdel{after several applications of }\DIFdelend \DIFaddbegin \begin{align*}
     \DIFadd{\Big| \sum_{j=1}^{J_n} (Z_{nj}^{*2} - Z_{nj}^{\prime*2}) \Big|
-    \leq 2 \Big(\sum_{j=1}^{J_n} Z_{nj}^{*2} \Big)^{1/2}
+    }&\DIFadd{= \Big| \sum_{j=1}^{J_n} \big(Z_{nj}^{*} - \big[Z_{nj}^{*} + \tfrac{1}{\sqrt{n}} \sum_{t=K_{n,j-1}+1}^{K_{nj}} (\bar X_n - \mu_{nt}^*)\big]^2\big) \Big| }\\
+    &\DIFadd{\leq 2 \Big(\sum_{j=1}^{J_n} Z_{nj}^{*2} \Big)^{1/2}
     \Big(\tfrac{1}{n} \sum_{j=1}^{J_n} \Big( \sum_{t= K_{n,j-1} + 1}^{K_{nj}}
-    (\mu_{nt}^{*} - \bar X_n)\Big)^2 \Big)^{1/2} }\\
-    \DIFadd{+ \tfrac{1}{n} \sum_{j=1}^{J_n} \Big( \sum_{t= K_{n,j-1} + 1}^{K_{nj}}
+    (\mu_{nt}^{*} - \bar X_n)\Big)^2 \Big)^{1/2}}\\
+    &\DIFadd{\quad + \tfrac{1}{n} \sum_{j=1}^{J_n} \Big( \sum_{t= K_{n,j-1} + 1}^{K_{nj}}
     (\mu_{nt}^{*} - \bar X_n)\Big)^2
-  }\end{multline*}
+  }\end{align*}
   \DIFadd{from }\DIFaddend the Cauchy-Schwarz inequality. Lemma~\ref{L5}, along
   with~\eqref{eq:17} and~\eqref{eq:25}, implies that
   $\sum_j Z_{nj}^{*2} = O_p(1)$\DIFdelbegin \DIFdel{;
@@ -1031,7 +1025,7 @@ $\pr^*[ |\hat\sigma_n^{*2} - \sigma^2| > \epsilon] \to^p 0$.
     \Em Z_{n}^{\prime}(\tau,M_{nj})^2  - \sigma^2\Big\}.
   \end{multline}
   Uniform integrability ensures that the convergence in~(\ref{eq:25})
-  holds in $L_1$ \DIFdelbegin \DIFdel{as well }\DIFdelend and Lemma~\ref{L2} then implies that
+  holds in $L_1$ as well and Lemma~\ref{L2} then implies that
   the first term in \eqref{eq:38} converges to zero in probability.
   Lemma~\ref{L5} proves that the second and third
   summation converge to zero in probability.
@@ -1155,10 +1149,11 @@ smaller block size that satisfies $\ell_n J_n / n \to^p 0$.
     \lim_{C \to \infty} \limsup_{n \to \infty} \sup_{\substack{\tau = 0,\dots,n-1 \\ m'=1,\dots,n}}
     \E\Big(\max_{m = 1,\dots,m'} (n \, Z^*_n(\tau, m)^2 / m') \\
     \times \ind\Big\{\max_{m = 1,\dots,m'} n \, Z^*_n(\tau, m)^2 / m' > C\Big\}\Big)
-    = 0,
+    = 0.
   \end{multline}
-  making the family of random variables $\{\max_{m=1,\dots,m'}
-  Z^{*}_n(\tau, m)^2 n / m'; \tau, m', n\}$ uniformly integrable.
+\DIFdel{making the family }\DIFdelend \DIFaddbegin \DIFadd{Moreover, the families }\DIFaddend of random variables
+  $\{\max_{m=1,\dots,m'} Z^{*}_n(\tau, m)^2 n / m'; \tau, m', n\}$ \DIFaddbegin \DIFadd{and
+  $\{\max_{m=1,\dots,M_{nj}} Z^{*}_{nj}(u_{nj}, m)^2 n / M_{nj}; j, n\}$ are }\DIFaddend uniformly integrable.
 \end{lem}
 
 \begin{proof}
@@ -1210,8 +1205,10 @@ smaller block size that satisfies $\ell_n J_n / n \to^p 0$.
   construction. Since $\sum_{t=1}^n (\mu_{nt} - \bar \mu_n)^2 \to
   0$, choose $n$ large enough that this sum is less than
   $\epsilon/9\epsilon'$. The proof that that the first moment is bounded is
-  similar, which completes the proof of~(\ref{eq:35}).
-}%DIFDELCMD < 
+  similar, which completes the }\DIFdelend \DIFaddbegin \DIFadd{We will only present a proof of~}\eqref{eq:30}\DIFadd{. Uniform integrability
+  of the first family of random variables is simply a restatement of
+  that expression and uniform integrability of $Z_{nj}^{*2} n / M_{nj}$
+  follows an abbreviated version of the }\DIFaddend proof of~\DIFdelbegin \DIFdel{(\ref{eq:35})}\DIFdelend \DIFaddbegin \eqref{eq:30}\DIFaddend .
 
 %DIFDELCMD <   %%%
 \DIFdel{For~(\ref{eq:30}), we }\DIFdelend \DIFaddbegin \DIFadd{We }\DIFaddend will first show that, for every $\epsilon > 0$ \DIFaddbegin \DIFadd{and large enough
@@ -1223,42 +1220,32 @@ smaller block size that satisfies $\ell_n J_n / n \to^p 0$.
   for any event \DIFdelbegin \DIFdel{$A \in \Fs_n \equiv \sigma(X_{n1},\dots,X_{nn};\,
   M_{n1},\dots,M_{n,J_n};\, J_n)$ }\DIFdelend \DIFaddbegin \DIFadd{$A \in \Fs_n \equiv \sigma(X_{n1},\dots,X_{nn})$ }\DIFaddend with
   $\pr(A) \leq \epsilon'$. Then we will show that this property
-  implies uniform integrability.\DIFaddbegin \footnote{%DIF > 
-    \DIFadd{The novelty in this part of the proof is the measurability
+  implies uniform integrability.\footnote{%DIF > 
+    The novelty in this part of the proof is the measurability
     requirement. The sigma-field $\Fs_n$ intentionally excludes the
-    random variables that define the bootstrap (block length and block
+    \DIFdelbegin\DIFdel{block start periods $u_{n1},\dots,u_{n,J_n}$}\DIFdelend
+    \DIFaddbegin\DIFadd{random variables that define the bootstrap (block length and block
     start periods) and any $A \in \Fs_n$ is independent of those
-    variables, so $Z_n^{*}(\tau, m)^2$ is not $\Fs_n$-measurable. If
-    $\Fs_n$ were enlarged to include those variables then uniform
-    integrability would be an immediate consequence and would not need
-    to be shown separately. See \mbox{%DIFAUXCMD
-\citet[Theorem 12.9]{Dav:94}}%DIFAUXCMD
-.}} \DIFaddend %
-\DIFdelbegin \footnote{\DIFdel{The novelty in this part of the proof is the measurability
-  requirement. The sigma-field $\Fs_n$ intentionally exlcudes the
-  block start periods $u_{n1},\dots,u_{n,J_n}$, so
-  $Z_n^{*}(\tau, m)^2$ is not $\Fs_n$-measureable. If we instead
-  proved~}%DIFDELCMD < \eqref{eq:31} %%%
-\DIFdel{for all $A \in \Omega_n$, as we did for the
-  first part of the proof, then uniform integrebality would be an
-  immediate consequence and would not need to be shown separately. See
-  \mbox{%DIFAUXCMD
-\citet[Theorem 12.9]{Dav:94}}%DIFAUXCMD
-.}} %DIFAUXCMD
-\addtocounter{footnote}{-1}%DIFAUXCMD
-%DIF < 
-\DIFdelend 
+    variables}\DIFaddend,
+    so $Z_n^{*}(\tau, m)^2$ is not $\Fs_n$-measurable.
+    \DIFdelbegin\DIFdel{If we instead proved~\eqref{eq:31}~for all $A \in \Omega_n$,
+      as we did for the first part of the proof,}\DIFdelend\
+    \DIFaddbegin\DIFadd{If $\Fs_n$ were enlarged to include those variables}\DIFaddend\
+    then uniform integrability would be an immediate consequence
+    \DIFaddbegin\DIFadd{of~\eqref{eq:31}}\DIFaddend\
+    and would not need to be shown separately. See \citet[Theorem 12.9]{Dav:94}.}
 
-  Take an arbitrary \DIFdelbegin \DIFdel{$\epsilon > 0$ }\DIFdelend \DIFaddbegin \DIFadd{$\delta > 0$ }\DIFaddend and a value of \DIFdelbegin \DIFdel{$\epsilon' > 0$
+  Take an arbitrary \DIFdelbegin \DIFdel{$\epsilon > 0$ }\DIFdelend \DIFaddbegin \DIFadd{$\delta > 0$ }\DIFaddend and a value of
+  \DIFdelbegin \DIFdel{$\epsilon' > 0$} \DIFdelend
+  \DIFaddbegin \DIFadd{$\delta' > 0$} \DIFaddend
   so that
-  }\begin{displaymath}
+  \DIFdelbegin\begin{displaymath}
     \DIFdel{\sup_{m'=1,\dots,n} \Em \Big(\ind(A) \sum_{\tau = 0}^{n-1} \tfrac{1}{m'} \max_{m = 1,\dots,m'}
     Z_n(\tau, m)^2\Big) < \epsilon / 6
   }\end{displaymath}
   %DIFAUXCMD
-\DIFdelend \DIFaddbegin \DIFadd{$\delta' > 0$
-  so that
-  }\begin{equation}\DIFadd{\label{eq:35}
+\DIFdelend
+  \DIFaddbegin\begin{equation}\DIFadd{\label{eq:35}
     \sup_{m'=1,\dots,n} \E \Big(\ind(A) \max_{m = 1,\dots,m'}
     Z_n'(\tau, m)^2 n / m' \Big) < \delta
   }\end{equation}
@@ -1275,15 +1262,15 @@ smaller block size that satisfies $\ell_n J_n / n \to^p 0$.
   \end{equation*}
   giving
   \begin{align}
-  \DIFdelbegin %DIFDELCMD < \Em \Em%%%
-\DIFdel{^* }\DIFdelend \DIFaddbegin \E  \DIFaddend \Big(&\ind(A) \times \max_{m = 1,\dots,m'} n \, Z^*_n(\tau, m)^2 / m'\Big)
+  \DIFdelbegin
+\E_{\DIFdel{\mathcal{M}}}\DIFdel{\Em^* }\DIFdelend \Big(&\ind(A) \times \max_{m = 1,\dots,m'} n \, Z^*_n(\tau, m)^2 / m'\Big)
   \notag \\
-  &\leq 3 \DIFaddbegin \E\Big[ \DIFaddend \Em\DIFdelbegin %DIFDELCMD < \Em%%%
-\DIFdel{^* }\DIFdelend \DIFaddbegin \DIFadd{^{*} }\DIFaddend \Big[\ind(A) \tfrac{n}{m'}\max_{m = 1,\dots, m'}
+  &\leq 3\; \E_{\DIFdelbegin\DIFdel{\mathcal{M}}\DIFdelend} \DIFadd{\Big[}\DIFaddend
+  \Em^*\Big[\ind(A) \tfrac{n}{m'}\max_{m = 1,\dots, m'}
   \Big(Z_n^*(\tau, K_{n,J(\tau)} - \tau) + \sum_{j=J(\tau)+1}^{J(\tau + m)-1} Z_{nj}^*\Big)^2\Big]
   \notag \\
-  &\quad + 3 \Em\DIFdelbegin %DIFDELCMD < \Em%%%
-\DIFdel{^* }\DIFdelend \DIFaddbegin \DIFadd{^{*} }\DIFaddend \big[\ind(A) \tfrac{n}{m'}
+  &\quad + 3 \; \E_{\DIFdelbegin\DIFdel{\mathcal{M}}\DIFdelend}
+  \Em^* \big[\ind(A) \tfrac{n}{m'}
   \max_{m=1,\dots,m'} Z_n^*(K_{n,J(\tau+m)-1}, m - K_{n,J(\tau + m)-1})^2 \big]\DIFaddbegin \Big]\DIFaddend \label{eq:6}
   \end{align}
   almost surely.
@@ -1292,39 +1279,34 @@ smaller block size that satisfies $\ell_n J_n / n \to^p 0$.
   inequality for martingales \citep[see][Theorem 15.15, for
   example]{Dav:94} along with the construction of $Z_{nj}^{*}$ gives
   a bound for the first term on the \allcaps{RHS} of~\eqref{eq:6},
-  \DIFdelbegin \begin{multline*}
-  \DIFdel{\Em \Em^* \Big[\ind(A) \tfrac{n}{m'}\max_{m = 1,\dots, m'}
-  \Big(Z_n^*(\tau, K_{n,J(\tau)} - \tau) + \sum_{j=J(\tau)+1}^{J(\tau + m)-1} Z_{nj}^*\Big)^2\Big] }\\
-  \DIFdel{\leq \tfrac{1}{m'} \sum_{u = 0}^{n-1} \Big\{\Em\big[\ind(A) Z_n(u, K_{n,J(\tau)} - \tau)^2\big] +
-  \sum_{j=J(\tau)+1}^{J(\tau + m')-1} \Em \big[\ind(A) Z_n(u, M_{nj})^2}]\DIFdel{\Big\}
-  }\end{multline*}
-  %DIFAUXCMD
-\DIFdel{and this term is less than $\epsilon/6$ }\DIFdelend \DIFaddbegin \begin{align*}
-  \DIFadd{\E \Em^* }& \DIFadd{\Big[\ind(A) \tfrac{n}{m'}\max_{m = 1,\dots, m'}
+\DIFaddbegin \begin{align*}
+  \E_{\DIFdelbegin\DIFdel{\mathcal{M}}\DIFdelend} \Em^* & \Big[\ind(A) \tfrac{n}{m'}\max_{m = 1,\dots, m'}
   \Big(Z_n^*(\tau, K_{n,J(\tau)} - \tau)
-  + \sum_{j=J(\tau)+1}^{J(\tau + m)-1} Z_{nj}^*\Big)^2\Big] }\\
-  &\DIFadd{\leq \tfrac{1}{m'} \sum_{u = 0}^{n-1} \E \Big[\Em \big[
+  + \sum_{j=J(\tau)+1}^{J(\tau + m)-1} Z_{nj}^*\Big)^2\Big]\\
+  &\leq \tfrac{1}{m'} \sum_{u = 0}^{n-1} \DIFadd{\E \Big[}\Em \big[
   \ind(A) Z_n(u, K_{n,J(\tau)} - \tau)^2\big] +
-  \sum_{j=J(\tau)+1}^{J(\tau + m')-1} \Em \big[\ind(A) Z_n(u, M_{nj})^2}]\DIFadd{\Big] }\\
+  \sum_{j=J(\tau)+1}^{J(\tau + m')-1} \Em \big[\ind(A) Z_n(u, M_{nj})^2]\DIFadd{\Big] }\\
   &\DIFadd{\leq \tfrac{3}{m'} \sum_{u = 0}^{n-1} \E\Big[\Em\big[
   \ind(A) Z'_n(u, K_{n,J(\tau)} - \tau)^2\big]
   + \tfrac{1}{n} \Pm[A] \Big(\sum_{t \in I_n(u, K_{n,J(\tau)} - \tau)}
   (\mu_{nt} - \bar \mu_n)\Big)^2 }\\
   & \DIFadd{\quad+ \sum_{j=J(\tau)+1}^{J(\tau + m')-1}
-  \Em \big[\ind(A) Z_n'(u, M_{nj})^2}]
-  \DIFadd{+ \tfrac{1}{n} \Pm[A]
+  \Em \big[\ind(A) Z_n'(u, M_{nj})^2]
+  + \tfrac{1}{n} \Pm[A]
   \sum_{j=J(\tau)+1}^{J(\tau + m')-1}\Big( \sum_{t \in I_n(u,M_{nj})}
   (\mu_{nt} - \bar{\mu}_n) \Big)^2 }\\
   & \DIFadd{\quad+ \Em\big( \ind(A) Z_n'(u, n)^2 \big)
   \sum_{j=J(\tau)}^{J(\tau+m')-1} M_{nj}^2/n^2 \Big] }\\
   &\DIFadd{\leq (3\delta/m') \E (K_{n,J(\tau+m')-1} - \tau)
     + 3\delta \E\Big(\sum_{j=J(\tau)}^{J(\tau+m')-1} M_{nj}^2/n^2 \Big) }\\
-  &\DIFadd{\quad+ 3(\delta'/n) \E\Big( \Big(\sum_{t \in I_n(u, K_{n,J(\tau)} - \tau)}
+  &\DIFadd{\quad+ \tfrac{3\delta'}{nm'} \sum_{u=0}^{n-1}
+    \E\Big( \Big(\sum_{t \in I_n(u, K_{n,J(\tau)} - \tau)}
   (\mu_{nt} - \bar \mu_n)\Big)^2 +
   \sum_{j=J(\tau)+1}^{J(\tau + m')-1}\Big( \sum_{t \in I_n(u,M_{nj})}
   (\mu_{nt} - \bar{\mu}_n) \Big)^2 \Big) }\\
   & \DIFadd{< C_1 \delta + C_2 p_n \delta'
   }\end{align*}
+\DIFdel{and this term is less than $\epsilon/6$ }\DIFdelend 
   \DIFadd{for some finite constants $C_1$ and $C_2$.
   The second inequality comes from writing
   }\begin{align*}
@@ -1337,7 +1319,7 @@ smaller block size that satisfies $\ell_n J_n / n \to^p 0$.
   }\end{align*}
   \DIFadd{the third follows }\DIFaddend by construction of $A$
   \DIFdelbegin \DIFdel{.
-  }\DIFdelend \DIFaddbegin \DIFadd{and fourth follows from an argument similar to Lemma~\ref{L3}.
+  }\DIFdelend \DIFaddbegin \DIFadd{and the fourth follows from an argument similar to Lemma~\ref{L3}.
 }
 
   \DIFaddend For the second term on the \allcaps{RHS} \DIFaddbegin \DIFadd{of}\DIFaddend ~\eqref{eq:6}, use the
@@ -1350,15 +1332,15 @@ smaller block size that satisfies $\ell_n J_n / n \to^p 0$.
 \DIFdelend ^* \big[\ind(A)
   \max_{m=1,\dots, \min(M_{nj}, m' - K_{n,j-1})} Z_n^*(K_{n,j}, m)^2 \big]\DIFaddbegin \Big) \DIFaddend \\
   &\leq \DIFaddbegin \E \Big(\DIFaddend \sum_{j=J(\tau) + 1}^{J(\tau+m')} \DIFdelbegin %DIFDELCMD < \tfrac{M_{nj}}{m'} %%%
-\DIFdelend \DIFaddbegin \tfrac{1}{m'} \DIFaddend \sum_{u=0}^{n-1} \Em \big[\ind(A)
+\DIFdelend \tfrac{\DIFdelbegin\DIFdel{M_{nj}}\DIFdelend\DIFaddbegin\DIFadd{1}\DIFaddend}{m'} \sum_{u=0}^{n-1} \Em \big[\ind(A)
   \max_{m=1,\dots,\min(M_{nj}, m' - K_{n,j-1})} Z_n(u, m)^2 \DIFdelbegin \DIFdel{/ M_{nj} }\DIFdelend \big]\DIFaddbegin \Big) \DIFaddend \\
-  &\leq \DIFaddbegin \E \Big(\DIFaddend \sum_{j=J(\tau) + 1}^{J(\tau+m')} \DIFdelbegin \DIFdel{\epsilon \cdot \min}\DIFdelend \DIFaddbegin \tfrac{3}{m'} \DIFadd{\sum_{u=0}^{n-1} }\Big\{
-  \Em \big[\ind\DIFaddend (\DIFdelbegin \DIFdel{M_{nj}}\DIFdelend \DIFaddbegin \DIFadd{A)
-  \max_{m=1,\dots,\min(M_{nj}, m' - K_{n,j-1})} Z_n'(u}\DIFaddend , m\DIFdelbegin \DIFdel{' }\DIFdelend \DIFaddbegin \DIFadd{)^2 }\big] \\
-  &\quad \DIFadd{+
-  }\tfrac{1}{n} \Pm[A] \DIFadd{\max_{m = 1,\dots,\min(M_{nj}, m'-K_{n,j-1})}
-  }\Big(\DIFadd{\sum_{t \in I_n(u,m)} (\mu_{nt} }\DIFaddend - \DIFdelbegin \DIFdel{K_{n,j-1}}\DIFdelend \DIFaddbegin \bar{\mu}\DIFadd{_n}\DIFaddend )\DIFdelbegin \DIFdel{/ 6 m}\DIFdelend \DIFaddbegin \Big)\DIFadd{^2 }\\
-  &\quad\DIFadd{+ }\tfrac{\min(M_{nj},m'-K_{n,j-1})^2}{n^2} \Em\DIFadd{( }\ind\DIFadd{(A) Z_n}\DIFaddend '\DIFaddbegin \DIFadd{(u, n)^2 ) }\Big\}\Big)\DIFaddend \\
+  &\leq \DIFdelbegin\DIFdel{\sum_{j=J(\tau) + 1}^{J(\tau+m')} \epsilon \cdot \min(M_{nj}, m' - K_{n,j-1}) / 6 m'}\DIFdelend \\
+  &\leq \DIFaddbegin\DIFadd{\E \Big(\sum_{j=J(\tau) + 1}^{J(\tau+m')} \tfrac{3}{m'} \sum_{u=0}^{n-1} \Big\{
+  \Em \big[\ind(A)
+  \max_{m=1,\dots,\min(M_{nj}, m' - K_{n,j-1})} Z_n'(u, m)^2 \big]}\DIFaddend \\
+  &\quad\DIFaddbegin\DIFadd{+ \tfrac{1}{n} \Pm[A] \max_{m = 1,\dots,\min(M_{nj}, m'-K_{n,j-1})}
+  \Big(\sum_{t \in I_n(u,m)} (\mu_{nt} - \bar{\mu}_n)\Big)^2}\DIFaddend \\
+  &\quad\DIFaddbegin\DIFadd{+ \tfrac{\min(M_{nj},m'-K_{n,j-1})^2}{n^2} \Em( \ind(A) Z_n'(u, n)^2 ) \Big\}\Big)}\DIFaddend \\
   &\leq \DIFdelbegin \DIFdel{\epsilon/6.
   }\DIFdelend \DIFaddbegin \DIFadd{C'_1 \delta + C_2' \delta' p_n
   }\DIFaddend \end{align*}
@@ -1373,13 +1355,13 @@ smaller block size that satisfies $\ell_n J_n / n \to^p 0$.
   $\epsilon'$ so that~\eqref{eq:31} holds for all $A \in \Fs_n$
   s.t. $\pr(A) \leq \epsilon'$, and choose $C_0$ large enough that
   \begin{equation*}
-    \DIFdelbegin %DIFDELCMD < \Pm%%%
-\DIFdelend \DIFaddbegin \DIFadd{\Pr}\DIFaddend \Big[ \max_{m = 1,\dots,m'} n \, Z^*_n(\tau, m)^2 / m' > C_0 \Big] \leq \epsilon'.
+    \pr_{\DIFdelbegin \DIFdel{\mathcal{M}}\DIFdelend}
+    \Big[ \max_{m = 1,\dots,m'} n \, Z^*_n(\tau, m)^2 / m' > C_0 \Big] \leq \epsilon'.
   \end{equation*}
   Markov's inequality guarantees the existence of this $C_0$. Then
   \begin{equation*}
-    \DIFdelbegin %DIFDELCMD < \Em %%%
-\DIFdelend \DIFaddbegin \E \DIFaddend \Big(\max_{m = 1,\dots,m'} n \, Z^*_n(\tau, m)^2 / m'
+    \E_{\DIFdelbegin\DIFdel{\mathcal{M}}\DIFdelend}
+    \Big(\max_{m = 1,\dots,m'} n \, Z^*_n(\tau, m)^2 / m'
     \times \ind\Big\{ \max_{m = 1,\dots,m'} n \, Z^*_n(\tau, m)^2 / m' > C \Big\}\Big) \leq \epsilon
   \end{equation*}
   for all $C > C_0$. Since $\epsilon$ is arbitrary, this completes the proof.

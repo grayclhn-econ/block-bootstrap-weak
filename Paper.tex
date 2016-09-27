@@ -213,7 +213,7 @@ A small amount of algebra gives the relationship,
   \sum_{t=1}^n (\mu_{nt} - \bar \mu_n)^2
   = T_n (n - T_n) \Delta_n^2 / n \equiv D_n;
 \end{equation*}
-we have defined $D_n$ to minimize notation in the subsequent
+we have introduced $D_n$ to minimize notation in the subsequent
 discussion.  For the Moving and Circular Block Bootstraps,
 Theorem~\ref{T1}'s Assumption 2 holds if $D_n = o(n / M_n^2)$, and for
 the same relationship must hold for the expected block length for the
@@ -221,7 +221,7 @@ Stationary Bootstrap. If $\Delta_n = \Delta_0$ and $T_n = \pi n$ for
 some constants $\Delta_0$ and $\pi$ and for all $n$, then
 $D_n \approx \Delta_0^2 \, c (1 - c) \, n$ and Assumption~2 fails to
 hold. These values of $\Delta_n$ and $T_n$ describe a scenario where
-there is a break large enough that its timing could be precisely
+there is a break large enough that $\pi$ could be precisely
 estimated \citep[as in][]{Bai:94}, but the break is ignored and the
 bootstrap is applied to the entire dataset.
 
@@ -230,7 +230,7 @@ other parametrizations of this DGP. First, let $\Delta_n = \Delta_0$
 and $T_n = T_0$ for some finite $T_0$. This mimics a setting where a
 researcher intends to apply the bootstrap to a post-break sample, but
 mistakenly includes a small number of pre-break observations as
-well. In this case, Assumption 2 holds hold as long as
+well. In this case, Assumption 2 holds as long as
 $M_n = o(\sqrt{n})$.  Similarly, suppose
 $\Delta_n = \Delta / \sqrt{n}$ and $T_n = \pi n$, which mimics a
 setting with a moderate break with unknown timing.  Then
@@ -481,16 +481,6 @@ starting points.
 {%
 \newcommand{\Db}[1][j]{D_{n#1}^{*}}
 \newcommand{\Zsum}{\sum_{j=1}^{J_n} \Zb / \sigma_n}
-Observe that
-\[
-\sqrt{n}(\bar X_{n}^{*} -  \E^{*} \bar X_n^{*})
-= \sqrt{n}((\bar{X}_{n}^{*} - \bar{\mu}_{n}^{*}) - \E^{*} (\bar X_n^{*} - \bar{\mu}_n^{*}))
-+ \sqrt{n}(\bar{\mu}_{n}^{*} - \E^{*} \bar{\mu}_n^{*}).
-\]
-Lemma~\ref{L3} implies that the last term is $o_{L_2}(1)$, so we can assume that
-$\mu_{nt}$ is constant in $t$ for each $n$ for the proof of normality. Convergence
-in probability of the bootstrap variance and the bootstrap variance estimator
-holds by Lemma~\ref{L4}.
 
 First we prove that
 \begin{equation}\label{eq:37}
@@ -573,8 +563,7 @@ For any $j$ and $m$ and for large enough $n$,
 where $B$ is some finite monotone function such that $B(x) \to 0$ as
 $x \to \infty$; the existence of a function $B$ that satisfies these
 conditions (and does not depend on $n$ or $m$) is a consequence of
-Lemma~\ref{L6},
-Equation~\eqref{eq:30}. Since $J_n$ and $M_{nj}$ are both $\Ms$-measurable
+Lemma~\ref{L6}. Since $J_n$ and $M_{nj}$ are both $\Ms$-measurable
 and independent of the $u_{nj}$'s and $X_{nt}$'s,~\eqref{eq:5} implies that
 \begin{align*}
 \Em &\sum_{j=1}^{J_n} \Em^{*}\big(Z_{nj}^{*2} \ind\{Z_{nj}^{*2} > \epsilon\}\big) \\
@@ -849,7 +838,7 @@ completing the proof.\qed
     &= \E\Big( \sum_{i=1}^{J_n} \E((M_{ni} - \tfrac{1}{p_n})^2 \mid M_{n1},\dots,M_{n,i-1})\Big)\\
     &= \tfrac{1 - p_n}{p_n^2} \E J_n.
   \end{align*}
-  Then $\E J_n = (n-1) p_n + 1$, completing the proof.
+  Finally, $\E J_n = (n-1) p_n + 1$, completing the proof.
 \end{proof}
 
 \begin{lem}\label{L2}
@@ -876,34 +865,37 @@ Under the conditions of Theorem~\ref{T1},
 and $\bar \mu_n^{*} = \E^{*} \bar \mu_n^{*} + o_{L_2}(n^{-1/2})$.
 \end{lem}
 \begin{proof}
-  Since the blocks are independent and
-  $\E^{*} \bar\mu_n^{*} = \bar\mu_n$ under the stationary bootstrap,
-  the result on $\bar\mu_n^{*}$ follows from~\eqref{eq:40}. To
-  show~\eqref{eq:40}, observe that
+  The second result, on $\bar\mu_n^*$, is an immediate implication of
+  Equation~\eqref{eq:40}. To show~\eqref{eq:40}, observe that
   \begin{align*}
     \E \Big(\sum_{j=1}^{J_n} &\Big( \sum_{t= K_{n,j-1} +1}^{K_{nj}}
     (\mu_{nt}^{*} - \bar \mu_n)\Big)^2\Big)= \\
-    &= \E\Big(\sum_{j=1}^{J_n}\sum_{s,t = K_{n,j-1}+1}^{K_{nj}}
+    &= \E\Big(\sum_{j=1}^{J_n} \big\lvert \sum_{s,t = K_{n,j-1}+1}^{K_{nj}}
     \E \big((\mu_{ns}^{*} - \bar{\mu}_n)
-    (\mu_{nt}^{*} - \bar{\mu}_n) \mid \Ms \big)\Big)\\
-    &= \E\Big( \sum_{j=1}^{J_n}
-    \sum_{k,l = -n}^{n} \tfrac{1}{n} \sum_{\tau=0}^{n-1}
+    (\mu_{nt}^{*} - \bar{\mu}_n) \mid \Ms \big) \big\rvert \Big)\\
+    &\leq \E\Big( \sum_{j=1}^{J_n}
+    \sum_{k,l = -n}^{n} \tfrac{1}{n} \sum_{\tau=0}^{n-1} \big\lvert
     (\mu_{n,\tau+k} - \bar{\mu}_n) (\mu_{n,\tau+l} - \bar{\mu}_n) \;
-    1\{ \tau + k, \tau + l \in I_n(\tau, M_{nj})\}\Big)\\
-    &\leq \E\Big(\sum_{j=1}^{J_n}
-    \Big(\sum_{k = -n}^{n} \Big(\tfrac{1}{n} \sum_{\tau=0}^{n-1}
+    1\{ \tau + k, \tau + l \in I_n(\tau, M_{nj})\} \big\rvert \Big)\\
+    &\leq \E\Big(\sum_{j=1}^{J_n} \Big[
+    \sum_{k = -n}^{n} \big(\tfrac{1}{n} \sum_{\tau=0}^{n-1}
     (\mu_{n,\tau+k} - \bar{\mu}_n)^2
-    1\{ \tau + k \in I_n(\tau, M_{nj})\}\Big)^{1/2}\Big)^{2}\Big)\\
+    1\{ \tau + k \in I_n(\tau, M_{nj})\}\big)^{1/2}\Big]^{2}\Big)\\
     &= \E\Big(\sum_{j=1}^{J_n}
     M_{nj}^2 \Big\lvert \tfrac{1}{n} \sum_{\tau=0}^{n-1}
     (\mu_{n,\tau} - \bar{\mu}_n)^2 \Big\lvert\Big)\\
     &= o(n p_n).
   \end{align*}
-  The first line follows from the LIE. The second exploits the
-  fact that the conditional expectation in the previous line
-  just averages over the block's starting period. The
-  inequality is an application of the Cauchy-Schwarz inequality.
-  The next line holds because the summation
+  The first equality follows from the LIE. The first inequality
+  exploits the fact that the conditional expectation in the previous
+  expression averages over the block's starting period but treats
+  every other random variable as contstant. (The argument of the
+  indicator function and the indices of the summations are
+  deliberately chosen to accomodate blocks that include observations
+  from both the beginning and the end of the series.) The second
+  inequality is an application of the Cauchy-Schwarz inequality to the
+  inner-most summation. The next equality holds because the
+  summation
   \[
     \sum_{\tau=0}^{n-1} (\mu_{n,\tau+k} - \bar{\mu}_n)^2
     1\{ \tau + k \in I_n(\tau, M_{nj})\}
@@ -932,14 +924,15 @@ $\pr^*[ |\hat\sigma_n^{*2} - \sigma^2| > \epsilon] \to^p 0$.
   Lemma~\ref{L6}, and
   satisfies the \lln. (See~\citealp{Dav:94}, Theorem 19.7.)
   For~\eqref{eq:26}, observe that
-  \begin{multline*}
+  \begin{align*}
     \Big| \sum_{j=1}^{J_n} (Z_{nj}^{*2} - Z_{nj}^{\prime*2}) \Big|
-    \leq 2 \Big(\sum_{j=1}^{J_n} Z_{nj}^{*2} \Big)^{1/2}
+    &= \Big| \sum_{j=1}^{J_n} \big(Z_{nj}^{*} - \big[Z_{nj}^{*} + \tfrac{1}{\sqrt{n}} \sum_{t=K_{n,j-1}+1}^{K_{nj}} (\bar X_n - \mu_{nt}^*)\big]^2\big) \Big| \\
+    &\leq 2 \Big(\sum_{j=1}^{J_n} Z_{nj}^{*2} \Big)^{1/2}
     \Big(\tfrac{1}{n} \sum_{j=1}^{J_n} \Big( \sum_{t= K_{n,j-1} + 1}^{K_{nj}}
-    (\mu_{nt}^{*} - \bar X_n)\Big)^2 \Big)^{1/2} \\
-    + \tfrac{1}{n} \sum_{j=1}^{J_n} \Big( \sum_{t= K_{n,j-1} + 1}^{K_{nj}}
+    (\mu_{nt}^{*} - \bar X_n)\Big)^2 \Big)^{1/2}\\
+    &\quad + \tfrac{1}{n} \sum_{j=1}^{J_n} \Big( \sum_{t= K_{n,j-1} + 1}^{K_{nj}}
     (\mu_{nt}^{*} - \bar X_n)\Big)^2
-  \end{multline*}
+  \end{align*}
   from the Cauchy-Schwarz inequality. Lemma~\ref{L5}, along
   with~\eqref{eq:17} and~\eqref{eq:25}, implies that
   $\sum_j Z_{nj}^{*2} = O_p(1)$. Lemma~\ref{L3} implies that
@@ -958,7 +951,7 @@ $\pr^*[ |\hat\sigma_n^{*2} - \sigma^2| > \epsilon] \to^p 0$.
     \Em Z_{n}^{\prime}(\tau,M_{nj})^2  - \sigma^2\Big\}.
   \end{multline}
   Uniform integrability ensures that the convergence in~(\ref{eq:25})
-  holds in $L_1$ and Lemma~\ref{L2} then implies that
+  holds in $L_1$ as well and Lemma~\ref{L2} then implies that
   the first term in \eqref{eq:38} converges to zero in probability.
   Lemma~\ref{L5} proves that the second and third
   summation converge to zero in probability.
@@ -1075,14 +1068,20 @@ smaller block size that satisfies $\ell_n J_n / n \to^p 0$.
     \lim_{C \to \infty} \limsup_{n \to \infty} \sup_{\substack{\tau = 0,\dots,n-1 \\ m'=1,\dots,n}}
     \E\Big(\max_{m = 1,\dots,m'} (n \, Z^*_n(\tau, m)^2 / m') \\
     \times \ind\Big\{\max_{m = 1,\dots,m'} n \, Z^*_n(\tau, m)^2 / m' > C\Big\}\Big)
-    = 0,
+    = 0.
   \end{multline}
-  making the family of random variables $\{\max_{m=1,\dots,m'}
-  Z^{*}_n(\tau, m)^2 n / m'; \tau, m', n\}$ uniformly integrable.
+  Moreover, the families of random variables
+  $\{\max_{m=1,\dots,m'} Z^{*}_n(\tau, m)^2 n / m'; \tau, m', n\}$ and
+  $\{\max_{m=1,\dots,M_{nj}} Z^{*}_{nj}(u_{nj}, m)^2 n / M_{nj}; j, n\}$ are uniformly integrable.
 \end{lem}
 
 \begin{proof}
-  We will first show that, for every $\epsilon > 0$ and large enough
+  We will only present a proof of~\eqref{eq:30}. Uniform integrability
+  of the first family of random variables is simply a restatement of
+  that expression and uniform integrability of $Z_{nj}^{*2} n / M_{nj}$
+  follows an abbreviated version of the proof of~\eqref{eq:30}.
+
+  First we will show that, for every $\epsilon > 0$ and large enough
   $n$, there exists an $\epsilon' > 0$ with the property that
   \begin{equation}\label{eq:31}
     \E \Big(\ind(A) \times \max_{m = 1,\dots,m'} Z^*_n(\tau, m)^2 n / m'\Big) < \epsilon
@@ -1096,8 +1095,9 @@ smaller block size that satisfies $\ell_n J_n / n \to^p 0$.
     start periods) and any $A \in \Fs_n$ is independent of those
     variables, so $Z_n^{*}(\tau, m)^2$ is not $\Fs_n$-measurable. If
     $\Fs_n$ were enlarged to include those variables then uniform
-    integrability would be an immediate consequence and would not need
-    to be shown separately. See \citet[Theorem 12.9]{Dav:94}.} %
+    integrability would be an immediate consequence of~\eqref{eq:31}
+    and would not need to be shown separately. See \citet[Theorem
+    12.9]{Dav:94}.} %
 
   Take an arbitrary $\delta > 0$ and a value of $\delta' > 0$
   so that
@@ -1150,7 +1150,7 @@ smaller block size that satisfies $\ell_n J_n / n \to^p 0$.
   \sum_{j=J(\tau)}^{J(\tau+m')-1} M_{nj}^2/n^2 \Big] \\
   &\leq (3\delta/m') \E (K_{n,J(\tau+m')-1} - \tau)
     + 3\delta \E\Big(\sum_{j=J(\tau)}^{J(\tau+m')-1} M_{nj}^2/n^2 \Big) \\
-  &\quad+ 3(\delta'/n) \E\Big( \Big(\sum_{t \in I_n(u, K_{n,J(\tau)} - \tau)}
+  &\quad+ \tfrac{3\delta'}{nm'} \sum_{u=0}^{n-1}\E\Big( \Big(\sum_{t \in I_n(u, K_{n,J(\tau)} - \tau)}
   (\mu_{nt} - \bar \mu_n)\Big)^2 +
   \sum_{j=J(\tau)+1}^{J(\tau + m')-1}\Big( \sum_{t \in I_n(u,M_{nj})}
   (\mu_{nt} - \bar{\mu}_n) \Big)^2 \Big) \\
@@ -1167,7 +1167,7 @@ smaller block size that satisfies $\ell_n J_n / n \to^p 0$.
     - (m/n) Z'_n(\tau, n),
   \end{align*}
   the third follows by construction of $A$
-  and fourth follows from an argument similar to Lemma~\ref{L3}.
+  and the fourth follows from an argument similar to Lemma~\ref{L3}.
 
   For the second term on the \allcaps{RHS} of~\eqref{eq:6}, use the
   sequence of inequalities
