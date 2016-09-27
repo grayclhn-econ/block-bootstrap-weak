@@ -213,7 +213,7 @@ A small amount of algebra gives the relationship,
   \sum_{t=1}^n (\mu_{nt} - \bar \mu_n)^2
   = T_n (n - T_n) \Delta_n^2 / n \equiv D_n;
 \end{equation*}
-we have defined $D_n$ to minimize notation in the subsequent
+we have introduced $D_n$ to minimize notation in the subsequent
 discussion.  For the Moving and Circular Block Bootstraps,
 Theorem~\ref{T1}'s Assumption 2 holds if $D_n = o(n / M_n^2)$, and for
 the same relationship must hold for the expected block length for the
@@ -221,7 +221,7 @@ Stationary Bootstrap. If $\Delta_n = \Delta_0$ and $T_n = \pi n$ for
 some constants $\Delta_0$ and $\pi$ and for all $n$, then
 $D_n \approx \Delta_0^2 \, c (1 - c) \, n$ and Assumption~2 fails to
 hold. These values of $\Delta_n$ and $T_n$ describe a scenario where
-there is a break large enough that its timing could be precisely
+there is a break large enough that $\pi$ could be precisely
 estimated \citep[as in][]{Bai:94}, but the break is ignored and the
 bootstrap is applied to the entire dataset.
 
@@ -951,7 +951,7 @@ $\pr^*[ |\hat\sigma_n^{*2} - \sigma^2| > \epsilon] \to^p 0$.
     \Em Z_{n}^{\prime}(\tau,M_{nj})^2  - \sigma^2\Big\}.
   \end{multline}
   Uniform integrability ensures that the convergence in~(\ref{eq:25})
-  holds in $L_1$ and Lemma~\ref{L2} then implies that
+  holds in $L_1$ as well and Lemma~\ref{L2} then implies that
   the first term in \eqref{eq:38} converges to zero in probability.
   Lemma~\ref{L5} proves that the second and third
   summation converge to zero in probability.
@@ -1076,7 +1076,7 @@ smaller block size that satisfies $\ell_n J_n / n \to^p 0$.
 \end{lem}
 
 \begin{proof}
-  We will just present a proof of~\eqref{eq:30}. Uniform integrability
+  We will only present a proof of~\eqref{eq:30}. Uniform integrability
   of the first family of random variables is simply a restatement of
   that expression and unifom integrability of $Z_{nj}^{*2} n / M_{nj}$
   follows an abbreviated version of the proof of~\eqref{eq:30}.
