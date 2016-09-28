@@ -6,7 +6,7 @@
 \begin{document}
 \section*{\hfill Reply to referee 3\hfill}
 
-In your letter, you wrote,
+In your report, you wrote,
 \begin{quotation}
   \noindent\textit{``Yes, your array notation is of course needed to
     accommodate the assumption of mean heterogeneity. However, what I
@@ -37,14 +37,15 @@ break size and break timing can affect whether the assumptions
 hold. This section starts half-way through page 4 and is a bit more
 than half a page long.
 
-Working through this example convinced me that the original assumption
+Working through this example revealed that the original assumption
 on the means was too restrictive, so I have also relaxed the
-assumption from $\sum_t (\mu_{nt} - \bar \mu_n)^2) \to 0$ to
+assumption on the the dispersion of the means from
+$\sum_t (\mu_{nt} - \bar \mu_n)^2) \to 0$ to
 $\sum_t (\mu_{nt} - \bar \mu_n)^2) = o(n p_n^2)$ (using notation for
 the stationary bootstrap; the assumption has been relaxed for all
 three of the block bootstraps considered).  This change does not
 affect the mathematical proofs very much: I have added a very simple
-Lemma 3 that shows that the contribution of the $\mu_{nt}$'s to the
+result (Lemma 3) that shows that the contribution of the $\mu_{nt}$'s to the
 second moment of $\bar X^*$ remains asymptotically negligible under
 this assumption and strengthened one of the components of Lemma 1.
 
@@ -53,16 +54,20 @@ last version of the paper) have to be changed a little as well to
 reflect the new assumption on $\mu_{nt}$. The previous version of
 Lemma 6 established that (suitably normalized) $Z_i^2$s are uniformly
 integrable and used that as an intermediate result to show that the
-$Z_i^{*2}$s are also u.i. under the right normalization. The new
+$Z_i^{*2}$s are also u.i.\ under the right normalization. The new
 version skips that intermediate step (the family of $Z_i^2s$ are no
 longer u.i.) but uses components of the original proof to show that
-the $Z_i^{*2}$s are u.i. directly. Changing the proof in this way
-essentially amounts to rearranging the elements of the original proof,
-and invoking the new Lemma 3.
+the $Z_i^{*2}$s are u.i. directly. The relaxed assumption on the
+dispersion of the $\mu_{nt}$s ensures that the blocks are short
+enough that the stronger assumption continues to hold for the
+$\mu_{nt}^*$s.
+Changing the proof in this way essentially amounts to rearranging the
+elements of the original proof and invoking the new Lemma 3.
 
 To help make the changes as clear as possible, I have uploaded a
 pdf based on `latexdiff' that highlights the differences in the
-two versions as a supplemental document.
+two versions as a supplemental document. I have also made a few
+spelling and wording corrections that will be apparent as well.
 
 You also wrote,
 \begin{quotation}
@@ -72,8 +77,7 @@ You also wrote,
 \end{quotation}
 \noindent%
 Yes, thank you, this was an error. I've changed $\mu_n^*$ to
-$E^* \bar X_n^*$ to make the connection with Theorem 1's results
-more apparent.
+$E^* \bar X_n^*$ to highlight the connection with Theorem 1's results.
 
 \end{document}
 
