@@ -778,20 +778,19 @@ completing the proof.\qed
 \end{lem}
 
 \begin{proof}[Proof of Lemma~\ref{L1}]
-  To prove part 1, observe that, for any increasing positive sequence
-  $x_n$ such that $x_n p_n \to \infty$,
+  To prove part 1, take $x$ to be an arbitrary positive number. Then
   \begin{equation*}
-    \pr\Big[\max_{i=1,\dots, \lfloor C n p_n \rfloor} M_{ni} \leq x_n\Big] =
-    (1 - (1 - p_n)^{x_n})^{\lfloor C n p_n \rfloor} \to \lim \exp(-C n p_n (1 - p_n)^{x_n})
+    \pr\Big[\max_{i=1,\dots, \lfloor C n p_n \rfloor} M_{ni} \leq n x \Big]
+    = (1 - (1 - p_n)^{n x})^{\lfloor C n p_n \rfloor}
+    = \exp(-C n p_n e^{-x n p_n}) \times (1 + o(1))
   \end{equation*}
-  and $C n p_n (1 - p_n)^{x_n} \to \lim C n p_n e^{-x_n p_n}$. Now, let
-  $x_n = n x$ for any positive number $x$.  Then
-  \begin{equation*}
-    \pr\Big[\max_{i=1,\dots,\lfloor C n p_n \rfloor} M_{ni}/n \leq x \Big] \to
-    \lim \exp(-C n p_n e^{-n p_n x}) =
-    \exp(0) = 1.
-  \end{equation*}
-  Since $x$ is arbitrary, $\max_{i=1,\dots,\lfloor C n p_n \rfloor} M_{ni} / n \to^p 0$.
+  since $(1 - p_n)^{x/p_n} \to e^{-x}$. In addition, $n p_n e^{-n p_n} \to 0$
+  by assumption, so
+  \begin{align*}
+    \pr\Big[\max_{i=1,\dots, \lfloor C n p_n \rfloor} M_{ni}/n \leq x \Big]
+    \to \exp(0) = 1.
+  \end{align*}
+  Since $x$ is arbitrary, this completes the proof.
 
   For part 2, take $C$ to be an arbitrary constant strictly greater
   than one. For any $x$,
