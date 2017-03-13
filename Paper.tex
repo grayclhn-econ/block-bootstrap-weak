@@ -1075,16 +1075,20 @@ smaller block size that satisfies $\ell_n J_n / n \to^p 0$.
 \end{proof}
 
 \begin{lem}\label{L6}
-  Under the conditions of Theorem~\ref{T1},
+  Under the conditions of Theorem~\ref{T1}, for any positive
+  $\epsilon$ and $\epsilon'$ there exist constants $C_0$ and $n_0$
+  such that
   \begin{multline}\label{eq:30}
-    \lim_{C \to \infty} \limsup_{n \to \infty} \sup_{\substack{\tau = 0,\dots,n-1 \\ m'=1,\dots,n}}
-    \E\Big(\max_{m = 1,\dots,m'} (n \, Z^*_n(\tau, m)^2 / m') \\
+    \pr \Big [ \sup_{\substack{\tau = 0,\dots,n-1 \\ m'=1,\dots,n}}
+    \Em \Big ( \max_{ m = 1, \dots, m' } (n \, Z^*_n(\tau, m)^2 / m' ) \\
     \times \ind\Big\{\max_{m = 1,\dots,m'} n \, Z^*_n(\tau, m)^2 / m' > C\Big\}\Big)
-    = 0.
+    > \epsilon \Big ] < \epsilon'
   \end{multline}
-  Moreover, the families of random variables
+  for all $n > n_0$ and $C > C_0$.
+  Moreover, the families of random variables \\
   $\{\max_{m=1,\dots,m'} Z^{*}_n(\tau, m)^2 n / m'; \tau, m', n\}$ and
-  $\{\max_{m=1,\dots,M_{nj}} Z^{*}_{nj}(u_{nj}, m)^2 n / M_{nj}; j, n\}$ are uniformly integrable.
+  $\{Z^{*2}_{nj} n / M_{nj}; \tau, j, n\}$ are
+  uniformly integrable for $n$ larger than some threshold $n_0$.
 \end{lem}
 
 \begin{proof}
