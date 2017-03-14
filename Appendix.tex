@@ -2,6 +2,8 @@
 \IfFileExists{VERSION.tex}{\input{VERSION}}%
 {\date{Pdf compiled \today. (Version unclear; run `make VERSION.tex'.)}}
 \input{preamble}
+\renewcommand{\theequation}{A.\arabic{equation}}
+
 \begin{document}
 
 \author{Gray Calhoun\thanks{Economics Department, Iowa State
@@ -26,13 +28,13 @@
 
 {%
 \newcommand{\isum}{\sum_{i=0}^{\lfloor n/m \rfloor - 1}}
-\begin{customlem}{6}
+\begin{customlem}{7}
   Suppose the conditions of Theorem~1 hold.
   For any positive $\delta$, there exist positive and finite constants
   $C$, $n_0$, and $\epsilon$ such that,
   for all $n > n_0$, $m = 1,\dots,n$, $\tau = 0,\dots,m$, and $\ell =
   1,\dots,m-1$,
-  \begin{multline}\label{eq:1}\tag{37}
+  \begin{multline}\label{eq:1}\tag{43}
     \E \Big\lvert \isum \big[Z_n'(\tau + i m, m - \ell)^2
     - \E \big(Z_n'(\tau + i m, m - \ell)^2\big) \big]\Big\rvert \\
     \leq 2 \delta + C \cdot \big(\tfrac{m}{n}\big)^{1/2}
@@ -41,12 +43,12 @@
   Also, there exists a constant $C$ and bounded function $D(x)$ with
   $D(x) \to 0$ as $x \to \infty$ such that, for large enough $n$,
   \begin{equation}
-    \label{eq:2}\tag{38}
+    \label{eq:2}\tag{44}
     \E \Big\lvert \isum \E(Z_n'(\tau + i m, m - \ell)^2
     - \sigma^2 \Big\rvert \leq C\, D(\ell).
   \end{equation}
 \end{customlem}
-\setcounter{equation}{39}
+
 Results~\eqref{eq:1} and~\eqref{eq:2} are direct extensions of
 \citepos{Jon:97} Lemmas 5 and 4, respectively, replacing de Jong's
 implicit use of inequalities with explicit inequalities. We can assume
@@ -244,16 +246,16 @@ that $\mu_{nt} = 0$ without loss of generality in these proofs.
   \sum_{t\in I_n(\tau, m')} c_{nt}^2}
 \newcommand{\uitermb}{\sum_{\tau=0}^{n-1} \tfrac{1}{n m'} \max_{m \in 1,\dots,m'} \Big(
   \sum_{t \in I_n(\tau, m)} (X_{nt} - \bar X_n)\Big)^2}
-\begin{customlem}{7}
+\begin{customlem}{8}
   Under the conditions of Theorem~1,
-  \begin{multline}\label{eq:5}\tag{39}
+  \begin{multline}\label{eq:5}\tag{45}
     \lim_{C \to 0} \limsup_{n \to \infty} \sup_{\substack{\tau = 0,\dots,n-1 \\  m' = 1,\dots,n}}
     \E\big(\big(\max_{m=1,\dots,m'} Z'_n(\tau, m)^2 n / m'\big) \\
     \times\ind\{\max_{m=1,\dots,m'} Z'_n(\tau, m)^2 n / m' > C\}\big) = 0.
   \end{multline}
 \end{customlem}
 
-\begin{proof}[Proof of Lemma 7]
+\begin{proof}[Proof of Lemma 8]
   \newcommand{\w}{w_{n}(\tau, m')}
   \newcommand{\sums}[1]{\Big(\sum_{t \in I_{n}(\tau, m)} #1_{nt} \Big)^2}
   \renewcommand{\uiterm}{\max_{m \in 1,\dots,m'} \Big(
