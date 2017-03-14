@@ -243,7 +243,7 @@ Theorem~\ref{T1}'s Assumption 2 holds if $D_n = o(n / M_n^2)$, and for
 the same relationship must hold for the expected block length for the
 Stationary Bootstrap. If $\Delta_n = \Delta_0$ and $T_n = \pi n$ for
 some constants $\Delta_0$ and $\pi$ and for all $n$, then
-$D_n \approx \Delta_0^2 \, c (1 - c) \, n$ and Assumption~2 fails to
+$D_n \approx \Delta_0^2 \,$\DIFdelbegin \DIFdel{$c (1 - c)$}\DIFdelend \DIFaddbegin \DIFadd{$\pi (1 - \pi)$}\DIFaddend$\, n$ and Assumption~2 fails to
 hold. These values of $\Delta_n$ and $T_n$ describe a scenario where
 there is a break large enough that $\pi$ could be precisely
 estimated \citep[as in][]{Bai:94}, but the break is ignored and the
@@ -258,7 +258,7 @@ well. In this case, Assumption 2 holds as long as
 $M_n = o(\sqrt{n})$.  Similarly, suppose
 $\Delta_n = \Delta / \sqrt{n}$ and $T_n = \pi n$, which mimics a
 setting with a moderate break with unknown timing.  Then
-$D_n \approx \Delta c (1 - c)$ and Assumption 2 again holds as long as
+$D_n \approx \Delta$\DIFdelbegin \DIFdel{$c (1 - c)$}\DIFdelend\DIFaddbegin \DIFadd{$\pi (1 - \pi)$}\DIFaddend and Assumption 2 again holds as long as
 $M_n = o(\sqrt{n})$. Consequently, using block sizes of length
 $o(\sqrt{n})$ ensures that Theorem 1's assumptions on the dispersion
 of the $\mu_{nt}$ hold when there is a moderate amount of
