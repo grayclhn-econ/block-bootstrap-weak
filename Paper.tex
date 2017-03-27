@@ -563,37 +563,21 @@ by Lemma~\ref{L6}
 and satisfies the \lln\ (e.g., \citealp{Dav:94}, Theorem 19.7). So
 this sum converges to zero in conditional probability, proving~\eqref{eq:20}.
 
-To prove~\eqref{eq:19}, it suffices to show that
-\begin{equation}\label{eq:21}
-  \Em \sum_{j=1}^{J_n} \Em^{*}\big(Z_{nj}^{*2} \ind\{Z_{nj}^{*2} > \epsilon\}\big) \to^p 0.
-\end{equation}
-For any $j$ and $m$ and for large enough $n$,
-\begin{align}
-\Em \Em^{*}\big((Z_n(u_{nj}, m)^2n/m) &\ind\{Z_n(u_{nj}, m)^2n/m > \epsilon n/m\}\big) \notag \\
-&= \E \big((Z_n^{*}(0, m)^2n/m) \ind\{Z_n^{*}(0, m)^2n/m > \epsilon n/m\}\big) \notag \\
-&\leq B(\epsilon n/m)\label{eq:5}
-\end{align}
-where $B$ is some finite monotone function such that $B(x) \to 0$ as
-$x \to \infty$; the existence of a function $B$ that satisfies these
-conditions (and does not depend on $n$ or $m$) is a consequence of
-Lemma~\ref{L6}. Since $J_n$ and $M_{nj}$ are both $\Ms$-measurable
-and independent of the $u_{nj}$'s and $X_{nt}$'s,~\eqref{eq:5} implies that
-\begin{align*}
-\Em &\sum_{j=1}^{J_n} \Em^{*}\big(Z_{nj}^{*2} \ind\{Z_{nj}^{*2} > \epsilon\}\big) \\
-& = \sum_{j=1}^{J_n} (M_{nj}/n) \Em \Em^{*}
-\big((Z_n(u_{nj}, M_{nj})^2 n/M_{nj})
-\ind\{Z_n(u_{nj}, M_{nj})^2n/M_{nj} > \epsilon n/M_{nj}\}\big) \\
-& \leq \sum_{j=1}^{J_n} (M_{nj}/n) \, B(\epsilon n/M_{nj}) \\
-& \leq \max_{j = 1,\dots,J_n} B(\epsilon n / M_{nj}) \sum_{i=1}^{J_n} M_{ni} / n \\
-& = B(\epsilon n / \max_{j = 1,\dots,J_n} M_{nj}) \\
-& \to^p 0 \text{\ as\ } n \to \infty.
-\end{align*}
-The first equality follows from simple algebra and the definition
-of the $u_{nj}$'s. The first inequality is a
-consequence of~\eqref{eq:5}.  The second equality holds by
-monotonicity of $B$. And convergence in probability holds by
-Lemma~\ref{L1}, completing the proof
-of~\eqref{eq:19}. The Dominated Convergence Theorem and~(\ref{eq:18})
+To prove~\eqref{eq:19}, it suffices (via the LIE and Lemma~\ref{L2})
+to show that
+\begin{equation*}
+  \sum_{j=1}^{J_n} \Em \big ( Z_{nj}^{*2} \ind \{ Z_{nj}^{*2} > \epsilon \} \big ) \to^p 0.
+\end{equation*}
+But note that
+\begin{equation*}
+  \sum_{j=1}^{J_n} \Em \big ( Z_{nj}^{*2} \ind \{ Z_{nj}^{*2} > \epsilon \} \big )
+  \leq \max_{j=1,\dots,J_n} \Em \big ( \tfrac{ n }{ M_{nj} } Z_{nj}^{*2}
+  \ind \{ \tfrac{ n }{ M_{nj} } Z_{nj}^{*2} >
+  \min_{k=1,\dots,J_n} \tfrac{ n }{ M_{nk} } \epsilon \} \big )
+\end{equation*}
+almost surely. Lemmas~\ref{L1} and~\ref{L6} imply that the RHS converges to
+zero in probability as $n \to \infty$
+proving~\eqref{eq:19}. The Dominated Convergence Theorem and~(\ref{eq:18})
 then ensure that
 \begin{equation}\label{eq:22}
   \pr^{*} \Big[\sum_{j=1}^{J_n}
