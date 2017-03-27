@@ -709,35 +709,23 @@ positive integer and let $\gamma_d = d/D$ for $d =
   &\leq  (4/\epsilon^2) \max_{d=1,\dots,D} \E[\sup_{\gamma \in [0,\delta]}
   (1/\delta) | W_n^{*}(\gamma + \gamma_d) - W_n^{*}(\gamma_d) |^2 \\
   &\qquad\qquad\qquad \times \ind\{\sup_{\gamma \in [0,\delta]}
-  (1/\delta) | W_n^{*}(\gamma + \gamma_d) - W_n^{*}(\gamma_d) |^2 > \epsilon^2/4\delta\}].
+  (1/\delta) | W_n^{*}(\gamma + \gamma_d) - W_n^{*}(\gamma_d) |^2 > \epsilon^2/4\delta\}]
 \end{align*}
-Lemma~\ref{L6} implies that
+for large enough $n$. Lemma~\ref{L6} implies that
 \begin{equation*}
   \sup_{\gamma \in [0,\delta]}
   (1/\delta) | W_n^{*}(\gamma + \gamma_d) - W_n^{*}(\gamma_d) |^2
 \end{equation*}
-is uniformly integrable, so an argument similar to that used in the
-proof of Theorem~\ref{T1} shows that there exists a
-finite and monotone function $B$ such that $B(x) \to 0$ as
-$x \to \infty$ and
+is uniformly integrable, so
 \begin{multline*}
-  \E[\sup_{\gamma \in [0,\delta]}
-  (1/\delta) | W_n^{*}(\gamma + \gamma_d) - W_n^{*}(\gamma_d) |^2 \times \\
+  \lim_{\delta \to 0} \limsup_{n\to\infty}\
+  \max_{d=1,\dots,D}
+  \E[\sup_{\gamma \in [0,\delta]} (1/\delta) | W_n^{*}(\gamma + \gamma_d) - W_n^{*}(\gamma_d) |^2
+  \times \\
   \ind\{\sup_{\gamma \in [0,\delta]}
-  (1/\delta) | W_n^{*}(\gamma + \gamma_d) - W_n^{*}(\gamma_d) |^2 > x\}]
-  \leq B(x)
+  (1/\delta) | W_n^{*}(\gamma + \gamma_d) - W_n^{*}(\gamma_d) |^2 > \epsilon^2/4\delta\}]
+  = 0,
 \end{multline*}
-for all $d$ and $\delta$ and all large enough $n$.
-
-As a result,
-\begin{align*}
-  \lim_{\delta \to 0} \limsup_{n\to\infty} \pr[\sup_{\gamma \in [0,1]}
-  \sup_{\gamma' \in [\gamma - \delta, \gamma + \delta]}
-  | W_n^{*}(\gamma) - W_n^{*}(\gamma') | > \epsilon] & \leq
-  \lim_{\delta \to 0} (4/\epsilon^2)
-  B(\epsilon^2/4\delta) \\
-  &= 0,
-\end{align*}
 completing the proof.\qed
 
 \section{Supplemental results}
