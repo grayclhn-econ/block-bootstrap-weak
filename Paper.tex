@@ -563,37 +563,21 @@ by Lemma~\ref{L6}
 and satisfies the \lln\ (e.g., \citealp{Dav:94}, Theorem 19.7). So
 this sum converges to zero in conditional probability, proving~\eqref{eq:20}.
 
-To prove~\eqref{eq:19}, it suffices to show that
-\begin{equation}\label{eq:21}
-  \Em \sum_{j=1}^{J_n} \Em^{*}\big(Z_{nj}^{*2} \ind\{Z_{nj}^{*2} > \epsilon\}\big) \to^p 0.
-\end{equation}
-For any $j$ and $m$ and for large enough $n$,
-\begin{align}
-\Em \Em^{*}\big((Z_n(u_{nj}, m)^2n/m) &\ind\{Z_n(u_{nj}, m)^2n/m > \epsilon n/m\}\big) \notag \\
-&= \E \big((Z_n^{*}(0, m)^2n/m) \ind\{Z_n^{*}(0, m)^2n/m > \epsilon n/m\}\big) \notag \\
-&\leq B(\epsilon n/m)\label{eq:5}
-\end{align}
-where $B$ is some finite monotone function such that $B(x) \to 0$ as
-$x \to \infty$; the existence of a function $B$ that satisfies these
-conditions (and does not depend on $n$ or $m$) is a consequence of
-Lemma~\ref{L6}. Since $J_n$ and $M_{nj}$ are both $\Ms$-measurable
-and independent of the $u_{nj}$'s and $X_{nt}$'s,~\eqref{eq:5} implies that
-\begin{align*}
-\Em &\sum_{j=1}^{J_n} \Em^{*}\big(Z_{nj}^{*2} \ind\{Z_{nj}^{*2} > \epsilon\}\big) \\
-& = \sum_{j=1}^{J_n} (M_{nj}/n) \Em \Em^{*}
-\big((Z_n(u_{nj}, M_{nj})^2 n/M_{nj})
-\ind\{Z_n(u_{nj}, M_{nj})^2n/M_{nj} > \epsilon n/M_{nj}\}\big) \\
-& \leq \sum_{j=1}^{J_n} (M_{nj}/n) \, B(\epsilon n/M_{nj}) \\
-& \leq \max_{j = 1,\dots,J_n} B(\epsilon n / M_{nj}) \sum_{i=1}^{J_n} M_{ni} / n \\
-& = B(\epsilon n / \max_{j = 1,\dots,J_n} M_{nj}) \\
-& \to^p 0 \text{\ as\ } n \to \infty.
-\end{align*}
-The first equality follows from simple algebra and the definition
-of the $u_{nj}$'s. The first inequality is a
-consequence of~\eqref{eq:5}.  The second equality holds by
-monotonicity of $B$. And convergence in probability holds by
-Lemma~\ref{L1}, completing the proof
-of~\eqref{eq:19}. The Dominated Convergence Theorem and~(\ref{eq:18})
+To prove~\eqref{eq:19}, it suffices (via the LIE and Lemma~\ref{L2})
+to show that
+\begin{equation*}
+  \sum_{j=1}^{J_n} \Em \big ( Z_{nj}^{*2} \ind \{ Z_{nj}^{*2} > \epsilon \} \big ) \to^p 0.
+\end{equation*}
+But note that
+\begin{equation*}
+  \sum_{j=1}^{J_n} \Em \big ( Z_{nj}^{*2} \ind \{ Z_{nj}^{*2} > \epsilon \} \big )
+  \leq \max_{j=1,\dots,J_n} \Em \big ( \tfrac{ n }{ M_{nj} } Z_{nj}^{*2}
+  \ind \{ \tfrac{ n }{ M_{nj} } Z_{nj}^{*2} >
+  \min_{k=1,\dots,J_n} \tfrac{ n }{ M_{nk} } \epsilon \} \big )
+\end{equation*}
+almost surely. Lemmas~\ref{L1} and~\ref{L6} imply that the RHS converges to
+zero in probability as $n \to \infty$
+proving~\eqref{eq:19}. The Dominated Convergence Theorem and~(\ref{eq:18})
 then ensure that
 \begin{equation}\label{eq:22}
   \pr^{*} \Big[\sum_{j=1}^{J_n}
@@ -725,35 +709,23 @@ positive integer and let $\gamma_d = d/D$ for $d =
   &\leq  (4/\epsilon^2) \max_{d=1,\dots,D} \E[\sup_{\gamma \in [0,\delta]}
   (1/\delta) | W_n^{*}(\gamma + \gamma_d) - W_n^{*}(\gamma_d) |^2 \\
   &\qquad\qquad\qquad \times \ind\{\sup_{\gamma \in [0,\delta]}
-  (1/\delta) | W_n^{*}(\gamma + \gamma_d) - W_n^{*}(\gamma_d) |^2 > \epsilon^2/4\delta\}].
+  (1/\delta) | W_n^{*}(\gamma + \gamma_d) - W_n^{*}(\gamma_d) |^2 > \epsilon^2/4\delta\}]
 \end{align*}
-Lemma~\ref{L6} implies that
+for large enough $n$. Lemma~\ref{L6} implies that
 \begin{equation*}
   \sup_{\gamma \in [0,\delta]}
   (1/\delta) | W_n^{*}(\gamma + \gamma_d) - W_n^{*}(\gamma_d) |^2
 \end{equation*}
-is uniformly integrable, so an argument similar to that used in the
-proof of Theorem~\ref{T1} shows that there exists a
-finite and monotone function $B$ such that $B(x) \to 0$ as
-$x \to \infty$ and
+is uniformly integrable, so
 \begin{multline*}
-  \E[\sup_{\gamma \in [0,\delta]}
-  (1/\delta) | W_n^{*}(\gamma + \gamma_d) - W_n^{*}(\gamma_d) |^2 \times \\
+  \lim_{\delta \to 0} \limsup_{n\to\infty}\
+  \max_{d=1,\dots,D}
+  \E[\sup_{\gamma \in [0,\delta]} (1/\delta) | W_n^{*}(\gamma + \gamma_d) - W_n^{*}(\gamma_d) |^2
+  \times \\
   \ind\{\sup_{\gamma \in [0,\delta]}
-  (1/\delta) | W_n^{*}(\gamma + \gamma_d) - W_n^{*}(\gamma_d) |^2 > x\}]
-  \leq B(x)
+  (1/\delta) | W_n^{*}(\gamma + \gamma_d) - W_n^{*}(\gamma_d) |^2 > \epsilon^2/4\delta\}]
+  = 0,
 \end{multline*}
-for all $d$ and $\delta$ and all large enough $n$.
-
-As a result,
-\begin{align*}
-  \lim_{\delta \to 0} \limsup_{n\to\infty} \pr[\sup_{\gamma \in [0,1]}
-  \sup_{\gamma' \in [\gamma - \delta, \gamma + \delta]}
-  | W_n^{*}(\gamma) - W_n^{*}(\gamma') | > \epsilon] & \leq
-  \lim_{\delta \to 0} (4/\epsilon^2)
-  B(\epsilon^2/4\delta) \\
-  &= 0,
-\end{align*}
 completing the proof.\qed
 
 \section{Supplemental results}
@@ -1075,149 +1047,186 @@ smaller block size that satisfies $\ell_n J_n / n \to^p 0$.
 \end{proof}
 
 \begin{lem}\label{L6}
-  Under the conditions of Theorem~\ref{T1},
+  Under the conditions of Theorem~\ref{T1}, for any positive
+  $\epsilon$ and $\epsilon'$ there exist constants $C_0$ and $n_0$
+  such that
   \begin{multline}\label{eq:30}
-    \lim_{C \to \infty} \limsup_{n \to \infty} \sup_{\substack{\tau = 0,\dots,n-1 \\ m'=1,\dots,n}}
-    \E\Big(\max_{m = 1,\dots,m'} (n \, Z^*_n(\tau, m)^2 / m') \\
+    \pr \Big [ \sup_{\substack{\tau = 0,\dots,n-1 \\ m'=1,\dots,n}}
+    \Em \Big ( \max_{ m = 1, \dots, m' } (n \, Z^*_n(\tau, m)^2 / m' ) \\
     \times \ind\Big\{\max_{m = 1,\dots,m'} n \, Z^*_n(\tau, m)^2 / m' > C\Big\}\Big)
-    = 0.
+    > \epsilon \Big ] < \epsilon'
   \end{multline}
-  Moreover, the families of random variables
+  for all $n > n_0$ and $C > C_0$.
+  Moreover, the families of random variables \\
   $\{\max_{m=1,\dots,m'} Z^{*}_n(\tau, m)^2 n / m'; \tau, m', n\}$ and
-  $\{\max_{m=1,\dots,M_{nj}} Z^{*}_{nj}(u_{nj}, m)^2 n / M_{nj}; j, n\}$ are uniformly integrable.
+  $\{Z^{*2}_{nj} n / M_{nj}; \tau, j, n\}$ are
+  uniformly integrable for $n$ larger than some threshold $n_0$.
 \end{lem}
 
 \begin{proof}
-  We will only present a proof of~\eqref{eq:30}. Uniform integrability
-  of the first family of random variables is simply a restatement of
-  that expression and uniform integrability of $Z_{nj}^{*2} n / M_{nj}$
-  follows an abbreviated version of the proof of~\eqref{eq:30}.
+  We will only present a proof of~\eqref{eq:30}.  Uniform
+  integrability of $Z^{*2}_{nj} \, n / M_{nj}$ and
+  $\{\max_{m=1,\dots,m'} Z^{*}_n(\tau, m)^2 n / m'; \tau, m', n\}$
+  follow essentially the same arguments, replacing the conditional
+  with the unconditional expectation, and are omitted.
 
-  First we will show that, for every $\epsilon > 0$ and large enough
-  $n$, there exists an $\epsilon' > 0$ with the property that
-  \begin{equation}\label{eq:31}
-    \E \Big(\ind(A) \times \max_{m = 1,\dots,m'} Z^*_n(\tau, m)^2 n / m'\Big) < \epsilon
-  \end{equation}
-  for any event $A \in \Fs_n \equiv \sigma(X_{n1},\dots,X_{nn})$ with
-  $\pr(A) \leq \epsilon'$. Then we will show that this property
-  implies uniform integrability.\footnote{%
-    The novelty in this part of the proof is the measurability
-    requirement. The sigma-field $\Fs_n$ intentionally excludes the
-    random variables that define the bootstrap (block length and block
-    start periods) and any $A \in \Fs_n$ is independent of those
-    variables, so $Z_n^{*}(\tau, m)^2$ is not $\Fs_n$-measurable. If
-    $\Fs_n$ were enlarged to include those variables then uniform
-    integrability would be an immediate consequence of~\eqref{eq:31}
-    and would not need to be shown separately. See \citet[Theorem
-    12.9]{Dav:94}.} %
-
-  Take an arbitrary $\delta > 0$ and a value of $\delta' > 0$
-  so that
-  \begin{equation}\label{eq:35}
-    \sup_{m'=1,\dots,n} \E \Big(\ind(A) \max_{m = 1,\dots,m'}
-    Z_n'(\tau, m)^2 n / m' \Big) < \delta
-  \end{equation}
-  for any $A \in \Fs_n$ with $\pr(A) \leq \delta'$; the existence
-  of $\delta'$ is ensured by Lemma~\ref{L8}. For any $x$,
-  define $J(x)$ to be the block index such that $K_{n,J(x) - 1} < x
+  For any $x$, define $J(x)$ to be the block index such that $K_{n,J(x) - 1} < x
   \leq K_{n,J(x)}$. For any $m$, we can decompose $Z_n^{*}(\tau, m)$
-  into a summation of conditionally independent blocks
+  into a summation of conditionally independent blocks, giving
+  \begin{multline} \label{eq:42}
+    Z^{*}_n(\tau, m) = Z_n^*(\tau, K_{n,J(\tau)} - \tau) +
+    \sum_{j=J(\tau)+1}^{J(\tau + m)-1} Z_{nj}^* \\
+    + Z_n^*(K_{n,J(\tau+m)-1}, m - K_{n,J(\tau + m)-1}).
+  \end{multline}
+  Since the distribution of $Z_n^*(\tau, m)$ does not depend on
+  $\tau$, \eqref{eq:30} holds if, for any positive $\epsilon$ and
+  $\epsilon'$, there exist $n_0$ and $C_0$ such that
+  \begin{multline} \label{eq:31}
+    \Pr \big [ \max_{\tau=0,\dots,n-1}
+    \Em \big ( ( \max_{ m = 1, \dots, K_{n,J(\tau)} - \tau} n \, Z^*_n(\tau, m)^2 / M_{n,J(\tau)} ) \\
+    \times \ind \{ \max_{ m = 1, \dots, K_{n,J(\tau)} - \tau} n \, Z^*_n(\tau, m)^2 / M_{n,J(\tau)} > C \}
+    \big ) > \epsilon \big ] < \epsilon',
+  \end{multline}
+  \begin{multline} \label{eq:44}
+    \pr \Big [
+    \max_{m'=1,\dots,n}
+    \Em \Big (
+    \tfrac{n}{m'} \max_{k=1,\dots,J(m')} \Big\lvert \sum_{j=1}^{k} Z_{nj}^* \Big\rvert^2 \\
+    \times \ind \Big \{
+    \tfrac{n}{m'} \max_{k=1,\dots,J(m')} \Big\lvert \sum_{j=1}^{k} Z_{nj}^* \Big\rvert^2
+    > C \Big \} \Big ) > \epsilon \Big ] < \epsilon'
+  \end{multline}
+  and
+  \begin{multline} \label{eq:5}
+    \Pr \big [ \max_{j=1,\dots,J_n}
+    \Em \big ( ( \max_{ m = 1, \dots, M_{nj}} n \, Z^*_n(K_{n,j-1}, m)^2 / M_{nj} ) \\
+    \times \ind \{ \max_{ m = 1, \dots, M_{nj}} n \, Z^*_n(K_{n,j-1}, m)^2 / M_{nj} > C \}
+    \big ) > \epsilon \big ] < \epsilon',
+  \end{multline}
+  for all $n > n_0$ and $C > C_0$.
+
+  For~\eqref{eq:5}, use the equality
+  \begin{equation}
+    Z_n(\tau, m) = Z_n'(\tau, m)
+    + \tfrac{1}{\sqrt{n}} \sum_{t \in I_n(\tau, m)} (\mu_{nt} - \bar \mu_n)
+    - (m/n) Z'_n(\tau, n), \label{eq:35}
+  \end{equation}
+  to get the upper bound
+  \begin{align*}
+    \Em \big ( & ( \max_{ m = 1, \dots, M_{nj} } n \, Z^*_n(K_{n,j-1},m)^2 / M_{nj} )
+    \ind \{ \max_{ m = 1, \dots, M_{nj} } n \, Z^*_n(K_{n,j-1}, m) ^2 / M_{nj} > C \} \big ) \\
+    & \leq 3 \Em \big ( ( \max_{ m = 1, \dots, M_{nj} } n \, Z'_n(u_n,m)^2 / M_{nj} )
+    \ind \{ \max_{ m = 1, \dots, M_{nj} } n \, Z'_n(u_n,m)^2 / M_{nj} > C / 3 \} \big ) \\
+    & \quad + 3 \Em \big ( ( M_{nj} Z'_n(0,n)^2 / n )
+    \ind \{ M_{nj} Z'_n(0,n)^2 / n > C / 3 \} \big )
+    + 3 \tfrac{M_{nj}}{n} \sum_{t=1}^n ( \mu_{nt} - \bar \mu_n ) ^2,
+  \end{align*}
+  where $u_n$ has the discrete uniform distribution over $0,\dots,n-1$.
+  Lemmas~\ref{L1}, \ref{L3}, and \ref{L8} ensure that there exist
+  $n_0$ and $C_0$ such that, for all $n > n_0$ and $C > C_0$,
   \begin{equation*}
-  Z^{*}_n(\tau, m) = Z_n^*(\tau, K_{n,J(\tau)} - \tau) +
-  \sum_{j=J(\tau)+1}^{J(\tau + m)-1} Z_{nj}^* + Z_n^*(K_{n,J(\tau+m)-1}, m - K_{n,J(\tau + m)-1}),
+    \Em \big ( (\max_{ m = 1, \dots, M_{nj} } n \, Z'_n(u_n,m)^2 / M_{nj} )
+    \ind \{\max_{ m = 1, \dots, M_{nj} } n \, Z'_n(u_n,m)^2 / M_{nj} > C / 3 \}
+    \big ) < \epsilon / 9
   \end{equation*}
-  giving
-  \begin{align}
-  \E  \Big(&\ind(A) \times \max_{m = 1,\dots,m'} n \, Z^*_n(\tau, m)^2 / m'\Big)
-  \notag \\
-  &\leq 3 \E\Big[ \Em^{*} \Big[\ind(A) \tfrac{n}{m'}\max_{m = 1,\dots, m'}
-  \Big(Z_n^*(\tau, K_{n,J(\tau)} - \tau) + \sum_{j=J(\tau)+1}^{J(\tau + m)-1} Z_{nj}^*\Big)^2\Big]
-  \notag \\
-  &\quad + 3 \Em^{*} \big[\ind(A) \tfrac{n}{m'}
-  \max_{m=1,\dots,m'} Z_n^*(K_{n,J(\tau+m)-1}, m - K_{n,J(\tau + m)-1})^2 \big]\Big]\label{eq:6}
-  \end{align}
+  and
+  \begin{equation*}
+    \Em \big ( ( M_{nj} \, Z'_n(0,n)^2 / n )
+    \ind \{ M_{nj} \, Z'_n(0,n)^2 / n > C / 3 \} \big )
+    < \epsilon / 9
+  \end{equation*}
+  for all $j = 1,\dots,J_n - 1$ almost surely, and
+  \begin{equation*}
+    \pr \Big [ \max_{j=1,\dots,J_n-1}
+    \tfrac{M_{nj}}{n} \sum_{t=1}^n ( \mu_{nt} - \bar \mu_n )^2 > \epsilon / 9 \Big ]
+    < \epsilon' / 3,
+  \end{equation*}
+  proving~\eqref{eq:5}. The proof of~\eqref{eq:31} is essentially the same.
+
+  The proof of~\eqref{eq:44} follows a streamlined version of \citet[Lemma
+  6.5]{Mcl:75b} and \citet[Lemma 3.5]{Mcl:77}. (Those results are
+  presented as Theorem~16.13 in \citealp{Dav:94}, and are largely
+  reproduced in the proof of this paper's Lemma~\ref{L8}.)
+
+  Separate $Z_{nj}^*$ into two components,
+  \begin{align*}
+    U_{nj}^* &= (\tfrac{n}{m'})^{1/2} \, Z_{nj}^*
+    \ind\{\tfrac{n}{M_{nj}} \, Z_{nj}^{*2} > C' \} -
+    (\tfrac{n}{m'})^{1/2} \Em^*( Z_{nj}^*
+    \ind\{\tfrac{n}{M_{nj}} Z_{nj}^{*2} > C' \}) \\
+    Y_{nj}^* &= (\tfrac{n}{m'})^{1/2} \, Z_{nj}^*
+    \ind\{\tfrac{n}{M_{nj}} \, Z_{nj}^{*2} \leq C' \} -
+    (\tfrac{n}{m'})^{1/2} \Em^*( Z_{nj}^*
+    \ind\{\tfrac{n}{M_{nj}} Z_{nj}^{*2} \leq C'\}),
+    \intertext{making}
+    Z_{nj}^* &= (\tfrac{m'}{n})^{1/2} U_{nj}^* + (\tfrac{m'}{n})^{1/2} Y_{nj}^*
+  \end{align*}
+  where $C'$ is a constant that will be constrained later in the
+  proof. For any $C$, $\tau$, $m'$, and $n$, standard probabilistic
+  inequalities~(e.g. Theorem 2.29 of \citealp{Dav:94}, along with
+  maximal inequalities for martingale difference sequences) imply that
+  \begin{multline}
+    \Em \Big ( \tfrac{n}{m'} \max_{k=1,\dots,J(m')}
+    \Big \lvert \sum_{j=1}^{k} Z_{nj}^* \Big \rvert^2 \ind \Big \{
+    \tfrac{n}{m'} \max_{k=1,\dots,J(m')} \Big \lvert \sum_{j=1}^{k}
+    Z_{nj}^* \Big \rvert^2 > C \Big \} \Big ) \leq \\
+    \tfrac{6}{C} \tfrac{4^4}{3^4}
+    \Em \Big \lvert \sum_{j=1}^{J(m')} Y_{nj}^* \Big \rvert^4
+    + 24 \Em \Big \lvert \sum_{j=1}^{J(m')} U_{nj}^* \Big \rvert^2
+    \label{eq:43}
+  \end{multline}
   almost surely.
 
-  Since $Z_{nj}^*$ is a martingale difference array, Doob's maximal
-  inequality for martingales \citep[see][Theorem 15.15, for
-  example]{Dav:94} along with the construction of $Z_{nj}^{*}$ gives
-  a bound for the first term on the \allcaps{RHS} of~\eqref{eq:6},
+  The first term on the RHS of~\eqref{eq:43} can be
+  expanded recursively to give the following upper bound
   \begin{align*}
-  \E \Em^* & \Big[\ind(A) \tfrac{n}{m'}\max_{m = 1,\dots, m'}
-  \Big(Z_n^*(\tau, K_{n,J(\tau)} - \tau)
-  + \sum_{j=J(\tau)+1}^{J(\tau + m)-1} Z_{nj}^*\Big)^2\Big] \\
-  &\leq \tfrac{1}{m'} \sum_{u = 0}^{n-1} \E \Big[\Em \big[
-  \ind(A) Z_n(u, K_{n,J(\tau)} - \tau)^2\big] +
-  \sum_{j=J(\tau)+1}^{J(\tau + m')-1} \Em \big[\ind(A) Z_n(u, M_{nj})^2\big]\Big] \\
-  &\leq \tfrac{3}{m'} \sum_{u = 0}^{n-1} \E\Big[\Em\big[
-  \ind(A) Z'_n(u, K_{n,J(\tau)} - \tau)^2\big]
-  + \tfrac{1}{n} \Pm[A] \Big(\sum_{t \in I_n(u, K_{n,J(\tau)} - \tau)}
-  (\mu_{nt} - \bar \mu_n)\Big)^2 \\
-  & \quad+ \sum_{j=J(\tau)+1}^{J(\tau + m')-1}
-  \Em \big[\ind(A) Z_n'(u, M_{nj})^2]
-  + \tfrac{1}{n} \Pm[A]
-  \sum_{j=J(\tau)+1}^{J(\tau + m')-1}\Big( \sum_{t \in I_n(u,M_{nj})}
-  (\mu_{nt} - \bar{\mu}_n) \Big)^2 \\
-  & \quad+ \Em\big( \ind(A) Z_n'(u, n)^2 \big)
-  \sum_{j=J(\tau)}^{J(\tau+m')-1} M_{nj}^2/n^2 \Big] \\
-  &\leq (3\delta/m') \E (K_{n,J(\tau+m')-1} - \tau)
-    + 3\delta \E\Big(\sum_{j=J(\tau)}^{J(\tau+m')-1} M_{nj}^2/n^2 \Big) \\
-  &\quad+ \tfrac{3\delta'}{nm'} \sum_{u=0}^{n-1}\E\Big( \Big(\sum_{t \in I_n(u, K_{n,J(\tau)} - \tau)}
-  (\mu_{nt} - \bar \mu_n)\Big)^2 +
-  \sum_{j=J(\tau)+1}^{J(\tau + m')-1}\Big( \sum_{t \in I_n(u,M_{nj})}
-  (\mu_{nt} - \bar{\mu}_n) \Big)^2 \Big) \\
-  & < C_1 \delta + C_2 p_n \delta'
+    \tfrac{1}{C} \Em \Big\lvert \sum_{j=1}^{J(m')} Y_{nj}^* \Big\rvert^4
+    & \leq \Em \Big[ \tfrac{1}{C} \Em^* \Big\lvert \sum_{j=1}^{J(m')-1} Y_{nj}^* \Big\rvert^4
+    + \tfrac{6}{C} \Em^* \Big( Y_{n,J(m')}^{*2} \Big\lvert
+    \sum_{j=1}^{J(m')-1} Y_{nj}^* \Big\rvert^2 \Big) \\
+    & \quad + \tfrac{4}{C} \Em^* \Big\lvert Y_{n,J(m')}^{*3} \sum_{j=1}^{J(m')-1} Y_{nj}^* \Big\rvert
+    + \tfrac{1}{C} \Em^* \lvert Y_{n,J(m')}^{*4} \rvert \Big] \\
+    & \leq \tfrac{1}{C} \Em^* \Big ( \sum_{j=1}^{J(m')-1} Y_{nj}^* \Big ) ^4
+    + \tfrac{1}{C} (\tfrac{4 C'}{m'})^2
+    \Big( 6 M_{n,J(m')} \sum_{j=1}^{J(m')-1} M_{nj} \\
+    & \quad + 4 M_{n,J(m')}^{3/2} \Big [ \sum_{j=1}^{J(m')-1} M_{n,J(m')} \Big ] ^{1/2}
+    + M_{n,J(m')}^2 \Big ) \\
+    & \leq \tfrac{ 1 }{ C } ( \tfrac{ 4 C' }{ m' } )^2 \sum_{j=2}^{J(m')}
+      \Big ( 6 M_{nj} \sum_{ k = 1 }^{ j - 1 } M_{nk}
+      + 4 M_{nj}^{3/2} \Big [ \sum_{ k = 1 }^{ j - 1 } M_{ nk } \Big ] ^{1/2}
+      + M_{nj}^2 \Big ) \\
+    & \leq \tfrac{11}{C} \tfrac{ K _{ n, J(m') } }{ m' } (4 C')^2
   \end{align*}
-  for some finite constants $C_1$ and $C_2$.
-  The second inequality comes from writing
-  \begin{align*}
-    Z_n(\tau, m) &= Z_n'(\tau, m)
-    + \tfrac{1}{\sqrt{n}} \sum_{t \in I_n(\tau, m)}
-    \big((\mu_{nt} - \bar \mu_n) + (\bar \mu_n - \bar X_n)\big) \\
-    &= Z_n'(\tau, m)
-    + \tfrac{1}{\sqrt{n}} \sum_{t \in I_n(\tau, m)} (\mu_{nt} - \bar \mu_n)
-    - (m/n) Z'_n(\tau, n),
-  \end{align*}
-  the third follows by construction of $A$
-  and the fourth follows from an argument similar to Lemma~\ref{L3}.
+  with all inequalities holding almost surely.
+  The second to last inequality holds by recursively applying the previous
+  two inequalities, first for $J(m')-1$, then for $J(m')-2$, etc.
 
-  For the second term on the \allcaps{RHS} of~\eqref{eq:6}, use the
-  sequence of inequalities
+  The second term on the RHS of~\eqref{eq:43} satisfies
   \begin{align*}
-  \E \Em^* \big[\ind(A) &\tfrac{n}{m'}
-  \max_{m=1,\dots,m'} Z_n^*(K_{n,J(\tau+m)-1}, m - K_{n,J(\tau + m)-1})^2 \big] \\
-  &\leq \E \Big(\sum_{j=J(\tau) + 1}^{J(\tau+m')-1} \tfrac{n}{m'} \Em^* \big[\ind(A)
-  \max_{m=1,\dots, \min(M_{nj}, m' - K_{n,j-1})} Z_n^*(K_{n,j}, m)^2 \big]\Big) \\
-  &\leq \E \Big(\sum_{j=J(\tau) + 1}^{J(\tau+m')} \tfrac{1}{m'} \sum_{u=0}^{n-1} \Em \big[\ind(A)
-  \max_{m=1,\dots,\min(M_{nj}, m' - K_{n,j-1})} Z_n(u, m)^2 \big]\Big) \\
-  &\leq \E \Big(\sum_{j=J(\tau) + 1}^{J(\tau+m')} \tfrac{3}{m'} \sum_{u=0}^{n-1} \Big\{
-  \Em \big[\ind(A)
-  \max_{m=1,\dots,\min(M_{nj}, m' - K_{n,j-1})} Z_n'(u, m)^2 \big] \\
-  &\quad +
-  \tfrac{1}{n} \Pm[A] \max_{m = 1,\dots,\min(M_{nj}, m'-K_{n,j-1})}
-  \Big(\sum_{t \in I_n(u,m)} (\mu_{nt} - \bar{\mu}_n)\Big)^2 \\
-  &\quad+ \tfrac{\min(M_{nj},m'-K_{n,j-1})^2}{n^2} \Em( \ind(A) Z_n'(u, n)^2 ) \Big\}\Big)\\
-  &\leq C'_1 \delta + C_2' \delta' p_n
+    \Em \Big \lvert \sum_{j=1}^{J(m')} U_{nj}^* \Big \rvert^2
+    & = \sum_{j=1}^{J(m')} \Em \lvert U_{nj}^* \rvert^2 \\
+    & \leq \max_{j=1,\dots,J(m')} \Em \big(
+      \tfrac{n}{M_{nj}} Z_{nj}^{*2}
+      \ind\{ \tfrac{n}{M_{nj}} Z_{nj}^{*2} > C' \} \big) .
   \end{align*}
-  for constants $C_1'$ and $C_2'$. To express these bounds in the form
-  of~\eqref{eq:31}, let $\epsilon > 0$ be arbitrary, choose $\delta'$
-  such that~\eqref{eq:35} holds for $\delta = \epsilon/(2C_1+2C_1')$,
-  and let $\epsilon' = \min(\delta', \epsilon/(2 C_2 + 2C_2'))$.
-  A similar argument also
-  implies that $n Z_n^*(\tau, m)^2 / m'$ has finite first moment.
-
-  Now, for uniform integrability, take $\epsilon > 0$, choose
-  $\epsilon'$ so that~\eqref{eq:31} holds for all $A \in \Fs_n$
-  s.t. $\pr(A) \leq \epsilon'$, and choose $C_0$ large enough that
+  Equation~\eqref{eq:5} ensures that we can choose $C'$ and $n'$ such that
   \begin{equation*}
-    \Pr\Big[ \max_{m = 1,\dots,m'} n \, Z^*_n(\tau, m)^2 / m' > C_0 \Big] \leq \epsilon'.
+    \pr \Big [
+    \max_{j=1,\dots,J(m')} \Em \big(
+      \tfrac{n}{M_{nj}} Z_{nj}^{*2}
+      \ind\{ \tfrac{n}{M_{nj}} Z_{nj}^{*2} > C \} > \epsilon / 2 \big) \Big ]
+    < \epsilon' / 2
   \end{equation*}
-  Markov's inequality guarantees the existence of this $C_0$. Then
+  for all $n > n'$ and $C > C'$. We can then choose $n_0 > n'$ and $C_0 > C'$
+  such that
   \begin{equation*}
-    \E \Big(\max_{m = 1,\dots,m'} n \, Z^*_n(\tau, m)^2 / m'
-    \times \ind\Big\{ \max_{m = 1,\dots,m'} n \, Z^*_n(\tau, m)^2 / m' > C \Big\}\Big) \leq \epsilon
+    \pr \Big [
+    \max_{ m' = 1, \dots, n }
+    \tfrac{11}{C} \tfrac{ K _{ n, J(m') } }{ m' } (4 C')^2
+    > \epsilon / 2 \Big ] < \epsilon' / 2
   \end{equation*}
-  for all $C > C_0$. Since $\epsilon$ is arbitrary, this completes the proof.
+  for all $n > n_0$ and $C > C_0$,
+  completing the proof.
 \end{proof}
 
 \begin{lem}\label{L7}
