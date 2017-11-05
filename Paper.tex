@@ -19,15 +19,15 @@
 
 \begin{abstract}\noindent
   This paper weakens the size and moment conditions needed for typical
-  block bootstrap methods (i.e.\ the Moving Blocks, Circular Blocks,
-  and Stationary Bootstraps) to be valid for the sample mean of
+  block bootstrap methods (i.e.\ the moving blocks, circular blocks,
+  and stationary bootstraps) to be valid for the sample mean of
   Near-Epoch-Dependent (\ned) functions of mixing processes; they are
   consistent under the weakest conditions that ensure the original
-  \ned\ process obeys a Central Limit Theorem \citep[those
-    of][\textit{Econometric Theory}]{Jon:97}.  In doing so, this paper
+  \ned\ process obeys a central limit theorem (CLT),
+    established by \citet[\textit{Econometric Theory}]{Jon:97}.  In doing so, this paper
   extends De Jong's method of proof, a blocking argument, to hold with
   random and unequal block lengths.  This paper also proves that
-  bootstrapped partial sums satisfy a Functional \clt\ under the same
+  bootstrapped partial sums satisfy a functional \clt\ (\fclt) under the same
   conditions.
 
   \noindent \allcaps{jel} Classification: C12, C15
@@ -37,9 +37,9 @@
 \end{abstract}
 
 \newpage
-\noindent Block bootstraps, e.g.\ the Moving Blocks
-(\citealp{Kun:89}, and \citealp{LiS:92}), Circular Block \citep{PoR:92}, and Stationary
-Bootstraps \citep{PoR:94}, have become popular in Economics, partly
+\noindent Block bootstraps, e.g.\ the moving blocks
+(\citealp{Kun:89}, and \citealp{LiS:92}), circular block \citep{PoR:92}, and stationary
+bootstraps \citep{PoR:94}, have become popular in economics, partly
 because they do not require the researcher to make parametric
 assumptions about the data generating process.  They are valid under
 general weak dependence and moment conditions.  Some recent papers
@@ -79,11 +79,11 @@ This paper shows that these block bootstrap
 methods consistently estimate the distribution of the sample mean
 under \citepos{Jon:97} assumptions and show that an \fclt\ holds as
 well.%
-\footnote{\citet{Rad:96} proves consistency for the Moving Blocks
-  Bootstrap for any stationary strong mixing sequence that satisfies
+\footnote{\citet{Rad:96} proves consistency for the moving blocks
+  bootstrap for any stationary strong mixing sequence that satisfies
   the \clt. This paper uses a similar method of proof to his, but also
-  accommodates nonstationary sequences and the Stationary
-  Bootstrap.} %
+  accommodates nonstationary sequences and the stationary
+  bootstrap.} %
 It also relaxes \citepos{GoW:02} and \citepos{GoJ:03} requirement that
 the expected block length be $o(n^{1/2})$ to the original papers'
 requirement that it be $o(n)$, although, as we will show, their
@@ -94,21 +94,21 @@ The proof exploits the conditional independence of the blocks in each
 bootstrap.  Each bootstrap proceeds by drawing blocks of $M$
 consecutive observations from the original time series, and then
 pasting these blocks together to create the new bootstrap time series.
-The Moving Blocks bootstrap does exactly that; the Circular Block
+The moving blocks bootstrap does exactly that; the circular block
 bootstrap ``wraps'' the observations, so that $(X_{n-1}, X_n, X_1,
 X_2)$, for example, is a possible block of length four (letting $X_t$
-denote the original time series).  The Stationary Bootstrap wraps the
+denote the original time series).  The stationary bootstrap wraps the
 observations and also draws $M$ at random for each block;
 \citet{PoR:94} suggest drawing $M$ from the geometric distribution.
-As the name suggests, the series produced by the Stationary Bootstrap
+As the name suggests, the series produced by the stationary bootstrap
 are strictly stationary, while those produced by the other methods are
-not.  Although the Stationary Bootstrap was believed to be much less
+not.  Although the stationary bootstrap was believed to be much less
 efficient than other block bootstrap methods due to results of
 \citet{Lah:99}, \citet{Nor:09} has shown that it is only slightly less
 efficient than the other block-bootstrap methods discussed in this
 paper, and has efficiency identical to that of the non-overlapping
 block bootstrap.  Consequently, there has been renewed interest in the
-Stationary Bootstrap since stationarity of the bootstrap samples can
+stationary bootstrap since stationarity of the bootstrap samples can
 be a useful property in theoretical research.  \cite{KrP:11} provides
 a recent review of the bootstrap for time-series
 processes%
@@ -125,11 +125,11 @@ operators with respect to the probability measure induced by the
 bootstrap and will use explicit stochastic array notation
 for precision.  Also note that all results are presented for the
 scalar case but generalize immediately to random vectors.  All of the
-proofs are presented in the appendix; only proofs for the Stationary
-Bootstrap are presented, since proofs for the other methods are
-similar and easier to construct.  All limits are taken as $n \to \infty$
-unless otherwise noted and $\lVert \cdot \rVert_r$ denotes the
-$L_r$-norm.
+proofs are presented after the main text of the paper; only proofs for
+the stationary bootstrap are given, since proofs for the other methods
+are similar and easier to construct.  All limits are taken as
+$n \to \infty$ unless otherwise noted and $\lVert \cdot \rVert_r$
+denotes the $L_r$-norm.
 
 \begin{thm}\label{T1}
   Suppose the following conditions hold.
@@ -140,9 +140,9 @@ $L_r$-norm.
     \ned\ magnitude indices are denoted $\{d_{nt}\}$.
   \item The array $\mu_{nt} - \bar \mu_n$ is uniformly bounded
     and $\sum_{t=1}^n (\mu_{nt} - \bar \mu_n)^2 = o(n p_n^2)$ (for
-    the Stationary Bootstrap) or
+    the stationary bootstrap) or
     $\sum_{t=1}^n (\mu_{nt} - \bar \mu_n)^2 = o(n/M_n^2)$ (for
-    the Moving or Circular Block Bootstraps),
+    the moving or circular block bootstraps),
     where $\E X_{nt} = \mu_{nt}$, $\bar{\mu}_n = n^{-1} \sum_{t=1}^n
     \mu_{nt}$, and $p_n$ and $M_n$ are further defined in item 4.
     Moreover, $\sqrt{n} \| \bar{X}_{n} - \bar\mu_n \|_2
@@ -151,9 +151,9 @@ $L_r$-norm.
     such that $(X_{nt} - \mu_{nt})/c_{nt}$ is uniformly $L_r$-bounded
     and $c_{nt}$ and $d_{nt}/c_{nt}$ are uniformly bounded in $n$
     and~$t$.
-  \item $X_{nt}^{*}$ is generated by the Stationary Bootstrap with
+  \item $X_{nt}^{*}$ is generated by the stationary bootstrap with
     geometric block lengths with success probability $p_n$, $p_n = c
-    n^{-a}$ and $a,c \in (0,1)$, or by the Moving or Circular Block
+    n^{-a}$ and $a,c \in (0,1)$, or by the moving or circular block
     bootstrap with block length $M_n$ such that $M_n \sim n^a$ for
     $a \in (0,1)$.  Let $M_{ni}$ be the block length of the $i$th
     block, $i=1,\dots,J_n$, and define $K_{n0} = 0$ and $K_{nj} =
@@ -183,13 +183,13 @@ $L_r$-norm.
 
 As mentioned earlier, these are the same size and mixing conditions
 used by \citet{Jon:97}.
-Note that De Jong does allow a little bit more flexibility in the
+Note that De Jong does allow a little more flexibility in the
 conditions on the array $\{c_{nt}\}$ \citep[see also][]{Dav:93};
 essentially, he allows for a single set of blocks with the
 maximal $\{c_{nt}\}$ over each block well-behaved, while this
 paper requires this condition to hold for every possible partition of
 blocks.  This additional restriction is required because the
-Stationary Bootstrap will select the blocks randomly and is similar to
+stationary bootstrap will select the blocks randomly and is similar to
 \citepos{JoD:00b} requirement for the \fclt.
 
 The assumption on the dispersion of the individual means,
@@ -215,10 +215,10 @@ A small amount of algebra gives the relationship,
   = T_n (n - T_n) \Delta_n^2 / n \equiv D_n;
 \end{equation*}
 we have introduced $D_n$ to minimize notation in the subsequent
-discussion.  For the Moving and Circular Block Bootstraps,
+discussion.  For the moving and circular block bootstraps,
 Theorem~\ref{T1}'s Assumption 2 holds if $D_n = o(n / M_n^2)$, and
 the same relationship must hold for the expected block length for the
-Stationary Bootstrap. If $\Delta_n = \Delta_0$ and $T_n = \pi n$ for
+stationary bootstrap. If $\Delta_n = \Delta_0$ and $T_n = \pi n$ for
 some constants $\Delta_0$ and $\pi$ and for all $n$, then
 $D_n \approx \Delta_0^2 \, \pi (1 - \pi) \, n$ and Assumption~2 fails to
 hold. These values of $\Delta_n$ and $T_n$ describe a scenario where
@@ -274,7 +274,7 @@ Our insight is that the expectation of squared blocks of the bootstrap
 process can be expressed as a sequence of \emph{contiguous} blocks of
 the original process, so the arguments that establish convergence of
 the original squared blocks can be applied with only minor changes to
-the bootstrapped blocks. Consider the Moving Blocks Bootstrap,%
+the bootstrapped blocks. Consider the moving blocks bootstrap,%
 \footnote{To make this presentation as simple as possible, assume for
   now that $n = M_n J_n$ exactly.} %
 for example, and let
@@ -307,7 +307,7 @@ array.%
   argument.}%
 \footnote{Lemmas~\ref{L4} and~\ref{L6} are particularly
   strong demonstrations of this argument.} %
-A similar representation is available for the Circular and Stationary
+A similar representation is available for the circular and stationary
 bootstraps.
 
 In short, the basic approach that we use to prove Theorem~\ref{T1}
@@ -334,8 +334,8 @@ W_n^{*}(\gamma) &= \tfrac{1}{\sqrt{n}}
 \sum_{t=1}^{\lfloor \gamma n \rfloor}
 (X^*_{nt} - \E^* \bar X_n^*).
 \end{align*}
-Also let $W$ denote standard Brownian Motion and $\sigma W$ denote
-Brownian Motion scaled by the constant $\sigma$.
+Also let $W$ denote standard Brownian motion and $\sigma W$ denote
+Brownian motion scaled by the constant $\sigma$.
 
 \begin{thm}\label{T2}
 Suppose that the conditions of Theorem~\ref{T1} hold
@@ -362,9 +362,9 @@ Note that Theorem~\ref{T2} imposes
 stronger assumptions for the original process
 than for the bootstrapped process. Without~\eqref{eq:4}, the
 partial sum of the original observations converges to a transformed
-Brownian Motion with a different covariance process. The bootstrapped
+Brownian motion with a different covariance process. The bootstrapped
 partial sum, on the other hand, always converges to standard (but
-potentially scaled) Brownian Motion because the resampling strategies
+potentially scaled) Brownian motion because the resampling strategies
 ensure that the bootstrapped process is globally covariance stationary.
 
 If the original process does not satisfy~\eqref{eq:4}, it would be
@@ -372,7 +372,7 @@ necessary to normalize $W_n$ with a uniformly
 consistent estimator of the true covariance process of the series to
 make use of these results. This would be the case if the variance
 permanently changes partway through the series, for example.  Other
-methods, such as the Local Block Bootstrap \citep{PaP:02,DPP:03}, may
+methods, such as the local block bootstrap \citep{PaP:02,DPP:03}, may
 be able to capture this additional heterogeneity with the bootstrap
 alone, but we do not pursue that possibility further.
 
@@ -564,7 +564,7 @@ by Lemma~\ref{L6}
 and satisfies the \lln\ (e.g., \citealp{Dav:94}, Theorem 19.7). So
 this sum converges to zero in conditional probability, proving~\eqref{eq:20}.
 
-To prove~\eqref{eq:19}, it suffices (via the LIE and Lemma~\ref{L2})
+To prove~\eqref{eq:19}, it suffices (via the law of iterated expectations and Lemma~\ref{L2})
 to show that
 \begin{equation*}
   \sum_{j=1}^{J_n} \Em \big ( Z_{nj}^{*2} \ind \{ Z_{nj}^{*2} > \epsilon \} \big ) \to^p 0.
@@ -729,7 +729,7 @@ is uniformly integrable, so
 \end{multline*}
 completing the proof.\qed
 
-\section{Supplemental results}
+\section{Supporting results}
 
 \begin{lem}\label{L1}
   Suppose that $M_{n1}, M_{n2},\dots$ are i.i.d.\ geometric random
@@ -871,7 +871,7 @@ and $\bar \mu_n^{*} = \E^{*} \bar \mu_n^{*} + o_{L_2}(n^{-1/2})$.
     (\mu_{n,\tau} - \bar{\mu}_n)^2 \Big\lvert\Big)\\
     &= o(n p_n).
   \end{align*}
-  The first equality follows from the LIE\@. The first inequality
+  The first equality follows from the law of iterated expectations. The first inequality
   exploits the fact that the conditional expectation in the previous
   expression averages over the block's starting period but treats
   every other random variable as constant. (The argument of the
@@ -1254,9 +1254,13 @@ that $D(x) \to 0$ as $x \to \infty$ and, for large enough $n$,
 
 Results~\eqref{eq:32} and~\eqref{eq:33} are direct extensions of
 \citepos{Jon:97} Lemmas 5 and 4, respectively, replacing De Jong's
-implicit use of inequalities with explicit inequalities. The
-supplemental appendix presents a proof of~\eqref{eq:33} to show the
-main idea.
+implicit use of inequalities with explicit inequalities. Since the
+proof follows De Jong's very closely, it is presented in a
+supplementary online appendix.\footnote{%
+  Supplementary material to this article is provided in
+  ``Supplementary Appendix for `Block bootstrap consistency under weak
+  assumptions,'{}'' which is available at Cambridge Journals Online
+  (\url{journals.cambridge.org/ect}).}
 
 Note that these results apply immediately to the conditional expectation
 $\Em$ because the block lengths $M_{jn}$ do not appear in~\eqref{eq:32}
@@ -1277,12 +1281,11 @@ used for these bounds.
   \end{multline}
 \end{lem}
 
-For proof, see supplemental appendix for the proof of~\eqref{eq:34}, which
-follows \citet[Lemma 6.5]{Mcl:75b} and \citet[Lemma 3.5]{Mcl:77}
+See the supplementary online appendix for the proof of~\eqref{eq:34},
+which follows \citet[Lemma 6.5]{Mcl:75b} and \citet[Lemma 3.5]{Mcl:77}
 almost exactly and is also presented as Theorem~16.13 in
-\citet{Dav:94}. The same comment that follows
-Lemma~\ref{L7} applies here as well: the bounds
-apply equally well to $\Em$.
+\citet{Dav:94}. The same comment that follows Lemma~\ref{L7} applies
+here as well: the bounds apply equally well to $\Em$.
 
 \bibliography{texextra/references}
 \end{document}
